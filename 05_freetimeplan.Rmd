@@ -1,0 +1,153 @@
+# Generating a phylogenetic tree in R {#primates}
+
+## The plan
+In 2 years' time I want to be doing my master's in Biology at Universiteit Leiden. I would like to specialize in Evolutionary Biology. Next semester I will be attending classes at Radboud Universiteit that are part of their minor Biology - Adaptive Organisms to get a head start on learning about evolutionary biology, both because it's something I enjoy and to make the transition from life sciences to the master's program easier
+
+I would like to learn more about the differences between multiple primates and generate a phylogenetic tree. Prior to me starting on the actual code for this phylogenetic tree, I had to look into the different types of trees and how to generate them.
+
+## Preparatory research
+I started by looking for R packages having to do with phylogenetic research. There were ample packages to help generate phylogenetic trees, but none of them seemed to have all the tools needed. Wanting to keep my research as reproducible as possible, my main priority was to keep every single part of the research in R, which is free and open source software [@rcoreteamLanguageEnvironmentStatistical2014]. To get an idea of how to get started, I read a couple of papers by researchers who've created phylogenetic trees. In these papers, most of the software used to generate the trees (and all the steps that come before) was not R [@pozziPrimatePhylogeneticRelationships2014]; [@perelmanMolecularPhylogenyLiving2011]. Some of the programs were point and click as well  [@suchardBayesianPhylogeneticPhylodynamic2018]; [@vaidyaSequenceMatrixConcatenationSoftware2011], making the research less reproducible.
+
+After looking at some different R packages I decided {ape} [@paradisApeEnvironmentModern2019] was the best option, seeing as most packages for  phylogenetic research are dependent on it [@jombartAdegenet31New2011].
+The first step in the analysis was to obtain the data from an online database. NCBI has their own command-line tool called NCBI Datasets [@ncbistaffNowAvailableUpdated2022]. The command-line tool was installed using Miniconda3 [@anacondaMinicondaCondaDocumentation]. The tool did work fine, but it wasn't exactly what I was looking for. This was also when it was decided to perform the analysis on the mitochondrial genomes of the primates, instead of the nuclear genomes, due to computational limitations.
+
+## Getting started
+I ended up making a list of the species of interest, containing their GenBank [@bensonGenBank2013] identifier, scientific name and their common name, and saving it in a text file called species.txt. This is the only part of the code that would need to be changed in case a species is to be added.
+
+To keep the code tidy the packages {tidyverse} [@wickhamWelcomeTidyverse2019] and {here} [@mullerHere] are used. {BiocManager} [@ramosInstallingBiocManager] was also used to install packages.
+
+```{r setup primates, include=FALSE}
+#install.packages("ape")
+#install.packages("phangorn")
+#install.packages("tidyverse")
+#install.packages("here")
+#install.packages("rentrez")
+#install.packages("BiocManager")
+#BiocManager::install("ggtree")
+
+library(ape)
+library(phangorn)
+library(tidyverse)
+library(here)
+library(rentrez)
+library(ggtree)
+```
+
+## Generating the first tree
+### Obtaining FASTA sequences
+The file is read by R and filtered so that the comments (species' names) are removed, and only the GenBank identifier remains. Then, using the package {rentrez} [@winterRentrezPackageNCBI2017], the FASTA sequences are obtained and stored in a vector. The FASTA sequences are then stored in a file so they can be used as input for the {ape} function `read.FASTA`, where the sequences will be converted to a vector of the class DNAbin.
+
+```{r Obtaining FASTA sequences, results='hide'}
+species <-scan(file = here("data/species.txt"), what = "character", sep = "\n", comment.char = "#") #import list of species to be analyzed
+
+fasta_seqs <- entrez_fetch(db = "nucleotide",
+             id = species,
+             rettype = "fasta") #retrieve the fasta sequences of the mitochondrial genome of every species in the list
+
+write(fasta_seqs, 
+      file="temp")
+
+grep("^*$", readLines("temp"), invert = TRUE, value = TRUE) %>% write(file = here("data/sequences.fasta")) #remove empty lines so read.FASTA works
+
+file.remove("temp")
+
+dna <- read.FASTA(here("data/sequences.fasta"), type = "DNA") #store the sequences in a vector of the type "DNAbin"
+```
+
+### Performing multiple sequence alignment
+Now that the dna has been stored as DNAbin, a multiple sequence alignment will be performed using Clustal Omega 1.2.3 [@sieversFastScalableGeneration2011]. The aligned DNA is saved as a file, so the alignment only has to be performed once (since it takes a while).
+
+```{r Performing multiple sequence alignment, eval=FALSE}
+dna_aligned <- clustalomega(dna, exec = here("clustalo")) #use Clustal Omega 1.2.3 to perform multiple sequence alignment
+saveRDS(dna_aligned, here("data/dna_aligned.RDS")) #save as file so the code only has to run once
+```
+
+### Importing the aligned dna
+
+```{r importing aligned dna}
+dna_aligned <- readRDS(here("data/dna_aligned.RDS")) #import the aligned dna
+```
+
+### Calculating the genetic distances between the sequences and drawing a tree
+The different dna sequences have been aligned and now the genetic distances between the sequences can be calculated using the Tamura and Nei 1993 model (TN93) [@tamuraEstimationNumberNucleotide1993]. The distance matrix can be used as input to calculate the phylogenetic tree. The used algorithm is the BIONJ algorithm of Gascuel [@gascuelBIONJImprovedVersion1997]. 
+The generated tree is visualized as a cladogram using the package {ggtree} [@yuGgtreePackageVisualization2017]. It's visualized as a cladogram for now to keep it easy to read while it's being improved.
+
+```{r Calculate the genetic distances between the sequences, message=FALSE}
+dna_dist <- dist.dna(dna_aligned, model = "TN93") #calculate genetic distances and store in a vector of the type "dist"
+
+treebionj <- bionj(dna_dist) #create a tree of the class "phylo" using the method neighbor joining
+
+ggtree(treebionj, branch.length = "none", ladderize = F)+ #visualize the tree as a cladogram
+  theme_tree()+
+  geom_tiplab(size = 6, as_ylab = T)+
+  labs(title = "Unrooted neighbor joining cladogram of\nmitochondrial genomes of 15 primates and the golden hamster")
+```
+
+## Different types of phylogenetic models
+This first tree was generated using an improved neighbor joining model, which is just one of the four most commonly used [@yoshidaEfficienciesNJpMaximum2016]. Neighbor joining only looks at the distance between the sequences, but not at smaller details in the sequences [@yoshidaEfficienciesNJpMaximum2016]. A different method is maximum likelihood, where the likelihood of the different possible states of the tree is calculated, and the tree with the highest likelihood is generated [@dharMaximumLikelihoodPhylogenetic2016]. Two other popular methods are Bayesian inference and maximum parsimony [@dharMaximumLikelihoodPhylogenetic2016]; [@yoshidaEfficienciesNJpMaximum2016]. Since maximum likelihood is the preferred method in publications [@dharMaximumLikelihoodPhylogenetic2016], that is the method I will be using.
+
+### Finding the best model
+The input for the {phangorn} `modelTest` function is an object of the class phyDat, so first the DNAbin object has to be converted:
+
+```{r Converting DNAbin to phyDat}
+dna_phydat <- as.phyDat(dna_aligned) #convert object to class phyDat
+```
+
+The model test is ran and the model with the lowest Akaike information criterion (AIC, calculated by the {phangorn} function `modelTest`), making it the best model [@cavanaughAkaikeInformationCriterion2019], is saved, again so this only has to be performed once as it takes quite long.
+
+```{r Finding the best model, eval=FALSE}
+modeltest <- modelTest(dna_phydat) #run the model test
+optmodel <- modeltest$Model[modeltest$AIC==min(modeltest$AIC)] #find the model with the lowest AIC
+saveRDS(optmodel, here("data/optmodel")) #save as file so the code only has to run once
+```
+
+```{r Importing best model }
+optmodel <- readRDS(here("data/optmodel")) #import the data again
+```
+
+### Generating a maximum likelihood tree
+Using the neighbor joining tree, the aligned dna and the best model the maximum likelihood tree can be computed:
+
+```{r Generating maximum likelihood tree}
+mlparsed <- pml(treebionj, dna_phydat) #generate the maximum likelihood tree
+```
+
+The `optim.pml` function from {phangorn} is used to optimize the different model parameters. The model found using `modelTest` is not an option in the `optim.pml` function, so the closest option is used.
+
+```{r Optimizing the maximum likelihood tree, results='hide'}
+optmodel <- gsub("\\+.*","", optmodel) #change the string so the optim.pml function can read it
+mlparsedoptim <- optim.pml(mlparsed, optNni=TRUE, model = optmodel) #optimize the tree
+```
+
+### Visualizing the maximum likelihood cladogram
+
+```{r Visualize unrooted maximum likelihood tree, message=FALSE}
+treeml <- ladderize(mlparsedoptim$tree) #ladderize the tree
+
+ggtree(treeml, branch.length = "none", ladderize = F)+ #visualize the tree as a cladogram
+  theme_tree()+
+  geom_tiplab(size = 6, as_ylab = T)+
+  labs(title = "Unrooted maximum likelihood cladogram of\nmitochondrial genomes of 15 primates and the golden hamster")
+```
+
+### Rooting the tree
+The last step is to root the tree and clean up the tip labels (species names). It is important to root the tree, trees that aren't rooted correctly may be misleading [@kineneRootingTreesMethods2016]. There are multiple ways to root a tree, I will be using an "outgroup", a species that is genetically very different from the other species in the tree [@kineneRootingTreesMethods2016]. 
+
+```{r Rooting the tree and visualizing it, message=FALSE}
+rootedml <- root(treeml, 
+                 outgroup = "NC_013276.1 Mesocricetus auratus mitochondrion, complete genome", 
+                 resolve.root = TRUE) #rooting the tree
+
+rootedml$tip.label <- gsub(".*\\.[12]", "", rootedml$tip.label) #clean up the labels
+rootedml$tip.label <- gsub("(mitochondrion, | isolate | voucher).*genome", "", rootedml$tip.label) #clean up the labels
+
+ggtree(rootedml, ladderize = F)+ #visualize the tree as a phylogenetic tree
+  theme_tree()+
+  geom_tiplab(size = 2.5, as_ylab = F)+
+  xlim(0, 0.35)+
+  labs(title = "Rooted maximum likelihood phylogenetic tree of\nmitochondrial genomes of 15 primates and the golden hamster")
+```
+
+The final tree is visualized as a phylogenetic tree instead of a cladogram, with different branch lengths describing the ancestry of the primates. The cladogram only showed how the different species are related [@pearsonWhenOutgroupsFail2013].
+
+Normally, more thought would go into selecting the best possible outgroup [@rota-stabelliMultiCriterionApproach2008]. Since my goal was to learn how to generate a phylogenetic tree in R (within a reasonable timeframe) I chose an animal that I like and know is more genetically different from the primates than the primates between each other.

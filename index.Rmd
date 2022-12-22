@@ -1,0 +1,15 @@
+--- 
+title: "Portfolio"
+author: "Nine Luijendijk"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+link-citations: yes
+new_session: yes
+bibliography: '`r rbbt::bbt_write_bib("bibliography.json", overwrite = TRUE)`'
+---
+
+# Prerequisites
+
+Work in progress

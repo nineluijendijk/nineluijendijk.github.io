@@ -1,0 +1,27 @@
+# Curriculum Vitae Nine Luijendijk {#resume}
+
+## Contact
+E-mail: nineluijendijk@gmail.com\
+Phone: +31617210407\
+LinkedIn: https://www.linkedin.com/in/nine-luijendijk-75a973257/
+
+## Education
+__Hogeschool Utrecht__\
+_Bachelor of Science - BS, Life Sciences, Sep. 2020 - Aug. 2024_
+Specialized in Data Sciences for Biology
+
+## Experience
+__Zeeman textielSupers - Leusden__\
+_Sales Associate, Nov. 2021 - Present_\
+
+__StudyWorks BV - Leusden__\
+_Tutor, Jan. 2020 - Sep. 2021_\
+Tutored high school students in English, math and chemistry.
+
+## Skills
+R programming language\
+Bash command language
+
+## Languages
+Dutch\
+English

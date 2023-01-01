@@ -1,0 +1,528 @@
+# Working with relational databases
+
+Having spent so much time analyzing data, it would be useful to learn more about obtaining data from databases, and how to manipulate and analyze relational data using SQL.
+
+```{r setup sql, include=FALSE}
+library(here)
+library(dslabs)
+library(tidyverse)
+library(DBI)
+library(RPostgres)
+library(car)
+library(plotly)
+```
+
+## Preparing the data
+
+### Introduction
+
+In this report I will be analyzing 2 datasets obtained from Google Dengue Trends (<http://www.google.org/denguetrends>) and Google Flu Trends (<http://www.google.org/flutrends>). The datasets contain the number of dengue and flu cases per week of the year, from 2002 through 2015.
+
+### Importing the data and making it tidy
+
+The first step in the data analysis is to import the data into Rstudio and make it tidy, meaning each variable gets its own column, each observation gets its own row and each value its own cell. In this case neither of the datasets were in tidy format, as there were multiple observations in each row. After making the data tidy, the class of every column was checked and changed to match the class of that column in the gapminder ({dslabs}, [@irizarryDslabsDataScience2021]) dataframe, so they can later be joined together. A "year" column was added to both the dengue and the flu data as well, to match the "year" column of gapminder.
+
+```{r importing and tidying dengue/flu data, message=FALSE}
+dengue_data <- read_csv(here("data_raw/dengue_data.csv"), skip = 11) #first 11 rows contain metadata
+flu_data <- read_csv(here("data_raw/flu_data.csv"), skip = 11) #first 11 rows contain metadata
+
+dengue_tidy <- pivot_longer(data = dengue_data, 
+                            cols = c(2:ncol(dengue_data)), 
+                            names_to = "country", 
+                            values_to = "cases") #each observation must have its own row
+
+flu_tidy <- pivot_longer(data = flu_data, 
+                         cols = c(2:ncol(flu_data)), 
+                         names_to = "country", 
+                         values_to = "cases") #each observation must have its own row
+
+dengue_tidy <- dengue_tidy %>% mutate("year" = substr(Date, 1, 4)) #add "year" column
+dengue_tidy$year <- as.integer(dengue_tidy$year) #change class of column year from chr to int
+
+flu_tidy <- flu_tidy %>% mutate("year" = substr(Date, 1, 4)) #add "year" column
+flu_tidy$year <- as.integer(flu_tidy$year) #change class of column year from chr to int
+
+dengue_tidy$country <- as.factor(dengue_tidy$country) #the column country in gapminder is of the class factor
+flu_tidy$country <- as.factor(flu_tidy$country) #the column country in gapminder is of the class factor
+```
+
+The tidy dataframes were then saved as separate rds and csv files:
+
+```{r storing dataframes as files, eval=FALSE}
+saveRDS(gapminder, here("data/gapminder.rds")) #store the three tables as .rds and .csv files
+saveRDS(dengue_tidy, here("data/dengue.rds"))
+saveRDS(flu_tidy, here("data/flu.rds"))
+write_csv(gapminder, here("data/gapminder.csv"))
+write_csv(dengue_tidy, here("data/dengue.csv"))
+write_csv(flu_tidy, here("data/flu.csv"))
+```
+
+### Connecting to the database
+
+For this analysis, a PostgreSQL database was created in Dbeaver. To connect to the database in Rstudio, the {RPostgres} [@wickhamRPostgresRcppInterface2022] package was used.
+
+```{r connecting to the database}
+con <- dbConnect(Postgres(), #connect to the database
+                 dbname = "workflowsdb", 
+                 host="localhost", 
+                 port="5432", 
+                 user="postgres", 
+                 password="password")
+```
+
+### Exporting the tidy dataframes to the database
+
+```{r exporting tables to database, eval = FALSE}
+dbWriteTable(con, "gapminder", gapminder) #insert the tables into the database
+dbWriteTable(con, "dengue", dengue_tidy)
+dbWriteTable(con, "flu", flu_tidy)
+```
+
+## Inspecting the data
+
+### Inspecting the data using SQL
+
+To make sure no important data is missing, the tables were checked for NULL values. Data I consider important is the year and the country data, since if there are any missing values here errors may occur.
+
+<details>
+
+<summary>Checking for NULL values</summary>
+
+```{sql, connection = con}
+SELECT *
+  FROM gapminder
+WHERE year IS NULL; --make sure no important values are missing
+```
+
+```{sql, connection = con}
+SELECT *
+  FROM gapminder
+WHERE country IS NULL;
+```
+
+```{sql, connection = con}
+SELECT *
+  FROM dengue
+WHERE year IS NULL;
+```
+
+```{sql, connection = con}
+SELECT *
+  FROM dengue
+WHERE country IS NULL;
+```
+
+```{sql, connection = con}
+SELECT *
+  FROM flu
+WHERE year IS NULL;
+```
+
+```{sql, connection = con}
+SELECT *
+  FROM flu
+WHERE country IS NULL;
+```
+
+</details>
+
+There were no records for any of these selects, meaning there are no NULL values anywhere in "year" or "country".
+
+Now to actually look at the data, there were a couple of statistics I was interested in, like:
+
+<details>
+
+<summary>How many observations were done</summary>
+
+```{sql, connection = con}
+SELECT COUNT(cases) --count the number of observations (ignoring NULL)
+  FROM dengue; 
+```
+
+```{sql, connection = con}
+SELECT COUNT(cases)
+  FROM flu;
+```
+
+</details>
+
+<details>
+
+<summary>The total number of cases</summary>
+
+```{sql, connection = con}
+SELECT SUM(cases) --calculate the total number of cases
+  FROM dengue;
+```
+
+```{sql, connection = con}
+SELECT SUM(cases)
+  FROM flu;
+```
+
+</details>
+
+<details>
+
+<summary>The countries with the highest number of cases</summary>
+
+```{sql, connection = con}
+SELECT year, country, cases*1000 AS cases1000 --look at the highest observed numbers of cases
+  FROM dengue
+WHERE cases IS NOT NULL
+ORDER BY cases1000 DESC;
+```
+
+```{sql, connection = con}
+SELECT year, country, cases
+  FROM flu
+WHERE cases IS NOT NULL
+ORDER BY cases DESC;
+```
+
+</details>
+
+### Inspecting the data using R
+
+Now it's time to inspect the data in R. When importing the dengue data from its csv, I noticed every value in the dataframe was a fraction instead of a whole number. Since no Readme was provided with the data, I am not sure why this is. To make the values whole, I multiplied the number of cases by 1000.
+
+To find out which countries had the highest and lowest observed number of cases, the following code was used:
+
+```{r highest and lowest observed cases}
+dengue_mutated <- dengue_tidy %>% mutate("cases1000" = cases * 1000) #add a column with the multiplied number of cases
+
+maxcasesdengue <- subset(dengue_mutated, cases1000 == max(na.omit(dengue_mutated$cases1000)))  
+mincasesdengue <- subset(dengue_mutated, cases1000 == min(na.omit(dengue_mutated$cases1000)))
+unique(maxcasesdengue$country) #look at which countries have the highest observed number of dengue cases
+unique(mincasesdengue$country) #look at which countries have the lowest observed number of dengue cases
+
+maxcasesflu <- subset(flu_tidy, cases == max(na.omit(flu_tidy$cases)))  
+mincasesflu <- subset(flu_tidy, cases == min(na.omit(flu_tidy$cases)))  
+unique(maxcasesflu$country) #look at which countries have the highest observed number of flu cases
+unique(mincasesflu$country) #look at which countries have the lowest observed number of flu cases
+```
+
+Another statistic is the total number and the average number of cases per country of all years combined.
+
+```{r create summaries}
+dengue_country_means <- dengue_mutated %>% group_by(country) %>% 
+  summarize(total = sum(cases1000, na.rm = TRUE), mean = mean(cases1000, na.rm = TRUE)) %>% 
+  arrange(desc(mean)) #calculate the total number of cases and mean number of cases per country
+
+flu_country_means <- flu_tidy %>% group_by(country) %>%
+  summarize(total = sum(cases, na.rm = TRUE), mean = mean(cases, na.rm = TRUE)) %>% 
+  arrange(desc(mean))
+```
+
+<details>
+
+<summary>Dengue numbers</summary>
+
+```{r dengue dataframemeans, echo=FALSE}
+knitr::kable(dengue_country_means)
+```
+
+</details>
+
+<details>
+
+<summary>Flu numbers</summary>
+
+```{r fludataframemeans, echo=FALSE}
+knitr::kable(flu_country_means)
+```
+
+</details>
+
+Though interesting, these numbers only represent the total number of cases, not taking into account the size of the difference in population between countries. That is where the gapminder dataframe comes into play, containing exactly the data needed to include the population in the calculations.
+
+## Combining the dataframes
+
+### Preparing the tidy dataframes
+
+To prepare the dataframes for the joining NA values were removed, and both the sum and the weekly mean of the number of cases were added.
+
+```{r prepare dataframes for joining, message=FALSE}
+#calculate the number of cases per year and the average number of cases per week per country
+dengue_combine <- na.omit(dengue_mutated) %>% group_by(country, year) %>%
+  summarize(total_cases_dengue = sum(cases1000), mean_weekly_dengue = mean(cases1000))
+
+flu_combine <- na.omit(flu_tidy) %>% group_by(country, year) %>% 
+  summarize(total_cases_flu = sum(cases), mean_weekly_flu = mean(cases))
+```
+
+### Joining the dataframes together
+
+The new dataframes were then exported to the database, where they were joined using SQL:
+
+```{r export new dataframes to database, eval=FALSE}
+dbWriteTable(con, "dengue_combine", dengue_combine) #insert the new tables into the database
+dbWriteTable(con, "flu_combine", flu_combine)
+```
+
+```{sql joining dengue and gapminder, connection = con, eval=FALSE}
+CREATE TABLE dengue_gapminder AS --combine dengue_data and gapminder
+SELECT
+    gapminder.country,
+    gapminder.year,
+    gapminder.population,
+    gapminder.continent,
+    gapminder.region,
+    dengue_combine.total_cases_dengue,
+    dengue_combine.mean_weekly_dengue
+  FROM gapminder
+LEFT JOIN dengue_combine
+  ON gapminder.country = dengue_combine.country
+    AND gapminder.year = dengue_combine.year;
+```
+
+```{sql joining flu and gapminder, connection = con, eval=FALSE}
+CREATE TABLE flu_gapminder AS --combine flu_data and gapminder
+SELECT
+    gapminder.country,
+    gapminder.year,
+    gapminder.population,
+    gapminder.continent,
+    gapminder.region,
+    flu_combine.total_cases_flu,
+    flu_combine.mean_weekly_flu
+  FROM gapminder
+LEFT JOIN flu_combine
+  ON gapminder.country = flu_combine.country
+    AND gapminder.year = flu_combine.year;
+```
+
+```{sql joining all dataframes, connection = con, eval=FALSE}
+CREATE TABLE flu_gapminder_dengue AS	--combine all 3 tables
+SELECT
+    flu_gapminder.country,
+    flu_gapminder.year,
+    flu_gapminder.population,
+    flu_gapminder.continent,
+    flu_gapminder.region,
+    flu_gapminder.total_cases_flu,
+    flu_gapminder.mean_weekly_flu,
+    dengue_combine.total_cases_dengue,
+    dengue_combine.mean_weekly_dengue
+  FROM flu_gapminder
+INNER JOIN dengue_combine
+  ON flu_gapminder.country = dengue_combine.country
+    AND flu_gapminder.year = dengue_combine.year;
+```
+
+### Loading the combined tables into R
+
+```{r loading the combined tables in R}
+dengue_gapminder <- dbReadTable(con, "dengue_gapminder") #load the combined tables into R
+flu_gapminder <- dbReadTable(con, "flu_gapminder")
+flu_gapminder_dengue <- dbReadTable(con, "flu_gapminder_dengue")
+
+dengue_gapminder_nona <- na.omit(dengue_gapminder) #remove NA values
+flu_gapminder_nona <- na.omit(flu_gapminder)
+flu_gapminder_dengue_nona <- na.omit(flu_gapminder_dengue)
+```
+
+## Visualizing the data
+
+### Normalizing the data
+
+Now that the dataframes are combined, the gapminder column "population" can be used to normalize the data. We now know the average number of weekly cases per 100.000 population, of every country per year.
+
+```{r normalizing the data}
+#normalize the data by calculating the average number of cases per 100,000 population
+dengue_gapminder_normalized <- dengue_gapminder_nona %>% mutate("normalized_dengue" = (total_cases_dengue/population)*100000,
+                                                                "normalized_dengue_mean" = (mean_weekly_dengue/population)*100000)
+
+flu_gapminder_normalized <- flu_gapminder_nona %>% mutate("normalized_flu" = (total_cases_flu/population)*100000,
+                                                          "normalized_flu_mean" = (mean_weekly_flu/population)*100000)
+
+flu_gapminder_dengue_normalized <- flu_gapminder_dengue_nona %>% mutate("normalized_dengue" = (total_cases_dengue/population)*100000,
+                                                                        "normalized_flu" = (total_cases_flu/population)*100000,
+                                                                        "normalized_dengue_mean" = (mean_weekly_dengue/population)*100000,
+                                                                        "normalized_flu_mean" = (mean_weekly_flu/population)*100000)
+```
+
+### Calculating descriptive statistics
+
+In an attempt to find some descriptive statistics, I tried calculating the means, standard deviations and Shapiro-Wilk p-values (to see if the data is from a normal distribution).
+
+```{r calculating shapiro-wilk}
+#calculate means, standard deviations and Shapiro-Wilk p-values per region
+dengue_gap_summary <- dengue_gapminder_normalized %>% group_by(region) %>% 
+  summarize(mean = mean(total_cases_dengue),
+            sd = sd(total_cases_dengue),
+            pvalue_sw = shapiro.test(total_cases_dengue)$p.value)
+
+flu_gap_summary <-flu_gapminder_normalized %>% group_by(region) %>% 
+  summarize(mean = mean(total_cases_flu),
+            sd = sd(total_cases_flu),
+            pvalue_sw = shapiro.test(total_cases_flu)$p.value)
+
+#calculate means, standard deviations and Shapiro-Wilk p-values per country
+dengue_gap_summary_country <- dengue_gapminder_normalized %>% group_by(country) %>% 
+  summarize(mean = mean(total_cases_dengue),
+            sd = sd(total_cases_dengue),
+            pvalue_sw = shapiro.test(total_cases_dengue)$p.value)
+
+flu_gap_summary_country <-flu_gapminder_normalized %>% group_by(country) %>% 
+  summarize(mean = mean(total_cases_flu),
+            sd = sd(total_cases_flu),
+            pvalue_sw = shapiro.test(total_cases_flu)$p.value)
+```
+
+Not every country has a normal distribution (normal distribution is where p \> 0.05). After finding the countries that do, levene's test was performed to check for equal variances:
+
+```{r levene test, warning=FALSE}
+#find the countries where the data is a normal distribution
+countries_normal_dengue <- subset(dengue_gap_summary_country, pvalue_sw > 0.05)[,1] %>% pull()
+countries_normal_flu <- subset(flu_gap_summary_country, pvalue_sw > 0.05)[,1] %>% pull()
+
+#filter for the rows with observations from those countries
+dengue_normal <- dengue_gapminder_normalized[dengue_gapminder_normalized$country %in% countries_normal_dengue,]
+flu_normal <- flu_gapminder_normalized[flu_gapminder_normalized$country %in% countries_normal_flu,]
+
+#perform levene's test
+leveneTest(total_cases_dengue ~ country, data = dengue_normal, center = mean)[1,3]
+leveneTest(total_cases_flu ~ country, data = flu_normal, center = mean)[1,3]
+```
+
+### Visualizing correlation
+
+After calculating these p-values, I realized I'm more interested in correlation than difference between the groups, since it's already known the groups are differt from each other (different countries). Instead of performing an ANOVA or Kruskal-Wallis test, it was decided that the pearson's correlation coefficient would be calculated. A scatter plot was generated to visualize correlation:
+
+```{r pearson correlation analysis}
+#perform a pearson correlation analysis 
+dengue_flu_cor <- round(cor.test(flu_gapminder_dengue_normalized$total_cases_dengue, 
+                                 flu_gapminder_dengue_normalized$total_cases_flu, 
+                                 method = "pearson")$estimate, 3)
+
+cor_pvalue <- cor.test(flu_gapminder_dengue_normalized$total_cases_dengue, 
+         flu_gapminder_dengue_normalized$total_cases_flu, 
+         method = "pearson")$p.value
+
+#visualize the correlation in a scatter plot
+ggplot(data = flu_gapminder_dengue_normalized, aes(y = total_cases_dengue, x = total_cases_flu)) +
+  geom_point()+
+  labs(title = "Relation between dengue and flu cases",
+       subtitle = paste("pearson's r = ", dengue_flu_cor),
+       y = "Number of dengue cases",
+       x = "Number of flu cases")+
+  theme_minimal()
+```
+
+There is a significant correlation between the number of dengue and flu cases in a country, as p is smaller than 0.05 at `cor_pvalue`. The correlation coefficient of `dengue_flu_cor` indicates a weak correlation [@taylorInterpretationCorrelationCoefficient1990].
+
+### Visualizing the dengue data
+
+Dengue is endemic in most tropical countries / regions [@gublerGlobalEmergenceResurgence2002a], as shown below:
+
+```{r dengue bar plot}
+#visualize the number of dengue cases per region in a bar plot
+ggplot(dengue_gap_summary,
+       aes(x = region, y = mean,
+           fill = region))+ 
+  geom_col()+ 
+  geom_errorbar(aes(ymin = mean-sd, ymax = mean+sd, width = 0.2))+
+  labs(title = "Number of dengue cases per region", 
+       subtitle = "Error bars depict 1 standard deviation",
+       x="Region", 
+       y="Average number of dengue cases")+
+  theme_minimal()+
+  theme(legend.position = "none")
+```
+
+This graph was made by looking at the average number of cases per region per year, meaning it uses the total number of cases rather that the normalized ones that were calculated earlier. A more representative plot would use these numbers:
+
+```{r dengue scatter plot}
+#create a scatter plot of the dengue data
+dengue_plot <- ggplot(dengue_gapminder_normalized,
+       aes(x = year, y = mean_weekly_dengue, group = country,
+           color = country))+ 
+  geom_line()+
+  geom_point()+
+  labs(title = "Weekly dengue cases per country",
+       y = "Average number of dengue cases per week per 100,000 population",
+       x = "Year",
+       color = "Country")+
+  scale_x_continuous(breaks = seq(from = min(dengue_gapminder_normalized$year),
+                              to = max(dengue_gapminder_normalized$year),
+                              by = 1))+
+  theme_minimal()
+
+ggplotly(dengue_plot) #visualize the number of dengue cases per country in an interactive scatter plot
+```
+
+### Visualizing the flu data
+
+The same graphs can be made using the flu data:
+
+```{r flu bar plot}
+#visualize the number of flu cases per region in a bar plot
+ggplot(flu_gap_summary,
+       aes(x = region, y = mean,
+           fill = region)) + 
+  geom_col()+ 
+  geom_errorbar(aes(ymin = mean-sd, ymax = mean+sd, width = 0.2))+
+  labs(title = "Number of flu cases per region", 
+       subtitle = "Error bars depict 1 standard deviation",
+       x="Region", 
+       y="Average number of flu cases")+
+  theme_minimal()+
+  theme(legend.position = "none",
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+```
+
+This graph has the same issue as before, using the total number of cases rather than the normalized data. Northern America and Southern Africa stand out with their high number of cases. It is true that Northern America has a high number of weekly flu cases, but seeing their large population this was to be expected. More interesting is Southern Africa, where the population is smaller but the number of cases is higher. Looking at some random observations:
+
+```{sql, connection = con}
+SELECT DISTINCT country, region
+FROM flu_gapminder
+WHERE region = 'Southern Africa'
+AND total_cases_flu IS NOT NULL
+```
+
+South Africa is the only country in region Southern Africa with flu data.
+
+```{sql, connection = con}
+SELECT year, country, cases
+  FROM flu
+WHERE country = 'South Africa'
+  AND cases IS NOT NULL
+ORDER BY RANDOM();
+```
+
+```{sql, connection = con}
+SELECT year, country, cases
+  FROM flu
+WHERE cases IS NOT NULL
+ORDER BY RANDOM();
+```
+
+We can see that the number of weekly cases in South Africa is very high compared to other countries, causing it to stand out when looking at the bar graph. This will also be reflected in the average number of weekly cases:
+
+```{r flu scatter plot}
+#create a scatter plot of the flu data
+flu_plot <- ggplot(flu_gapminder_normalized,
+       aes(x = year, y = mean_weekly_flu, group = country,
+           color = country))+ 
+  geom_line()+
+  geom_point()+
+  labs(title = "Weekly flu cases per country",
+       y = "Average number of flu cases per week per 100,000 population",
+       x = "Year",
+       color = "Country")+
+  scale_x_continuous(breaks = seq(from = min(flu_gapminder_normalized$year),
+                                  to = max(flu_gapminder_normalized$year),
+                                  by = 1))+
+  theme_minimal()
+
+ggplotly(flu_plot) #visualize the number of flu cases per country in an interactive scatter plot
+```
+
+Northern American countries United States and Canada still stand out, having higher weekly averages than most countries, despite the numbers being normalized for this graph. South Africa does have the highest average number of flu cases per week per 100,000 population since data started being collected from there.
+
+Now that the analysis and visualization is done, Rstudio can be disconnected from the database.
+
+```{r disconnect from database}
+dbDisconnect(con) 
+```

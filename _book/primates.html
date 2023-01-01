@@ -23,7 +23,7 @@
 <meta name="author" content="Nine Luijendijk" />
 
 
-<meta name="date" content="2022-12-22" />
+<meta name="date" content="2023-01-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="datanalysis.html"/>
-
+<link rel="next" href="working-with-relational-databases.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -52,6 +52,13 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -191,6 +198,35 @@ div.csl-indent {
 <li class="chapter" data-level="5.5.4" data-path="primates.html"><a href="primates.html#rooting-the-tree"><i class="fa fa-check"></i><b>5.5.4</b> Rooting the tree</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="6" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html"><i class="fa fa-check"></i><b>6</b> Working with relational databases</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#preparing-the-data"><i class="fa fa-check"></i><b>6.1</b> Preparing the data</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#introduction"><i class="fa fa-check"></i><b>6.1.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.1.2" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#importing-the-data-and-making-it-tidy"><i class="fa fa-check"></i><b>6.1.2</b> Importing the data and making it tidy</a></li>
+<li class="chapter" data-level="6.1.3" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#connecting-to-the-database"><i class="fa fa-check"></i><b>6.1.3</b> Connecting to the database</a></li>
+<li class="chapter" data-level="6.1.4" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#exporting-the-tidy-dataframes-to-the-database"><i class="fa fa-check"></i><b>6.1.4</b> Exporting the tidy dataframes to the database</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#inspecting-the-data"><i class="fa fa-check"></i><b>6.2</b> Inspecting the data</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#inspecting-the-data-using-sql"><i class="fa fa-check"></i><b>6.2.1</b> Inspecting the data using SQL</a></li>
+<li class="chapter" data-level="6.2.2" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#inspecting-the-data-using-r"><i class="fa fa-check"></i><b>6.2.2</b> Inspecting the data using R</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#combining-the-dataframes"><i class="fa fa-check"></i><b>6.3</b> Combining the dataframes</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#preparing-the-tidy-dataframes"><i class="fa fa-check"></i><b>6.3.1</b> Preparing the tidy dataframes</a></li>
+<li class="chapter" data-level="6.3.2" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#joining-the-dataframes-together"><i class="fa fa-check"></i><b>6.3.2</b> Joining the dataframes together</a></li>
+<li class="chapter" data-level="6.3.3" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#loading-the-combined-tables-into-r"><i class="fa fa-check"></i><b>6.3.3</b> Loading the combined tables into R</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#visualizing-the-data"><i class="fa fa-check"></i><b>6.4</b> Visualizing the data</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#normalizing-the-data"><i class="fa fa-check"></i><b>6.4.1</b> Normalizing the data</a></li>
+<li class="chapter" data-level="6.4.2" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#calculating-descriptive-statistics"><i class="fa fa-check"></i><b>6.4.2</b> Calculating descriptive statistics</a></li>
+<li class="chapter" data-level="6.4.3" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#visualizing-correlation"><i class="fa fa-check"></i><b>6.4.3</b> Visualizing correlation</a></li>
+<li class="chapter" data-level="6.4.4" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#visualizing-the-dengue-data"><i class="fa fa-check"></i><b>6.4.4</b> Visualizing the dengue data</a></li>
+<li class="chapter" data-level="6.4.5" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#visualizing-the-flu-data"><i class="fa fa-check"></i><b>6.4.5</b> Visualizing the flu data</a></li>
+</ul></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -224,7 +260,7 @@ The first step in the analysis was to obtain the data from an online database. N
 <div id="getting-started" class="section level2 hasAnchor" number="5.3">
 <h2><span class="header-section-number">5.3</span> Getting started<a href="primates.html#getting-started" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>I ended up making a list of the species of interest, containing their GenBank <span class="citation">(<a href="#ref-bensonGenBank2013" role="doc-biblioref">Benson et al. 2013</a>)</span> identifier, scientific name and their common name, and saving it in a text file called species.txt. This is the only part of the code that would need to be changed in case a species is to be added.</p>
-<p>To keep the code tidy the packages {tidyverse} <span class="citation">(<a href="#ref-wickhamWelcomeTidyverse2019" role="doc-biblioref">Wickham et al. 2019</a>)</span> and {here} <span class="citation">(<a href="#ref-mullerHere" role="doc-biblioref">Müller n.d.</a>)</span> are used. {BiocManager} <span class="citation">(<a href="#ref-ramosInstallingBiocManager" role="doc-biblioref">Ramos and Morgan n.d.</a>)</span> was also used to install packages.</p>
+<p>To keep the code tidy the packages {tidyverse} <span class="citation">(<a href="#ref-wickhamWelcomeTidyverse2019" role="doc-biblioref">Hadley Wickham et al. 2019</a>)</span> and {here} <span class="citation">(<a href="#ref-mullerHere" role="doc-biblioref">Müller n.d.</a>)</span> are used. {BiocManager} <span class="citation">(<a href="#ref-ramosInstallingBiocManager" role="doc-biblioref">Ramos and Morgan n.d.</a>)</span> was also used to install packages.</p>
 </div>
 <div id="generating-the-first-tree" class="section level2 hasAnchor" number="5.4">
 <h2><span class="header-section-number">5.4</span> Generating the first tree<a href="primates.html#generating-the-first-tree" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -321,80 +357,6 @@ The generated tree is visualized as a cladogram using the package {ggtree} <span
 <p>The final tree is visualized as a phylogenetic tree instead of a cladogram, with different branch lengths describing the ancestry of the primates. The cladogram only showed how the different species are related <span class="citation">(<a href="#ref-pearsonWhenOutgroupsFail2013" role="doc-biblioref">Pearson et al. 2013</a>)</span>.</p>
 <p>Normally, more thought would go into selecting the best possible outgroup <span class="citation">(<a href="#ref-rota-stabelliMultiCriterionApproach2008" role="doc-biblioref">Rota-Stabelli and Telford 2008</a>)</span>. Since my goal was to learn how to generate a phylogenetic tree in R (within a reasonable timeframe) I chose an animal that I like and know is more genetically different from the primates than the primates between each other.</p>
 
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div class="csl-entry">
-Anaconda. n.d. <span>“Miniconda — Conda Documentation.”</span> Accessed December 21, 2022. <a href="https://docs.conda.io/en/latest/miniconda.html">https://docs.conda.io/en/latest/miniconda.html</a>.
-</div>
-<div class="csl-entry">
-Benson, Dennis A., Mark Cavanaugh, Karen Clark, Ilene Karsch-Mizrachi, David J. Lipman, James Ostell, and Eric W. Sayers. 2013. <span>“GenBank.”</span> <em>Nucleic Acids Research</em> 41 (Database issue): D36–42. <a href="https://doi.org/10.1093/nar/gks1195">https://doi.org/10.1093/nar/gks1195</a>.
-</div>
-<div class="csl-entry">
-Cavanaugh, Joseph E., and Andrew A. Neath. 2019. <span>“The Akaike Information Criterion: Background, Derivation, Properties, Application, Interpretation, and Refinements.”</span> <em>WIREs Computational Statistics</em> 11 (3): e1460. <a href="https://doi.org/10.1002/wics.1460">https://doi.org/10.1002/wics.1460</a>.
-</div>
-<div class="csl-entry">
-Dhar, Amrit, and V.N. Minin. 2016. <span>“Maximum Likelihood Phylogenetic Inference.”</span> <em>Encyclopedia of Evolutionary Biology</em>, December. <a href="https://doi.org/10.1016/B978-0-12-800049-6.00207-9">https://doi.org/10.1016/B978-0-12-800049-6.00207-9</a>.
-</div>
-<div class="csl-entry">
-Gascuel, O. 1997. <span>“BIONJ: An Improved Version of the NJ Algorithm Based on a Simple Model of Sequence Data.”</span> <em>Molecular Biology and Evolution</em> 14 (7): 685–95. <a href="https://doi.org/10.1093/oxfordjournals.molbev.a025808">https://doi.org/10.1093/oxfordjournals.molbev.a025808</a>.
-</div>
-<div class="csl-entry">
-Jombart, Thibaut, and Ismaïl Ahmed. 2011. <span>“Adegenet 1.3-1: New Tools for the Analysis of Genome-Wide SNP Data.”</span> <em>Bioinformatics</em> 27 (21): 3070–71. <a href="https://doi.org/10.1093/bioinformatics/btr521">https://doi.org/10.1093/bioinformatics/btr521</a>.
-</div>
-<div class="csl-entry">
-Kinene, T., J. Wainaina, S. Maina, and L.M. Boykin. 2016. <span>“Rooting Trees, Methods For.”</span> <em>Encyclopedia of Evolutionary Biology</em>, 489–93. <a href="https://doi.org/10.1016/B978-0-12-800049-6.00215-8">https://doi.org/10.1016/B978-0-12-800049-6.00215-8</a>.
-</div>
-<div class="csl-entry">
-Müller, Kirill. n.d. <span>“Here.”</span> Accessed December 21, 2022. <a href="https://here.r-lib.org/articles/here.html">https://here.r-lib.org/articles/here.html</a>.
-</div>
-<div class="csl-entry">
-NCBI Staff, NCBI. 2022. <span>“Now Available! Updated NCBI Datasets Command-Line Tools.”</span> NCBI Insights. October 12, 2022. <a href="https://ncbiinsights.ncbi.nlm.nih.gov/2022/10/12/ncbi-datasets-command-line-tools/">https://ncbiinsights.ncbi.nlm.nih.gov/2022/10/12/ncbi-datasets-command-line-tools/</a>.
-</div>
-<div class="csl-entry">
-Paradis, Emmanuel, and Klaus Schliep. 2019. <span>“ape 5.0: an environment for modern phylogenetics and evolutionary analyses in R.”</span> <em>Bioinformatics (Oxford, England)</em> 35 (3): 526–28. <a href="https://doi.org/10.1093/bioinformatics/bty633">https://doi.org/10.1093/bioinformatics/bty633</a>.
-</div>
-<div class="csl-entry">
-Pearson, Talima, Heidie M. Hornstra, Jason W. Sahl, Sarah Schaack, James M. Schupp, Stephen M. Beckstrom-Sternberg, Matthew W. O’Neill, et al. 2013. <span>“When outgroups fail; phylogenomics of rooting the emerging pathogen, Coxiella burnetii.”</span> <em>Systematic Biology</em> 62 (5): 752–62. <a href="https://doi.org/10.1093/sysbio/syt038">https://doi.org/10.1093/sysbio/syt038</a>.
-</div>
-<div class="csl-entry">
-Perelman, Polina, Warren E. Johnson, Christian Roos, Hector N. Seuánez, Julie E. Horvath, Miguel A. M. Moreira, Bailey Kessing, et al. 2011. <span>“A Molecular Phylogeny of Living Primates.”</span> <em>PLOS Genetics</em> 7 (3): e1001342. <a href="https://doi.org/10.1371/journal.pgen.1001342">https://doi.org/10.1371/journal.pgen.1001342</a>.
-</div>
-<div class="csl-entry">
-Pozzi, Luca, Jason A. Hodgson, Andrew S. Burrell, Kirstin N. Sterner, Ryan L. Raaum, and Todd R. Disotell. 2014. <span>“Primate Phylogenetic Relationships and Divergence Dates Inferred from Complete Mitochondrial Genomes.”</span> <em>Molecular Phylogenetics and Evolution</em> 75 (June): 165–83. <a href="https://doi.org/10.1016/j.ympev.2014.02.023">https://doi.org/10.1016/j.ympev.2014.02.023</a>.
-</div>
-<div class="csl-entry">
-R Core Team. 2014. <span>“R: A Language and Environment for Statistical Computing.”</span> <em>MSOR Connections</em>. <a href="https://www.semanticscholar.org/paper/R%3A-A-language-and-environment-for-statistical-Team/659408b243cec55de8d0a3bc51b81173007aa89b">https://www.semanticscholar.org/paper/R%3A-A-language-and-environment-for-statistical-Team/659408b243cec55de8d0a3bc51b81173007aa89b</a>.
-</div>
-<div class="csl-entry">
-Ramos, Marcel, and Martin Morgan. n.d. <span>“Installing BiocManager.”</span> Accessed December 21, 2022. <a href="https://cran.r-project.org/web/packages/BiocManager/vignettes/BiocManager.html">https://cran.r-project.org/web/packages/BiocManager/vignettes/BiocManager.html</a>.
-</div>
-<div class="csl-entry">
-Rota-Stabelli, Omar, and Maximilian J. Telford. 2008. <span>“A Multi Criterion Approach for the Selection of Optimal Outgroups in Phylogeny: Recovering Some Support for Mandibulata over Myriochelata Using Mitogenomics.”</span> <em>Molecular Phylogenetics and Evolution</em> 48 (1): 103–11. <a href="https://doi.org/10.1016/j.ympev.2008.03.033">https://doi.org/10.1016/j.ympev.2008.03.033</a>.
-</div>
-<div class="csl-entry">
-Sievers, Fabian, Andreas Wilm, David Dineen, Toby J. Gibson, Kevin Karplus, Weizhong Li, Rodrigo Lopez, et al. 2011. <span>“Fast, scalable generation of high-quality protein multiple sequence alignments using Clustal Omega.”</span> <em>Molecular Systems Biology</em> 7 (October): 539. <a href="https://doi.org/10.1038/msb.2011.75">https://doi.org/10.1038/msb.2011.75</a>.
-</div>
-<div class="csl-entry">
-Suchard, Marc A, Philippe Lemey, Guy Baele, Daniel L Ayres, Alexei J Drummond, and Andrew Rambaut. 2018. <span>“Bayesian Phylogenetic and Phylodynamic Data Integration Using BEAST 1.10.”</span> <em>Virus Evolution</em> 4 (1): vey016. <a href="https://doi.org/10.1093/ve/vey016">https://doi.org/10.1093/ve/vey016</a>.
-</div>
-<div class="csl-entry">
-Tamura, K, and M Nei. 1993. <span>“Estimation of the Number of Nucleotide Substitutions in the Control Region of Mitochondrial DNA in Humans and Chimpanzees.”</span> <em>Molecular Biology and Evolution</em> 10 (3): 512–26. <a href="https://doi.org/10.1093/oxfordjournals.molbev.a040023">https://doi.org/10.1093/oxfordjournals.molbev.a040023</a>.
-</div>
-<div class="csl-entry">
-Vaidya, Gaurav, David J. Lohman, and Rudolf Meier. 2011. <span>“SequenceMatrix: Concatenation Software for the Fast Assembly of Multi-Gene Datasets with Character Set and Codon Information.”</span> <em>Cladistics</em> 27 (2): 171–80. <a href="https://doi.org/10.1111/j.1096-0031.2010.00329.x">https://doi.org/10.1111/j.1096-0031.2010.00329.x</a>.
-</div>
-<div class="csl-entry">
-Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. <span>“Welcome to the Tidyverse.”</span> <em>Journal of Open Source Software</em> 4 (43): 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>.
-</div>
-<div class="csl-entry">
-Winter, David J. 2017. <span>“Rentrez: An R Package for the NCBI eUtils API”</span> 9.
-</div>
-<div class="csl-entry">
-Yoshida, Ruriko, and Masatoshi Nei. 2016. <span>“Efficiencies of the NJp, Maximum Likelihood, and Bayesian Methods of Phylogenetic Construction for Compositional and Noncompositional Genes.”</span> <em>Molecular Biology and Evolution</em> 33 (6): 1618–24. <a href="https://doi.org/10.1093/molbev/msw042">https://doi.org/10.1093/molbev/msw042</a>.
-</div>
-<div class="csl-entry">
-Yu, Guangchuang, David K. Smith, Huachen Zhu, Yi Guan, and Tommy Tsan-Yuk Lam. 2017. <span>“Ggtree: An r Package for Visualization and Annotation of Phylogenetic Trees with Their Covariates and Other Associated Data.”</span> <em>Methods in Ecology and Evolution</em> 8 (1): 28–36. <a href="https://doi.org/10.1111/2041-210X.12628">https://doi.org/10.1111/2041-210X.12628</a>.
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -478,8 +440,8 @@ Yu, Guangchuang, David K. Smith, Huachen Zhu, Yi Guan, and Tommy Tsan-Yuk Lam. 2
           </div>
         </div>
       </div>
-<a href="datanalysis.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="datanalysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="working-with-relational-databases.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

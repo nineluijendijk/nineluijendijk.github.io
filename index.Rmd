@@ -1,34 +1,38 @@
 --- 
-title: "Portfolio"
-author: "Nine Luijendijk"
-date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
-output: bookdown::gitbook
+output: 
+  bookdown::gitbook:
+      number_sections: true
+      anchor_sections: false
+      config:
+            toc:
+                collapse: section
+                scroll_highlight: yes
 documentclass: book
 link-citations: yes
 new_session: yes
 bibliography: '`r rbbt::bbt_write_bib("bibliography.json", overwrite = TRUE)`'
 ---
 
-# Curriculum Vitae {#resume}
+# Curriculum Vitae {.unnumbered #resume}
 
 ```{r, include=FALSE, message=FALSE}
 library(here)
 ```
 
-## Contact
+## Contact {-}
 E-mail: nineluijendijk@gmail.com\
 Phone: +31 6 17210407\
-LinkedIn: https://www.linkedin.com/in/nine-luijendijk-75a973257/\
+LinkedIn: https://www.linkedin.com/in/nine-luijendijk-75a973257/ \
 GitHub: https://github.com/nineluijendijk
 
-## Education
+## Education {-}
 __Hogeschool Utrecht__\
 _Bachelor of Science - BS, Life Sciences, Sep. 2020 - Aug. 2024_\
 Specialized in Data Sciences for Biology\
 GPA of 4.0
 
-## Experience
+## Experience {-}
 __Zeeman textielSupers - Leusden__\
 _Sales Associate, Nov. 2021 - Present_\
 
@@ -39,10 +43,10 @@ Tutored high school students in English, math and chemistry.
 __Albert Heijn - Leusden__\
 _Sales Associate, Jan. 2020 - Jul. 2020_
 
-## Skills
+## Skills {-}
 R programming language\
 Bash command language
 
-## Languages
+## Languages {-}
 Dutch\
 English

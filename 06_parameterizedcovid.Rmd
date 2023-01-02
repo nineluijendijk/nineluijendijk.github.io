@@ -1,0 +1,3 @@
+# Parameterized report COVID-19 {#parameterizedcovid}
+
+work in progress

@@ -1,0 +1,23 @@
+# Drug Screening {#drugscreening}
+
+Every year, 400,000 children and young people are diagnosed with cancer [@lewandowskaProblemsStressorsNeeds2021]. In developed countries, over 80% of children survive for at least 5 years after diagnosis [@schuzChildhoodCancerGlobal2021], and surival rates keep going up [@steliarovafoucherGeographicalPatternsTime2004b] as seen in figure \@ref(fig:cancerstatistics). This does mean that around 20% of children don't. Researchers all over the world are working on bringing this percentage down even more, including the doctors and researchers at the Princess Máxima Center in Utrecht.
+
+```{r cancerstatistics, fig.cap="Cancer survival rates for children in West and East Europe [@steliarovafoucherGeographicalPatternsTime2004b]."}
+knitr::include_graphics(here("data/cancerstatistics.png"))
+```
+
+Princess Máxima Center is a children's cancer research hospital, where all children diagnosed with cancer in the Netherlands are treated [@prinsesmaximacentrumOnsVerhaal]. A core focus of the Princess Máxima Center is combining treatment with research and vice versa, which how new methods for treatment are found.
+
+When treating cancer, it's important to use a drug that both kills the tumor and has the lowest number of side effects. Specialized cancer hospitals (like the Princess Máxima Center) run tests to determine which drug this would be, using a high throughput facility that can screen hundreds of different drugs used on patient material at once [@HighthroughputScreeningHTS]. In theory, this could be done for every patient, meaning they could be treated with the most suitable drug for their type of cancer.
+
+Where the pipeline for single-drug testing is established, there is no set way to analyse the data obtained from a combination-drug screening. When doing a combination-drug screening, multiple drugs are combined. Researchers hope to find combinations of drugs that have a greater effect in combination with each other than when their separate effects are added together, see figure \@ref(fig:synergyantagonism). Synergy, as this is called, is desired, so patients can experience the same positive effects but less side effects from the drugs [@cokolDrugsTheirInteractions2012]. 
+
+```{r synergyantagonism, fig.cap="Different types of interactions between drugs [@cokolDrugsTheirInteractions2012]."}
+knitr::include_graphics(here("data/synergy_antagonism.png"))
+```
+
+However, analyzing combination-screen data is more complex than analyzing single-screen data [@rounsavilleSingleMultipleDrug2003]. It is up to me and 2 of my fellow students to extend the existing pipeline to make is simpler for researchers to visualize and interpret their data from combination-screens, focusing on the different types of synergy [@jaaksEffectiveDrugCombinations2022]. The R package {SynergyFinder} [@zhengSynergyFinderBetterInterpretation2022] contains a multitude of functions to visualize dose-response and synergy data and will be used in the package that we are going to create ourselves.
+
+The main focus will be on creating a function (or multiple functions that go together) that can filter the data from the high throughput facility for the "best" drug combinations, after the data has been molded to fit into the {SynergyFinder} functions. It is important that every parameter can be set manually instead of being hard-coded into the function, so that the function can be used to help answer any research question, instead of being specific for one single situation.
+
+With this package will come a `DESCRIPTION` file containing metadata (like the package title and version for example), a `NAMESPACE` file that ensures R will be able to find every function written, a vignette (guide) and of course all the functions we think are necessary for the data analysis of combination-drug screening data.

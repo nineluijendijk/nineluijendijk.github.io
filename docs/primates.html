@@ -4,34 +4,32 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5 Generating a phylogenetic tree in R | Portfolio</title>
-  <meta name="description" content="5 Generating a phylogenetic tree in R | Portfolio" />
+  <title>8 Generating a phylogenetic tree in R | portfolio_book.knit</title>
+  <meta name="description" content="" />
   <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5 Generating a phylogenetic tree in R | Portfolio" />
+  <meta property="og:title" content="8 Generating a phylogenetic tree in R | portfolio_book.knit" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5 Generating a phylogenetic tree in R | Portfolio" />
+  <meta name="twitter:title" content="8 Generating a phylogenetic tree in R | portfolio_book.knit" />
   
   
   
 
-<meta name="author" content="Nine Luijendijk" />
 
 
-<meta name="date" content="2023-01-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="datanalysis.html"/>
-<link rel="next" href="working-with-relational-databases.html"/>
+<link rel="prev" href="rpackage.html"/>
+<link rel="next" href="references.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -49,9 +47,6 @@
 
 
 
-<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
-<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.10.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
@@ -161,72 +156,84 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a></li>
-<li class="chapter" data-level="2" data-path="resume.html"><a href="resume.html"><i class="fa fa-check"></i><b>2</b> Curriculum Vitae Nine Luijendijk</a>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Curriculum Vitae</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="resume.html"><a href="resume.html#contact"><i class="fa fa-check"></i><b>2.1</b> Contact</a></li>
-<li class="chapter" data-level="2.2" data-path="resume.html"><a href="resume.html#education"><i class="fa fa-check"></i><b>2.2</b> Education</a></li>
-<li class="chapter" data-level="2.3" data-path="resume.html"><a href="resume.html#experience"><i class="fa fa-check"></i><b>2.3</b> Experience</a></li>
-<li class="chapter" data-level="2.4" data-path="resume.html"><a href="resume.html#skills"><i class="fa fa-check"></i><b>2.4</b> Skills</a></li>
-<li class="chapter" data-level="2.5" data-path="resume.html"><a href="resume.html#languages"><i class="fa fa-check"></i><b>2.5</b> Languages</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#contact"><i class="fa fa-check"></i>Contact</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#education"><i class="fa fa-check"></i>Education</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#experience"><i class="fa fa-check"></i>Experience</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#skills"><i class="fa fa-check"></i>Skills</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#languages"><i class="fa fa-check"></i>Languages</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="guerillaframework.html"><a href="guerillaframework.html"><i class="fa fa-check"></i><b>3</b> Guerilla Analytics framework</a></li>
-<li class="chapter" data-level="4" data-path="datanalysis.html"><a href="datanalysis.html"><i class="fa fa-check"></i><b>4</b> Analyzing data from an experiment</a>
+<li class="chapter" data-level="1" data-path="guerillaframework.html"><a href="guerillaframework.html"><i class="fa fa-check"></i><b>1</b> Guerilla Analytics framework</a></li>
+<li class="chapter" data-level="2" data-path="reproducibleresearch.html"><a href="reproducibleresearch.html"><i class="fa fa-check"></i><b>2</b> Reproducible Research</a></li>
+<li class="chapter" data-level="3" data-path="datanalysis.html"><a href="datanalysis.html"><i class="fa fa-check"></i><b>3</b> Analyzing and visualizing data</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="datanalysis.html"><a href="datanalysis.html#open-the-file-in-r-and-inspect-the-data."><i class="fa fa-check"></i><b>4.1</b> Open the file in R and inspect the data.</a></li>
-<li class="chapter" data-level="4.2" data-path="datanalysis.html"><a href="datanalysis.html#fixing-the-characterdouble-issue"><i class="fa fa-check"></i><b>4.2</b> Fixing the character/double issue</a></li>
-<li class="chapter" data-level="4.3" data-path="datanalysis.html"><a href="datanalysis.html#think-about-how-you-would-analyze-this-experiment-to-learn-whether-there-is-indeed-an-effect-of-different-concentrations-on-offspring-count-and-whether-the-different-compounds-have-a-different-curve-ic50.-write-down-you-analysis-as-a-step-wise-plan."><i class="fa fa-check"></i><b>4.3</b> Think about how you would analyze this experiment to learn whether there is indeed an effect of different concentrations on offspring count and whether the different compounds have a different curve (IC50). Write down you analysis as a step-wise plan.</a></li>
-<li class="chapter" data-level="4.4" data-path="datanalysis.html"><a href="datanalysis.html#normalize-the-data-for-the-controlnegative-in-such-a-way-that-the-mean-value-for-controlnegative-is-exactly-equal-to-1-and-that-all-other-values-are-expressed-as-a-fraction-thereof.-rerun-your-graphs-with-the-normalized-data."><i class="fa fa-check"></i><b>4.4</b> Normalize the data for the controlNegative in such a way that the mean value for controlNegative is exactly equal to 1 and that all other values are expressed as a fraction thereof. Rerun your graphs with the normalized data.</a></li>
+<li class="chapter" data-level="3.1" data-path="datanalysis.html"><a href="datanalysis.html#preparing-the-data"><i class="fa fa-check"></i><b>3.1</b> Preparing the data</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="datanalysis.html"><a href="datanalysis.html#inspecting-the-data-in-r"><i class="fa fa-check"></i><b>3.1.1</b> Inspecting the data in R</a></li>
+<li class="chapter" data-level="3.1.2" data-path="datanalysis.html"><a href="datanalysis.html#fixing-the-characterdouble-issue"><i class="fa fa-check"></i><b>3.1.2</b> Fixing the character/double issue</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="primates.html"><a href="primates.html"><i class="fa fa-check"></i><b>5</b> Generating a phylogenetic tree in R</a>
+<li class="chapter" data-level="3.2" data-path="datanalysis.html"><a href="datanalysis.html#analyzing-and-visualizing-the-data"><i class="fa fa-check"></i><b>3.2</b> Analyzing and visualizing the data</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="primates.html"><a href="primates.html#the-plan"><i class="fa fa-check"></i><b>5.1</b> The plan</a></li>
-<li class="chapter" data-level="5.2" data-path="primates.html"><a href="primates.html#preparatory-research"><i class="fa fa-check"></i><b>5.2</b> Preparatory research</a></li>
-<li class="chapter" data-level="5.3" data-path="primates.html"><a href="primates.html#getting-started"><i class="fa fa-check"></i><b>5.3</b> Getting started</a></li>
-<li class="chapter" data-level="5.4" data-path="primates.html"><a href="primates.html#generating-the-first-tree"><i class="fa fa-check"></i><b>5.4</b> Generating the first tree</a>
-<ul>
-<li class="chapter" data-level="5.4.1" data-path="primates.html"><a href="primates.html#obtaining-fasta-sequences"><i class="fa fa-check"></i><b>5.4.1</b> Obtaining FASTA sequences</a></li>
-<li class="chapter" data-level="5.4.2" data-path="primates.html"><a href="primates.html#performing-multiple-sequence-alignment"><i class="fa fa-check"></i><b>5.4.2</b> Performing multiple sequence alignment</a></li>
-<li class="chapter" data-level="5.4.3" data-path="primates.html"><a href="primates.html#importing-the-aligned-dna"><i class="fa fa-check"></i><b>5.4.3</b> Importing the aligned dna</a></li>
-<li class="chapter" data-level="5.4.4" data-path="primates.html"><a href="primates.html#calculating-the-genetic-distances-between-the-sequences-and-drawing-a-tree"><i class="fa fa-check"></i><b>5.4.4</b> Calculating the genetic distances between the sequences and drawing a tree</a></li>
-</ul></li>
-<li class="chapter" data-level="5.5" data-path="primates.html"><a href="primates.html#different-types-of-phylogenetic-models"><i class="fa fa-check"></i><b>5.5</b> Different types of phylogenetic models</a>
-<ul>
-<li class="chapter" data-level="5.5.1" data-path="primates.html"><a href="primates.html#finding-the-best-model"><i class="fa fa-check"></i><b>5.5.1</b> Finding the best model</a></li>
-<li class="chapter" data-level="5.5.2" data-path="primates.html"><a href="primates.html#generating-a-maximum-likelihood-tree"><i class="fa fa-check"></i><b>5.5.2</b> Generating a maximum likelihood tree</a></li>
-<li class="chapter" data-level="5.5.3" data-path="primates.html"><a href="primates.html#visualizing-the-maximum-likelihood-cladogram"><i class="fa fa-check"></i><b>5.5.3</b> Visualizing the maximum likelihood cladogram</a></li>
-<li class="chapter" data-level="5.5.4" data-path="primates.html"><a href="primates.html#rooting-the-tree"><i class="fa fa-check"></i><b>5.5.4</b> Rooting the tree</a></li>
+<li class="chapter" data-level="3.2.1" data-path="datanalysis.html"><a href="datanalysis.html#plan-for-ic50ed50-visualization"><i class="fa fa-check"></i><b>3.2.1</b> Plan for IC50/ED50 visualization</a></li>
+<li class="chapter" data-level="3.2.2" data-path="datanalysis.html"><a href="datanalysis.html#normalizing-the-data"><i class="fa fa-check"></i><b>3.2.2</b> Normalizing the data</a></li>
+<li class="chapter" data-level="3.2.3" data-path="datanalysis.html"><a href="datanalysis.html#creating-a-legend"><i class="fa fa-check"></i><b>3.2.3</b> Creating a legend</a></li>
+<li class="chapter" data-level="3.2.4" data-path="datanalysis.html"><a href="datanalysis.html#generating-the-normalized-plot"><i class="fa fa-check"></i><b>3.2.4</b> Generating the normalized plot</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html"><i class="fa fa-check"></i><b>6</b> Working with relational databases</a>
+<li class="chapter" data-level="4" data-path="drugscreening.html"><a href="drugscreening.html"><i class="fa fa-check"></i><b>4</b> Drug Screening</a></li>
+<li class="chapter" data-level="5" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html"><i class="fa fa-check"></i><b>5</b> Working with relational databases</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#preparing-the-data"><i class="fa fa-check"></i><b>6.1</b> Preparing the data</a>
+<li class="chapter" data-level="5.1" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#preparing-the-data-1"><i class="fa fa-check"></i><b>5.1</b> Preparing the data</a>
 <ul>
-<li class="chapter" data-level="6.1.1" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#introduction"><i class="fa fa-check"></i><b>6.1.1</b> Introduction</a></li>
-<li class="chapter" data-level="6.1.2" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#importing-the-data-and-making-it-tidy"><i class="fa fa-check"></i><b>6.1.2</b> Importing the data and making it tidy</a></li>
-<li class="chapter" data-level="6.1.3" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#connecting-to-the-database"><i class="fa fa-check"></i><b>6.1.3</b> Connecting to the database</a></li>
-<li class="chapter" data-level="6.1.4" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#exporting-the-tidy-dataframes-to-the-database"><i class="fa fa-check"></i><b>6.1.4</b> Exporting the tidy dataframes to the database</a></li>
+<li class="chapter" data-level="5.1.1" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#introduction"><i class="fa fa-check"></i><b>5.1.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.1.2" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#importing-the-data-and-making-it-tidy"><i class="fa fa-check"></i><b>5.1.2</b> Importing the data and making it tidy</a></li>
+<li class="chapter" data-level="5.1.3" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#connecting-to-the-database"><i class="fa fa-check"></i><b>5.1.3</b> Connecting to the database</a></li>
+<li class="chapter" data-level="5.1.4" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#exporting-the-tidy-dataframes-to-the-database"><i class="fa fa-check"></i><b>5.1.4</b> Exporting the tidy dataframes to the database</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#inspecting-the-data"><i class="fa fa-check"></i><b>6.2</b> Inspecting the data</a>
+<li class="chapter" data-level="5.2" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#inspecting-the-data"><i class="fa fa-check"></i><b>5.2</b> Inspecting the data</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#inspecting-the-data-using-sql"><i class="fa fa-check"></i><b>6.2.1</b> Inspecting the data using SQL</a></li>
-<li class="chapter" data-level="6.2.2" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#inspecting-the-data-using-r"><i class="fa fa-check"></i><b>6.2.2</b> Inspecting the data using R</a></li>
+<li class="chapter" data-level="5.2.1" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#inspecting-the-data-using-sql"><i class="fa fa-check"></i><b>5.2.1</b> Inspecting the data using SQL</a></li>
+<li class="chapter" data-level="5.2.2" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#inspecting-the-data-using-r"><i class="fa fa-check"></i><b>5.2.2</b> Inspecting the data using R</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#combining-the-dataframes"><i class="fa fa-check"></i><b>6.3</b> Combining the dataframes</a>
+<li class="chapter" data-level="5.3" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#combining-the-dataframes"><i class="fa fa-check"></i><b>5.3</b> Combining the dataframes</a>
 <ul>
-<li class="chapter" data-level="6.3.1" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#preparing-the-tidy-dataframes"><i class="fa fa-check"></i><b>6.3.1</b> Preparing the tidy dataframes</a></li>
-<li class="chapter" data-level="6.3.2" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#joining-the-dataframes-together"><i class="fa fa-check"></i><b>6.3.2</b> Joining the dataframes together</a></li>
-<li class="chapter" data-level="6.3.3" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#loading-the-combined-tables-into-r"><i class="fa fa-check"></i><b>6.3.3</b> Loading the combined tables into R</a></li>
+<li class="chapter" data-level="5.3.1" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#preparing-the-tidy-dataframes"><i class="fa fa-check"></i><b>5.3.1</b> Preparing the tidy dataframes</a></li>
+<li class="chapter" data-level="5.3.2" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#joining-the-dataframes-together"><i class="fa fa-check"></i><b>5.3.2</b> Joining the dataframes together</a></li>
+<li class="chapter" data-level="5.3.3" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#loading-the-combined-tables-into-r"><i class="fa fa-check"></i><b>5.3.3</b> Loading the combined tables into R</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#visualizing-the-data"><i class="fa fa-check"></i><b>6.4</b> Visualizing the data</a>
+<li class="chapter" data-level="5.4" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#visualizing-the-data"><i class="fa fa-check"></i><b>5.4</b> Visualizing the data</a>
 <ul>
-<li class="chapter" data-level="6.4.1" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#normalizing-the-data"><i class="fa fa-check"></i><b>6.4.1</b> Normalizing the data</a></li>
-<li class="chapter" data-level="6.4.2" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#calculating-descriptive-statistics"><i class="fa fa-check"></i><b>6.4.2</b> Calculating descriptive statistics</a></li>
-<li class="chapter" data-level="6.4.3" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#visualizing-correlation"><i class="fa fa-check"></i><b>6.4.3</b> Visualizing correlation</a></li>
-<li class="chapter" data-level="6.4.4" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#visualizing-the-dengue-data"><i class="fa fa-check"></i><b>6.4.4</b> Visualizing the dengue data</a></li>
-<li class="chapter" data-level="6.4.5" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#visualizing-the-flu-data"><i class="fa fa-check"></i><b>6.4.5</b> Visualizing the flu data</a></li>
+<li class="chapter" data-level="5.4.1" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#normalizing-the-data-1"><i class="fa fa-check"></i><b>5.4.1</b> Normalizing the data</a></li>
+<li class="chapter" data-level="5.4.2" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#calculating-descriptive-statistics"><i class="fa fa-check"></i><b>5.4.2</b> Calculating descriptive statistics</a></li>
+<li class="chapter" data-level="5.4.3" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#visualizing-correlation"><i class="fa fa-check"></i><b>5.4.3</b> Visualizing correlation</a></li>
+<li class="chapter" data-level="5.4.4" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#visualizing-the-dengue-data"><i class="fa fa-check"></i><b>5.4.4</b> Visualizing the dengue data</a></li>
+<li class="chapter" data-level="5.4.5" data-path="working-with-relational-databases.html"><a href="working-with-relational-databases.html#visualizing-the-flu-data"><i class="fa fa-check"></i><b>5.4.5</b> Visualizing the flu data</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="6" data-path="parameterizedcovid.html"><a href="parameterizedcovid.html"><i class="fa fa-check"></i><b>6</b> Parameterized report COVID-19</a></li>
+<li class="chapter" data-level="7" data-path="rpackage.html"><a href="rpackage.html"><i class="fa fa-check"></i><b>7</b> Personal R package</a></li>
+<li class="chapter" data-level="8" data-path="primates.html"><a href="primates.html"><i class="fa fa-check"></i><b>8</b> Generating a phylogenetic tree in R</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="primates.html"><a href="primates.html#the-plan"><i class="fa fa-check"></i><b>8.1</b> The plan</a></li>
+<li class="chapter" data-level="8.2" data-path="primates.html"><a href="primates.html#preparatory-research"><i class="fa fa-check"></i><b>8.2</b> Preparatory research</a></li>
+<li class="chapter" data-level="8.3" data-path="primates.html"><a href="primates.html#getting-started"><i class="fa fa-check"></i><b>8.3</b> Getting started</a></li>
+<li class="chapter" data-level="8.4" data-path="primates.html"><a href="primates.html#generating-the-first-tree"><i class="fa fa-check"></i><b>8.4</b> Generating the first tree</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="primates.html"><a href="primates.html#obtaining-fasta-sequences"><i class="fa fa-check"></i><b>8.4.1</b> Obtaining FASTA sequences</a></li>
+<li class="chapter" data-level="8.4.2" data-path="primates.html"><a href="primates.html#performing-multiple-sequence-alignment"><i class="fa fa-check"></i><b>8.4.2</b> Performing multiple sequence alignment</a></li>
+<li class="chapter" data-level="8.4.3" data-path="primates.html"><a href="primates.html#importing-the-aligned-dna"><i class="fa fa-check"></i><b>8.4.3</b> Importing the aligned dna</a></li>
+<li class="chapter" data-level="8.4.4" data-path="primates.html"><a href="primates.html#calculating-the-genetic-distances-between-the-sequences-and-drawing-a-tree"><i class="fa fa-check"></i><b>8.4.4</b> Calculating the genetic distances between the sequences and drawing a tree</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="primates.html"><a href="primates.html#different-types-of-phylogenetic-models"><i class="fa fa-check"></i><b>8.5</b> Different types of phylogenetic models</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="primates.html"><a href="primates.html#finding-the-best-model"><i class="fa fa-check"></i><b>8.5.1</b> Finding the best model</a></li>
+<li class="chapter" data-level="8.5.2" data-path="primates.html"><a href="primates.html#generating-a-maximum-likelihood-tree"><i class="fa fa-check"></i><b>8.5.2</b> Generating a maximum likelihood tree</a></li>
+<li class="chapter" data-level="8.5.3" data-path="primates.html"><a href="primates.html#visualizing-the-maximum-likelihood-cladogram"><i class="fa fa-check"></i><b>8.5.3</b> Visualizing the maximum likelihood cladogram</a></li>
+<li class="chapter" data-level="8.5.4" data-path="primates.html"><a href="primates.html#rooting-the-tree"><i class="fa fa-check"></i><b>8.5.4</b> Rooting the tree</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
 
       </nav>
@@ -236,7 +243,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Portfolio</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
           </h1>
         </div>
 
@@ -244,115 +251,115 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="primates" class="section level1 hasAnchor" number="5">
-<h1><span class="header-section-number">5</span> Generating a phylogenetic tree in R<a href="primates.html#primates" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="the-plan" class="section level2 hasAnchor" number="5.1">
-<h2><span class="header-section-number">5.1</span> The plan<a href="primates.html#the-plan" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="primates" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Generating a phylogenetic tree in R</h1>
+<div id="the-plan" class="section level2" number="8.1">
+<h2><span class="header-section-number">8.1</span> The plan</h2>
 <p>In 2 years’ time I want to be doing my master’s in Biology at Universiteit Leiden. I would like to specialize in Evolutionary Biology. Next semester I will be attending classes at Radboud Universiteit that are part of their minor Biology - Adaptive Organisms to get a head start on learning about evolutionary biology, both because it’s something I enjoy and to make the transition from life sciences to the master’s program easier</p>
 <p>I would like to learn more about the differences between multiple primates and generate a phylogenetic tree. Prior to me starting on the actual code for this phylogenetic tree, I had to look into the different types of trees and how to generate them.</p>
 </div>
-<div id="preparatory-research" class="section level2 hasAnchor" number="5.2">
-<h2><span class="header-section-number">5.2</span> Preparatory research<a href="primates.html#preparatory-research" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="preparatory-research" class="section level2" number="8.2">
+<h2><span class="header-section-number">8.2</span> Preparatory research</h2>
 <p>I started by looking for R packages having to do with phylogenetic research. There were ample packages to help generate phylogenetic trees, but none of them seemed to have all the tools needed. Wanting to keep my research as reproducible as possible, my main priority was to keep every single part of the research in R, which is free and open source software <span class="citation">(<a href="#ref-rcoreteamLanguageEnvironmentStatistical2014" role="doc-biblioref">R Core Team 2014</a>)</span>. To get an idea of how to get started, I read a couple of papers by researchers who’ve created phylogenetic trees. In these papers, most of the software used to generate the trees (and all the steps that come before) was not R <span class="citation">(<a href="#ref-pozziPrimatePhylogeneticRelationships2014" role="doc-biblioref">Pozzi et al. 2014</a>)</span>; <span class="citation">(<a href="#ref-perelmanMolecularPhylogenyLiving2011" role="doc-biblioref">Perelman et al. 2011</a>)</span>. Some of the programs were point and click as well <span class="citation">(<a href="#ref-suchardBayesianPhylogeneticPhylodynamic2018" role="doc-biblioref">Suchard et al. 2018</a>)</span>; <span class="citation">(<a href="#ref-vaidyaSequenceMatrixConcatenationSoftware2011" role="doc-biblioref">Vaidya, Lohman, and Meier 2011</a>)</span>, making the research less reproducible.</p>
 <p>After looking at some different R packages I decided {ape} <span class="citation">(<a href="#ref-paradisApeEnvironmentModern2019" role="doc-biblioref">Paradis and Schliep 2019</a>)</span> was the best option, seeing as most packages for phylogenetic research are dependent on it <span class="citation">(<a href="#ref-jombartAdegenet31New2011" role="doc-biblioref">Jombart and Ahmed 2011</a>)</span>.
 The first step in the analysis was to obtain the data from an online database. NCBI has their own command-line tool called NCBI Datasets <span class="citation">(<a href="#ref-ncbistaffNowAvailableUpdated2022" role="doc-biblioref">NCBI Staff 2022</a>)</span>. The command-line tool was installed using Miniconda3 <span class="citation">(<a href="#ref-anacondaMinicondaCondaDocumentation" role="doc-biblioref">Anaconda n.d.</a>)</span>. The tool did work fine, but it wasn’t exactly what I was looking for. This was also when it was decided to perform the analysis on the mitochondrial genomes of the primates, instead of the nuclear genomes, due to computational limitations.</p>
 </div>
-<div id="getting-started" class="section level2 hasAnchor" number="5.3">
-<h2><span class="header-section-number">5.3</span> Getting started<a href="primates.html#getting-started" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="getting-started" class="section level2" number="8.3">
+<h2><span class="header-section-number">8.3</span> Getting started</h2>
 <p>I ended up making a list of the species of interest, containing their GenBank <span class="citation">(<a href="#ref-bensonGenBank2013" role="doc-biblioref">Benson et al. 2013</a>)</span> identifier, scientific name and their common name, and saving it in a text file called species.txt. This is the only part of the code that would need to be changed in case a species is to be added.</p>
 <p>To keep the code tidy the packages {tidyverse} <span class="citation">(<a href="#ref-wickhamWelcomeTidyverse2019" role="doc-biblioref">Hadley Wickham et al. 2019</a>)</span> and {here} <span class="citation">(<a href="#ref-mullerHere" role="doc-biblioref">Müller n.d.</a>)</span> are used. {BiocManager} <span class="citation">(<a href="#ref-ramosInstallingBiocManager" role="doc-biblioref">Ramos and Morgan n.d.</a>)</span> was also used to install packages.</p>
 </div>
-<div id="generating-the-first-tree" class="section level2 hasAnchor" number="5.4">
-<h2><span class="header-section-number">5.4</span> Generating the first tree<a href="primates.html#generating-the-first-tree" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="obtaining-fasta-sequences" class="section level3 hasAnchor" number="5.4.1">
-<h3><span class="header-section-number">5.4.1</span> Obtaining FASTA sequences<a href="primates.html#obtaining-fasta-sequences" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="generating-the-first-tree" class="section level2" number="8.4">
+<h2><span class="header-section-number">8.4</span> Generating the first tree</h2>
+<div id="obtaining-fasta-sequences" class="section level3" number="8.4.1">
+<h3><span class="header-section-number">8.4.1</span> Obtaining FASTA sequences</h3>
 <p>The file is read by R and filtered so that the comments (species’ names) are removed, and only the GenBank identifier remains. Then, using the package {rentrez} <span class="citation">(<a href="#ref-winterRentrezPackageNCBI2017" role="doc-biblioref">Winter 2017</a>)</span>, the FASTA sequences are obtained and stored in a vector. The FASTA sequences are then stored in a file so they can be used as input for the {ape} function <code>read.FASTA</code>, where the sequences will be converted to a vector of the class DNAbin.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="primates.html#cb7-1" aria-hidden="true" tabindex="-1"></a>species <span class="ot">&lt;-</span><span class="fu">scan</span>(<span class="at">file =</span> <span class="fu">here</span>(<span class="st">&quot;data/species.txt&quot;</span>), <span class="at">what =</span> <span class="st">&quot;character&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="at">comment.char =</span> <span class="st">&quot;#&quot;</span>) <span class="co">#import list of species to be analyzed</span></span>
-<span id="cb7-2"><a href="primates.html#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="primates.html#cb7-3" aria-hidden="true" tabindex="-1"></a>fasta_seqs <span class="ot">&lt;-</span> <span class="fu">entrez_fetch</span>(<span class="at">db =</span> <span class="st">&quot;nucleotide&quot;</span>,</span>
-<span id="cb7-4"><a href="primates.html#cb7-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">id =</span> species,</span>
-<span id="cb7-5"><a href="primates.html#cb7-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">rettype =</span> <span class="st">&quot;fasta&quot;</span>) <span class="co">#retrieve the fasta sequences of the mitochondrial genome of every species in the list</span></span>
-<span id="cb7-6"><a href="primates.html#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="primates.html#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">write</span>(fasta_seqs, </span>
-<span id="cb7-8"><a href="primates.html#cb7-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">file=</span><span class="st">&quot;temp&quot;</span>)</span>
-<span id="cb7-9"><a href="primates.html#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="primates.html#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span>(<span class="st">&quot;^*$&quot;</span>, <span class="fu">readLines</span>(<span class="st">&quot;temp&quot;</span>), <span class="at">invert =</span> <span class="cn">TRUE</span>, <span class="at">value =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">write</span>(<span class="at">file =</span> <span class="fu">here</span>(<span class="st">&quot;data/sequences.fasta&quot;</span>)) <span class="co">#remove empty lines so read.FASTA works</span></span>
-<span id="cb7-11"><a href="primates.html#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="primates.html#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="fu">file.remove</span>(<span class="st">&quot;temp&quot;</span>)</span>
-<span id="cb7-13"><a href="primates.html#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-14"><a href="primates.html#cb7-14" aria-hidden="true" tabindex="-1"></a>dna <span class="ot">&lt;-</span> <span class="fu">read.FASTA</span>(<span class="fu">here</span>(<span class="st">&quot;data/sequences.fasta&quot;</span>), <span class="at">type =</span> <span class="st">&quot;DNA&quot;</span>) <span class="co">#store the sequences in a vector of the type &quot;DNAbin&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="primates.html#cb57-1" aria-hidden="true" tabindex="-1"></a>species <span class="ot">&lt;-</span><span class="fu">scan</span>(<span class="at">file =</span> <span class="fu">here</span>(<span class="st">&quot;data/species.txt&quot;</span>), <span class="at">what =</span> <span class="st">&quot;character&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="at">comment.char =</span> <span class="st">&quot;#&quot;</span>) <span class="co">#import list of species to be analyzed</span></span>
+<span id="cb57-2"><a href="primates.html#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-3"><a href="primates.html#cb57-3" aria-hidden="true" tabindex="-1"></a>fasta_seqs <span class="ot">&lt;-</span> <span class="fu">entrez_fetch</span>(<span class="at">db =</span> <span class="st">&quot;nucleotide&quot;</span>,</span>
+<span id="cb57-4"><a href="primates.html#cb57-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">id =</span> species,</span>
+<span id="cb57-5"><a href="primates.html#cb57-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">rettype =</span> <span class="st">&quot;fasta&quot;</span>) <span class="co">#retrieve the fasta sequences of the mitochondrial genome of every species in the list</span></span>
+<span id="cb57-6"><a href="primates.html#cb57-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-7"><a href="primates.html#cb57-7" aria-hidden="true" tabindex="-1"></a><span class="fu">write</span>(fasta_seqs, </span>
+<span id="cb57-8"><a href="primates.html#cb57-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">file=</span><span class="st">&quot;temp&quot;</span>)</span>
+<span id="cb57-9"><a href="primates.html#cb57-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-10"><a href="primates.html#cb57-10" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span>(<span class="st">&quot;^*$&quot;</span>, <span class="fu">readLines</span>(<span class="st">&quot;temp&quot;</span>), <span class="at">invert =</span> <span class="cn">TRUE</span>, <span class="at">value =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">write</span>(<span class="at">file =</span> <span class="fu">here</span>(<span class="st">&quot;data/sequences.fasta&quot;</span>)) <span class="co">#remove empty lines so read.FASTA works</span></span>
+<span id="cb57-11"><a href="primates.html#cb57-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-12"><a href="primates.html#cb57-12" aria-hidden="true" tabindex="-1"></a><span class="fu">file.remove</span>(<span class="st">&quot;temp&quot;</span>)</span>
+<span id="cb57-13"><a href="primates.html#cb57-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-14"><a href="primates.html#cb57-14" aria-hidden="true" tabindex="-1"></a>dna <span class="ot">&lt;-</span> <span class="fu">read.FASTA</span>(<span class="fu">here</span>(<span class="st">&quot;data/sequences.fasta&quot;</span>), <span class="at">type =</span> <span class="st">&quot;DNA&quot;</span>) <span class="co">#store the sequences in a vector of the type &quot;DNAbin&quot;</span></span></code></pre></div>
 </div>
-<div id="performing-multiple-sequence-alignment" class="section level3 hasAnchor" number="5.4.2">
-<h3><span class="header-section-number">5.4.2</span> Performing multiple sequence alignment<a href="primates.html#performing-multiple-sequence-alignment" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="performing-multiple-sequence-alignment" class="section level3" number="8.4.2">
+<h3><span class="header-section-number">8.4.2</span> Performing multiple sequence alignment</h3>
 <p>Now that the dna has been stored as DNAbin, a multiple sequence alignment will be performed using Clustal Omega 1.2.3 <span class="citation">(<a href="#ref-sieversFastScalableGeneration2011" role="doc-biblioref">Sievers et al. 2011</a>)</span>. The aligned DNA is saved as a file, so the alignment only has to be performed once (since it takes a while).</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="primates.html#cb8-1" aria-hidden="true" tabindex="-1"></a>dna_aligned <span class="ot">&lt;-</span> <span class="fu">clustalomega</span>(dna, <span class="at">exec =</span> <span class="fu">here</span>(<span class="st">&quot;clustalo&quot;</span>)) <span class="co">#use Clustal Omega 1.2.3 to perform multiple sequence alignment</span></span>
-<span id="cb8-2"><a href="primates.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(dna_aligned, <span class="fu">here</span>(<span class="st">&quot;data/dna_aligned.RDS&quot;</span>)) <span class="co">#save as file so the code only has to run once</span></span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="primates.html#cb58-1" aria-hidden="true" tabindex="-1"></a>dna_aligned <span class="ot">&lt;-</span> <span class="fu">clustalomega</span>(dna, <span class="at">exec =</span> <span class="fu">here</span>(<span class="st">&quot;clustalo&quot;</span>)) <span class="co">#use Clustal Omega 1.2.3 to perform multiple sequence alignment</span></span>
+<span id="cb58-2"><a href="primates.html#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(dna_aligned, <span class="fu">here</span>(<span class="st">&quot;data/dna_aligned.RDS&quot;</span>)) <span class="co">#save as file so the code only has to run once</span></span></code></pre></div>
 </div>
-<div id="importing-the-aligned-dna" class="section level3 hasAnchor" number="5.4.3">
-<h3><span class="header-section-number">5.4.3</span> Importing the aligned dna<a href="primates.html#importing-the-aligned-dna" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="primates.html#cb9-1" aria-hidden="true" tabindex="-1"></a>dna_aligned <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">&quot;data/dna_aligned.RDS&quot;</span>)) <span class="co">#import the aligned dna</span></span></code></pre></div>
+<div id="importing-the-aligned-dna" class="section level3" number="8.4.3">
+<h3><span class="header-section-number">8.4.3</span> Importing the aligned dna</h3>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="primates.html#cb59-1" aria-hidden="true" tabindex="-1"></a>dna_aligned <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">&quot;data/dna_aligned.RDS&quot;</span>)) <span class="co">#import the aligned dna</span></span></code></pre></div>
 </div>
-<div id="calculating-the-genetic-distances-between-the-sequences-and-drawing-a-tree" class="section level3 hasAnchor" number="5.4.4">
-<h3><span class="header-section-number">5.4.4</span> Calculating the genetic distances between the sequences and drawing a tree<a href="primates.html#calculating-the-genetic-distances-between-the-sequences-and-drawing-a-tree" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="calculating-the-genetic-distances-between-the-sequences-and-drawing-a-tree" class="section level3" number="8.4.4">
+<h3><span class="header-section-number">8.4.4</span> Calculating the genetic distances between the sequences and drawing a tree</h3>
 <p>The different dna sequences have been aligned and now the genetic distances between the sequences can be calculated using the Tamura and Nei 1993 model (TN93) <span class="citation">(<a href="#ref-tamuraEstimationNumberNucleotide1993" role="doc-biblioref">Tamura and Nei 1993</a>)</span>. The distance matrix can be used as input to calculate the phylogenetic tree. The used algorithm is the BIONJ algorithm of Gascuel <span class="citation">(<a href="#ref-gascuelBIONJImprovedVersion1997" role="doc-biblioref">Gascuel 1997</a>)</span>.
 The generated tree is visualized as a cladogram using the package {ggtree} <span class="citation">(<a href="#ref-yuGgtreePackageVisualization2017" role="doc-biblioref">Yu et al. 2017</a>)</span>. It’s visualized as a cladogram for now to keep it easy to read while it’s being improved.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="primates.html#cb10-1" aria-hidden="true" tabindex="-1"></a>dna_dist <span class="ot">&lt;-</span> <span class="fu">dist.dna</span>(dna_aligned, <span class="at">model =</span> <span class="st">&quot;TN93&quot;</span>) <span class="co">#calculate genetic distances and store in a vector of the type &quot;dist&quot;</span></span>
-<span id="cb10-2"><a href="primates.html#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="primates.html#cb10-3" aria-hidden="true" tabindex="-1"></a>treebionj <span class="ot">&lt;-</span> <span class="fu">bionj</span>(dna_dist) <span class="co">#create a tree of the class &quot;phylo&quot; using the method neighbor joining</span></span>
-<span id="cb10-4"><a href="primates.html#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="primates.html#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtree</span>(treebionj, <span class="at">branch.length =</span> <span class="st">&quot;none&quot;</span>, <span class="at">ladderize =</span> F)<span class="sc">+</span> <span class="co">#visualize the tree as a cladogram</span></span>
-<span id="cb10-6"><a href="primates.html#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_tree</span>()<span class="sc">+</span></span>
-<span id="cb10-7"><a href="primates.html#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="at">size =</span> <span class="dv">6</span>, <span class="at">as_ylab =</span> T)<span class="sc">+</span></span>
-<span id="cb10-8"><a href="primates.html#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Unrooted neighbor joining cladogram of</span><span class="sc">\n</span><span class="st">mitochondrial genomes of 15 primates and the golden hamster&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="primates.html#cb60-1" aria-hidden="true" tabindex="-1"></a>dna_dist <span class="ot">&lt;-</span> <span class="fu">dist.dna</span>(dna_aligned, <span class="at">model =</span> <span class="st">&quot;TN93&quot;</span>) <span class="co">#calculate genetic distances and store in a vector of the type &quot;dist&quot;</span></span>
+<span id="cb60-2"><a href="primates.html#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-3"><a href="primates.html#cb60-3" aria-hidden="true" tabindex="-1"></a>treebionj <span class="ot">&lt;-</span> <span class="fu">bionj</span>(dna_dist) <span class="co">#create a tree of the class &quot;phylo&quot; using the method neighbor joining</span></span>
+<span id="cb60-4"><a href="primates.html#cb60-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-5"><a href="primates.html#cb60-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtree</span>(treebionj, <span class="at">branch.length =</span> <span class="st">&quot;none&quot;</span>, <span class="at">ladderize =</span> F)<span class="sc">+</span> <span class="co">#visualize the tree as a cladogram</span></span>
+<span id="cb60-6"><a href="primates.html#cb60-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_tree</span>()<span class="sc">+</span></span>
+<span id="cb60-7"><a href="primates.html#cb60-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="at">size =</span> <span class="dv">6</span>, <span class="at">as_ylab =</span> T)<span class="sc">+</span></span>
+<span id="cb60-8"><a href="primates.html#cb60-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Unrooted neighbor joining cladogram of</span><span class="sc">\n</span><span class="st">mitochondrial genomes of 15 primates and the golden hamster&quot;</span>)</span></code></pre></div>
 <p><img src="portfolio_book_files/figure-html/Calculate%20the%20genetic%20distances%20between%20the%20sequences-1.png" width="672" /></p>
 </div>
 </div>
-<div id="different-types-of-phylogenetic-models" class="section level2 hasAnchor" number="5.5">
-<h2><span class="header-section-number">5.5</span> Different types of phylogenetic models<a href="primates.html#different-types-of-phylogenetic-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="different-types-of-phylogenetic-models" class="section level2" number="8.5">
+<h2><span class="header-section-number">8.5</span> Different types of phylogenetic models</h2>
 <p>This first tree was generated using an improved neighbor joining model, which is just one of the four most commonly used <span class="citation">(<a href="#ref-yoshidaEfficienciesNJpMaximum2016" role="doc-biblioref">Yoshida and Nei 2016</a>)</span>. Neighbor joining only looks at the distance between the sequences, but not at smaller details in the sequences <span class="citation">(<a href="#ref-yoshidaEfficienciesNJpMaximum2016" role="doc-biblioref">Yoshida and Nei 2016</a>)</span>. A different method is maximum likelihood, where the likelihood of the different possible states of the tree is calculated, and the tree with the highest likelihood is generated <span class="citation">(<a href="#ref-dharMaximumLikelihoodPhylogenetic2016" role="doc-biblioref">Dhar and Minin 2016</a>)</span>. Two other popular methods are Bayesian inference and maximum parsimony <span class="citation">(<a href="#ref-dharMaximumLikelihoodPhylogenetic2016" role="doc-biblioref">Dhar and Minin 2016</a>)</span>; <span class="citation">(<a href="#ref-yoshidaEfficienciesNJpMaximum2016" role="doc-biblioref">Yoshida and Nei 2016</a>)</span>. Since maximum likelihood is the preferred method in publications <span class="citation">(<a href="#ref-dharMaximumLikelihoodPhylogenetic2016" role="doc-biblioref">Dhar and Minin 2016</a>)</span>, that is the method I will be using.</p>
-<div id="finding-the-best-model" class="section level3 hasAnchor" number="5.5.1">
-<h3><span class="header-section-number">5.5.1</span> Finding the best model<a href="primates.html#finding-the-best-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="finding-the-best-model" class="section level3" number="8.5.1">
+<h3><span class="header-section-number">8.5.1</span> Finding the best model</h3>
 <p>The input for the {phangorn} <code>modelTest</code> function is an object of the class phyDat, so first the DNAbin object has to be converted:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="primates.html#cb11-1" aria-hidden="true" tabindex="-1"></a>dna_phydat <span class="ot">&lt;-</span> <span class="fu">as.phyDat</span>(dna_aligned) <span class="co">#convert object to class phyDat</span></span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="primates.html#cb61-1" aria-hidden="true" tabindex="-1"></a>dna_phydat <span class="ot">&lt;-</span> <span class="fu">as.phyDat</span>(dna_aligned) <span class="co">#convert object to class phyDat</span></span></code></pre></div>
 <p>The model test is ran and the model with the lowest Akaike information criterion (AIC, calculated by the {phangorn} function <code>modelTest</code>), making it the best model <span class="citation">(<a href="#ref-cavanaughAkaikeInformationCriterion2019" role="doc-biblioref">Cavanaugh and Neath 2019</a>)</span>, is saved, again so this only has to be performed once as it takes quite long.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="primates.html#cb12-1" aria-hidden="true" tabindex="-1"></a>modeltest <span class="ot">&lt;-</span> <span class="fu">modelTest</span>(dna_phydat) <span class="co">#run the model test</span></span>
-<span id="cb12-2"><a href="primates.html#cb12-2" aria-hidden="true" tabindex="-1"></a>optmodel <span class="ot">&lt;-</span> modeltest<span class="sc">$</span>Model[modeltest<span class="sc">$</span>AIC<span class="sc">==</span><span class="fu">min</span>(modeltest<span class="sc">$</span>AIC)] <span class="co">#find the model with the lowest AIC</span></span>
-<span id="cb12-3"><a href="primates.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(optmodel, <span class="fu">here</span>(<span class="st">&quot;data/optmodel&quot;</span>)) <span class="co">#save as file so the code only has to run once</span></span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="primates.html#cb13-1" aria-hidden="true" tabindex="-1"></a>optmodel <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">&quot;data/optmodel&quot;</span>)) <span class="co">#import the data again</span></span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="primates.html#cb62-1" aria-hidden="true" tabindex="-1"></a>modeltest <span class="ot">&lt;-</span> <span class="fu">modelTest</span>(dna_phydat) <span class="co">#run the model test</span></span>
+<span id="cb62-2"><a href="primates.html#cb62-2" aria-hidden="true" tabindex="-1"></a>optmodel <span class="ot">&lt;-</span> modeltest<span class="sc">$</span>Model[modeltest<span class="sc">$</span>AIC<span class="sc">==</span><span class="fu">min</span>(modeltest<span class="sc">$</span>AIC)] <span class="co">#find the model with the lowest AIC</span></span>
+<span id="cb62-3"><a href="primates.html#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(optmodel, <span class="fu">here</span>(<span class="st">&quot;data/optmodel&quot;</span>)) <span class="co">#save as file so the code only has to run once</span></span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="primates.html#cb63-1" aria-hidden="true" tabindex="-1"></a>optmodel <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">here</span>(<span class="st">&quot;data/optmodel&quot;</span>)) <span class="co">#import the data again</span></span></code></pre></div>
 </div>
-<div id="generating-a-maximum-likelihood-tree" class="section level3 hasAnchor" number="5.5.2">
-<h3><span class="header-section-number">5.5.2</span> Generating a maximum likelihood tree<a href="primates.html#generating-a-maximum-likelihood-tree" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="generating-a-maximum-likelihood-tree" class="section level3" number="8.5.2">
+<h3><span class="header-section-number">8.5.2</span> Generating a maximum likelihood tree</h3>
 <p>Using the neighbor joining tree, the aligned dna and the best model the maximum likelihood tree can be computed:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="primates.html#cb14-1" aria-hidden="true" tabindex="-1"></a>mlparsed <span class="ot">&lt;-</span> <span class="fu">pml</span>(treebionj, dna_phydat) <span class="co">#generate the maximum likelihood tree</span></span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="primates.html#cb64-1" aria-hidden="true" tabindex="-1"></a>mlparsed <span class="ot">&lt;-</span> <span class="fu">pml</span>(treebionj, dna_phydat) <span class="co">#generate the maximum likelihood tree</span></span></code></pre></div>
 <p>The <code>optim.pml</code> function from {phangorn} is used to optimize the different model parameters. The model found using <code>modelTest</code> is not an option in the <code>optim.pml</code> function, so the closest option is used.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="primates.html#cb15-1" aria-hidden="true" tabindex="-1"></a>optmodel <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">+.*&quot;</span>,<span class="st">&quot;&quot;</span>, optmodel) <span class="co">#change the string so the optim.pml function can read it</span></span>
-<span id="cb15-2"><a href="primates.html#cb15-2" aria-hidden="true" tabindex="-1"></a>mlparsedoptim <span class="ot">&lt;-</span> <span class="fu">optim.pml</span>(mlparsed, <span class="at">optNni=</span><span class="cn">TRUE</span>, <span class="at">model =</span> optmodel) <span class="co">#optimize the tree</span></span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="primates.html#cb65-1" aria-hidden="true" tabindex="-1"></a>optmodel <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">+.*&quot;</span>,<span class="st">&quot;&quot;</span>, optmodel) <span class="co">#change the string so the optim.pml function can read it</span></span>
+<span id="cb65-2"><a href="primates.html#cb65-2" aria-hidden="true" tabindex="-1"></a>mlparsedoptim <span class="ot">&lt;-</span> <span class="fu">optim.pml</span>(mlparsed, <span class="at">optNni=</span><span class="cn">TRUE</span>, <span class="at">model =</span> optmodel) <span class="co">#optimize the tree</span></span></code></pre></div>
 </div>
-<div id="visualizing-the-maximum-likelihood-cladogram" class="section level3 hasAnchor" number="5.5.3">
-<h3><span class="header-section-number">5.5.3</span> Visualizing the maximum likelihood cladogram<a href="primates.html#visualizing-the-maximum-likelihood-cladogram" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="primates.html#cb16-1" aria-hidden="true" tabindex="-1"></a>treeml <span class="ot">&lt;-</span> <span class="fu">ladderize</span>(mlparsedoptim<span class="sc">$</span>tree) <span class="co">#ladderize the tree</span></span>
-<span id="cb16-2"><a href="primates.html#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="primates.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtree</span>(treeml, <span class="at">branch.length =</span> <span class="st">&quot;none&quot;</span>, <span class="at">ladderize =</span> F)<span class="sc">+</span> <span class="co">#visualize the tree as a cladogram</span></span>
-<span id="cb16-4"><a href="primates.html#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_tree</span>()<span class="sc">+</span></span>
-<span id="cb16-5"><a href="primates.html#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="at">size =</span> <span class="dv">6</span>, <span class="at">as_ylab =</span> T)<span class="sc">+</span></span>
-<span id="cb16-6"><a href="primates.html#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Unrooted maximum likelihood cladogram of</span><span class="sc">\n</span><span class="st">mitochondrial genomes of 15 primates and the golden hamster&quot;</span>)</span></code></pre></div>
+<div id="visualizing-the-maximum-likelihood-cladogram" class="section level3" number="8.5.3">
+<h3><span class="header-section-number">8.5.3</span> Visualizing the maximum likelihood cladogram</h3>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="primates.html#cb66-1" aria-hidden="true" tabindex="-1"></a>treeml <span class="ot">&lt;-</span> <span class="fu">ladderize</span>(mlparsedoptim<span class="sc">$</span>tree) <span class="co">#ladderize the tree</span></span>
+<span id="cb66-2"><a href="primates.html#cb66-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-3"><a href="primates.html#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtree</span>(treeml, <span class="at">branch.length =</span> <span class="st">&quot;none&quot;</span>, <span class="at">ladderize =</span> F)<span class="sc">+</span> <span class="co">#visualize the tree as a cladogram</span></span>
+<span id="cb66-4"><a href="primates.html#cb66-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_tree</span>()<span class="sc">+</span></span>
+<span id="cb66-5"><a href="primates.html#cb66-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="at">size =</span> <span class="dv">6</span>, <span class="at">as_ylab =</span> T)<span class="sc">+</span></span>
+<span id="cb66-6"><a href="primates.html#cb66-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Unrooted maximum likelihood cladogram of</span><span class="sc">\n</span><span class="st">mitochondrial genomes of 15 primates and the golden hamster&quot;</span>)</span></code></pre></div>
 <p><img src="portfolio_book_files/figure-html/Visualize%20unrooted%20maximum%20likelihood%20tree-1.png" width="672" /></p>
 </div>
-<div id="rooting-the-tree" class="section level3 hasAnchor" number="5.5.4">
-<h3><span class="header-section-number">5.5.4</span> Rooting the tree<a href="primates.html#rooting-the-tree" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="rooting-the-tree" class="section level3" number="8.5.4">
+<h3><span class="header-section-number">8.5.4</span> Rooting the tree</h3>
 <p>The last step is to root the tree and clean up the tip labels (species names). It is important to root the tree, trees that aren’t rooted correctly may be misleading <span class="citation">(<a href="#ref-kineneRootingTreesMethods2016" role="doc-biblioref">Kinene et al. 2016</a>)</span>. There are multiple ways to root a tree, I will be using an “outgroup”, a species that is genetically very different from the other species in the tree <span class="citation">(<a href="#ref-kineneRootingTreesMethods2016" role="doc-biblioref">Kinene et al. 2016</a>)</span>.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="primates.html#cb17-1" aria-hidden="true" tabindex="-1"></a>rootedml <span class="ot">&lt;-</span> <span class="fu">root</span>(treeml, </span>
-<span id="cb17-2"><a href="primates.html#cb17-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">outgroup =</span> <span class="st">&quot;NC_013276.1 Mesocricetus auratus mitochondrion, complete genome&quot;</span>, </span>
-<span id="cb17-3"><a href="primates.html#cb17-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">resolve.root =</span> <span class="cn">TRUE</span>) <span class="co">#rooting the tree</span></span>
-<span id="cb17-4"><a href="primates.html#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-5"><a href="primates.html#cb17-5" aria-hidden="true" tabindex="-1"></a>rootedml<span class="sc">$</span>tip.label <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;.*</span><span class="sc">\\</span><span class="st">.[12]&quot;</span>, <span class="st">&quot;&quot;</span>, rootedml<span class="sc">$</span>tip.label) <span class="co">#clean up the labels</span></span>
-<span id="cb17-6"><a href="primates.html#cb17-6" aria-hidden="true" tabindex="-1"></a>rootedml<span class="sc">$</span>tip.label <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;(mitochondrion, | isolate | voucher).*genome&quot;</span>, <span class="st">&quot;&quot;</span>, rootedml<span class="sc">$</span>tip.label) <span class="co">#clean up the labels</span></span>
-<span id="cb17-7"><a href="primates.html#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-8"><a href="primates.html#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtree</span>(rootedml, <span class="at">ladderize =</span> F)<span class="sc">+</span> <span class="co">#visualize the tree as a phylogenetic tree</span></span>
-<span id="cb17-9"><a href="primates.html#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_tree</span>()<span class="sc">+</span></span>
-<span id="cb17-10"><a href="primates.html#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="at">size =</span> <span class="fl">2.5</span>, <span class="at">as_ylab =</span> F)<span class="sc">+</span></span>
-<span id="cb17-11"><a href="primates.html#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="fl">0.35</span>)<span class="sc">+</span></span>
-<span id="cb17-12"><a href="primates.html#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Rooted maximum likelihood phylogenetic tree of</span><span class="sc">\n</span><span class="st">mitochondrial genomes of 15 primates and the golden hamster&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="primates.html#cb67-1" aria-hidden="true" tabindex="-1"></a>rootedml <span class="ot">&lt;-</span> <span class="fu">root</span>(treeml, </span>
+<span id="cb67-2"><a href="primates.html#cb67-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">outgroup =</span> <span class="st">&quot;NC_013276.1 Mesocricetus auratus mitochondrion, complete genome&quot;</span>, </span>
+<span id="cb67-3"><a href="primates.html#cb67-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">resolve.root =</span> <span class="cn">TRUE</span>) <span class="co">#rooting the tree</span></span>
+<span id="cb67-4"><a href="primates.html#cb67-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-5"><a href="primates.html#cb67-5" aria-hidden="true" tabindex="-1"></a>rootedml<span class="sc">$</span>tip.label <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;.*</span><span class="sc">\\</span><span class="st">.[12]&quot;</span>, <span class="st">&quot;&quot;</span>, rootedml<span class="sc">$</span>tip.label) <span class="co">#clean up the labels</span></span>
+<span id="cb67-6"><a href="primates.html#cb67-6" aria-hidden="true" tabindex="-1"></a>rootedml<span class="sc">$</span>tip.label <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;(mitochondrion, | isolate | voucher).*genome&quot;</span>, <span class="st">&quot;&quot;</span>, rootedml<span class="sc">$</span>tip.label) <span class="co">#clean up the labels</span></span>
+<span id="cb67-7"><a href="primates.html#cb67-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-8"><a href="primates.html#cb67-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtree</span>(rootedml, <span class="at">ladderize =</span> F)<span class="sc">+</span> <span class="co">#visualize the tree as a phylogenetic tree</span></span>
+<span id="cb67-9"><a href="primates.html#cb67-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_tree</span>()<span class="sc">+</span></span>
+<span id="cb67-10"><a href="primates.html#cb67-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="at">size =</span> <span class="fl">2.5</span>, <span class="at">as_ylab =</span> F)<span class="sc">+</span></span>
+<span id="cb67-11"><a href="primates.html#cb67-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="fl">0.35</span>)<span class="sc">+</span></span>
+<span id="cb67-12"><a href="primates.html#cb67-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Rooted maximum likelihood phylogenetic tree of</span><span class="sc">\n</span><span class="st">mitochondrial genomes of 15 primates and the golden hamster&quot;</span>)</span></code></pre></div>
 <p><img src="portfolio_book_files/figure-html/Rooting%20the%20tree%20and%20visualizing%20it-1.png" width="672" /></p>
 <p>The final tree is visualized as a phylogenetic tree instead of a cladogram, with different branch lengths describing the ancestry of the primates. The cladogram only showed how the different species are related <span class="citation">(<a href="#ref-pearsonWhenOutgroupsFail2013" role="doc-biblioref">Pearson et al. 2013</a>)</span>.</p>
 <p>Normally, more thought would go into selecting the best possible outgroup <span class="citation">(<a href="#ref-rota-stabelliMultiCriterionApproach2008" role="doc-biblioref">Rota-Stabelli and Telford 2008</a>)</span>. Since my goal was to learn how to generate a phylogenetic tree in R (within a reasonable timeframe) I chose an animal that I like and know is more genetically different from the primates than the primates between each other.</p>
@@ -440,8 +447,8 @@ Yu, Guangchuang, David K. Smith, Huachen Zhu, Yi Guan, and Tommy Tsan-Yuk Lam. 2
           </div>
         </div>
       </div>
-<a href="datanalysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="working-with-relational-databases.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="rpackage.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -489,7 +496,8 @@ gitbook.start({
 "options": null
 },
 "toc": {
-"collapse": "subsection"
+"collapse": "section",
+"scroll_highlight": true
 }
 });
 });

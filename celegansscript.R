@@ -1,35 +1,17 @@
-# Analyzing data from an experiment {#datanalysis}
 
-```{r setup, eval=FALSE, include=FALSE}
-install.packages("readxl")
-install.packages("devtools")
-library(devtools)
 devtools::install_github("uashogeschoolutrecht/toolboxr")
-install.packages("tidyverse")
-install.packages("patchwork") 
-install.packages("cowplot")
-```
-
-```{r libraries_elegans, include=FALSE}
 library(readxl)
 library(tidyverse)
 library(toolboxr)
 library(patchwork)
 library(cowplot)
-```
+library(devtools)
+library(here)
 
-In this experiment, the number of offspring of adult C. elegans was counted after exposing the nematodes to different substances in multiple concentrations. The data was supplied by J. Louter of the INT/ILC.
 
-## Open the file in R and inspect the data.
 
-```{r A}
-celegans_data <- read_excel("/Users/nineluijendijk/Downloads/CE.LIQ.FLOW.062_Tidydata.xlsx")
-```
+celegans_data <- read_excel(here("data_raw/CE.LIQ.FLOW.062_Tidydata.xlsx"))
 
-Expected data types would be double/integer for RawData (number of offspring), character for compName (name of the compound) and double for compConcentration (concentration of the compound). The actual data types of the columns are double for RawData, character for compName and character for compConcentration. The data type for compConcentration has not been correctly assigned which will cause the following issue if it's not changed:
-
-```{r alphabetical_plot, warning=FALSE, fig.cap="Number of C. elegans offspring under a number of circumstances where the x-axis is ordered alphabetically"}
-#Create a scatter plot
 plot_chr <- ggplot(data = celegans_data, aes(x = compConcentration, y = RawData))+
   geom_point(aes(color = compName,
                  shape = expType),
@@ -44,15 +26,8 @@ plot_chr <- ggplot(data = celegans_data, aes(x = compConcentration, y = RawData)
   theme(legend.key.size = unit(0.75,"line"),
         legend.text = element_text(size = 8))
 plot_chr
-```
 
-The x-axis labels are ordered alphabetically because the data type of the compConcentration is character instead of double. R probably read it this way because Excel adds an E to showcase exponential values.
 
-## Fixing the character/double issue
-
-After changing the data type from character to double and adding jitter to the plot it looks as follows:
-
-```{r , warning=FALSE}
 #Change data type from chr to dbl
 celegans_data$compConcentration <- as.double(celegans_data$compConcentration)
 
@@ -95,15 +70,21 @@ ggdraw(plot_grid(plot_grid(plot_nM, plot_pct),
                  rel_widths = c(1, 0.35)))+
   plot_annotation("Number of C. elegans offspring under\na number of circumstances")
 
-```
+dummydf <- data.frame(a = rep(c(1, 2, 3), each=2), #create dummy dataframe for the dummy plot
+                      b = c(1, 4, 6, 3, 4, 7),
+                      Control = rep(c("controlNegative", "controlPositive", "controlVehicleA"), each=2))
 
-The positive control for this experiment is ethanol. The negative control for this experiment is S-medium.
+dummyplot <- ggplot(dummydf, aes(x=a, y=b, group=Control))+ #create dummy plot to obtain its legend
+  geom_line(aes(linetype=Control, color=Control))+
+  scale_linetype_manual(values=c("solid", "solid", "longdash"))+
+  scale_color_manual(values=c("violet", "green", "green"))
 
-## Think about how you would analyze this experiment to learn whether there is indeed an effect of different concentrations on offspring count and whether the different compounds have a different curve (IC50). Write down you analysis as a step-wise plan.
+dummylegend <- get_legend(dummyplot) #obtain dummy legend
 
-## Normalize the data for the controlNegative in such a way that the mean value for controlNegative is exactly equal to 1 and that all other values are expressed as a fraction thereof. Rerun your graphs with the normalized data.
+#Obtain the means of the other 2 control groups
+controlPos <- mutated %>% filter(expType == "controlPositive") %>% summarize(mean = mean(normalized, na.rm = TRUE))
+controlVeh <- mutated %>% filter(expType == "controlVehicleA") %>% summarize(mean = mean(normalized, na.rm = TRUE))
 
-```{r J}
 #Obtain the mean of the RawData (negativeControl)
 controlNeg <- celegans_data %>% filter(compName == "S-medium") %>% summarize(mean = mean(RawData, na.rm = TRUE))
 
@@ -112,11 +93,8 @@ mutated <- celegans_data %>% filter(RawData > 0) %>%
   select(RawData, compName, compConcentration, expType) %>% na.omit() %>% 
   mutate(normalized = RawData/controlNeg$mean)
 
-#Obtain the means of the other 2 control groups
-controlPos <- mutated %>% filter(expType == "controlPositive") %>% summarize(mean = mean(normalized, na.rm = TRUE))
-controlVeh <- mutated %>% filter(expType == "controlVehicleA") %>% summarize(mean = mean(normalized, na.rm = TRUE))
-
-mutated %>% filter(compName == "2,6-diisopropylnaphthalene" | compName == "decane" | compName == "naphthalene") %>%
+#create normalized plot
+plotfraction <- mutated %>% filter(compName == "2,6-diisopropylnaphthalene" | compName == "decane" | compName == "naphthalene") %>%
   ggplot(aes(x = log10(compConcentration), y = normalized))+
   geom_jitter(aes(color = compName), width = 0.5, height = 0.1)+
   scale_colour_manual(values = c("red", "darkgoldenrod1",  "royalblue3"))+
@@ -129,10 +107,8 @@ mutated %>% filter(compName == "2,6-diisopropylnaphthalene" | compName == "decan
   geom_hline(yintercept = controlPos$mean, color = "green")+
   geom_hline(yintercept = controlVeh$mean, color = "green", linetype = "longdash")+
   guides(color = "none")+
-  annotate("text", x = -3.8, y = 0.55, label = "controlPositive", size = 2)+
-  annotate("text", x = -3.8, y = 0.95, label = "controlNegative", size = 2)+
-  annotate("text", x = -3.8, y = 1.05, label = "controlVehicleA", size = 2)+
   facet_wrap(~ compName)
-```
 
-This way it's easier to read the graph. Everything below the pink line means less offspring than control C. elegans and everything above it means more.
+#combine figure and legend
+ggdraw(plot_grid(plotfraction, dummylegend,
+       rel_widths = c(5, 1)))

@@ -1,0 +1,48 @@
+
+.book .book-summary ul.summary {    background-color: #eeeefb;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal {
+    background-color: white;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal a {
+    color: #829dba;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal a:hover {
+    color: #060606;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre {
+    background: #fbeaea80;
+}
+
+details > summary {
+    background-color: aliceblue;
+}
+
+.book .book-summary ul.summary li a:hover, .book .book-summary ul.summary li.active>a {
+    color: #6300ff;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal hr {
+    background-color: #fbeaea;
+}
+
+* {  
+  font-family: Sans-serif;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal * {
+    font: inherit;
+}
+
+.titleandname {
+font-size: large;
+font-weight: bold;
+}
+
+.book .book-summary ul.summary li a, .book .book-summary ul.summary li span {
+    font-weight: lighter;
+}

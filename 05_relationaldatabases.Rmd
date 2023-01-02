@@ -1,5 +1,7 @@
 # Working with relational databases
 
+----
+
 Having spent so much time analyzing data, it would be useful to learn more about obtaining data from databases, and how to manipulate and analyze relational data using SQL.
 
 ```{r setup sql, include=FALSE}

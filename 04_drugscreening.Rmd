@@ -1,5 +1,7 @@
 # Drug Screening {#drugscreening}
 
+----
+
 Every year, 400,000 children and young people are diagnosed with cancer [@lewandowskaProblemsStressorsNeeds2021]. In developed countries, over 80% of children survive for at least 5 years after diagnosis [@schuzChildhoodCancerGlobal2021], and surival rates keep going up [@steliarovafoucherGeographicalPatternsTime2004b] as seen in figure \@ref(fig:cancerstatistics). This does mean that around 20% of children don't. Researchers all over the world are working on bringing this percentage down even more, including the doctors and researchers at the Princess Máxima Center in Utrecht.
 
 ```{r cancerstatistics, fig.cap="Cancer survival rates for children in West and East Europe [@steliarovafoucherGeographicalPatternsTime2004b]."}

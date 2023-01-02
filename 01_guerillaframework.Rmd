@@ -4,12 +4,16 @@
 library(here)
 ```
 
+----
 
-To keep my data manageable I use the Guerilla Analytics framework. This means I make sure every project has its own folder, every folder that needs it has a README and no raw data file is altered. The way I manage my data is visible in the tree below:
+To keep my data manageable I use the Guerilla Analytics framework [@ridgeGuerrillaAnalytics1st2014]. This means I make sure every project has its own folder, every folder that needs it has a README and no raw data file is altered. I also make sure to version control my code using [GitHub](https://github.com/)
+
+The way I manage my data is visible in the tree below:
 
 ```{r generate directory tree, eval=FALSE}
 dir_tree("/Users/nineluijendijk/Desktop/daur2")
 ```
+
 ```{r show the screenshot}
 knitr::include_graphics(here("data/screenshot_dirtree.png"))
 ```

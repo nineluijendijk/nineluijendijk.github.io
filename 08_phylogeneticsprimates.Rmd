@@ -1,5 +1,7 @@
 # Generating a phylogenetic tree in R {#primates}
 
+----
+
 ## The plan
 In 2 years' time I want to be doing my master's in Biology at Universiteit Leiden. I would like to specialize in Evolutionary Biology. Next semester I will be attending classes at Radboud Universiteit that are part of their minor Biology - Adaptive Organisms to get a head start on learning about evolutionary biology, both because it's something I enjoy and to make the transition from life sciences to the master's program easier
 

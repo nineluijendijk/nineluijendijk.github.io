@@ -1,5 +1,7 @@
 # Analyzing and visualizing data {#datanalysis}
 
+----
+
 ```{r libraries_elegans, include=FALSE}
 devtools::install_github("uashogeschoolutrecht/toolboxr")
 library(readxl)

@@ -221,7 +221,7 @@ flu_country_means <- flu_tidy %>% group_by(country) %>%
 <summary>Dengue numbers</summary>
 
 ```{r dengue dataframemeans, echo=FALSE}
-knitr::kable(dengue_country_means)
+knitr::kable(dengue_country_means, caption = "Table containing dengue numbers per country")
 ```
 
 </details>
@@ -231,7 +231,7 @@ knitr::kable(dengue_country_means)
 <summary>Flu numbers</summary>
 
 ```{r fludataframemeans, echo=FALSE}
-knitr::kable(flu_country_means)
+knitr::kable(flu_country_means, caption = "Table containing flu numbers per country")
 ```
 
 </details>
@@ -392,7 +392,7 @@ leveneTest(total_cases_flu ~ country, data = flu_normal, center = mean)[1,3]
 
 After calculating these p-values, I realized I'm more interested in correlation than difference between the groups, since it's already known the groups are differt from each other (different countries). Instead of performing an ANOVA or Kruskal-Wallis test, it was decided that the pearson's correlation coefficient would be calculated. A scatter plot was generated to visualize correlation:
 
-```{r pearson correlation analysis}
+```{r pearsoncorrelationanalysis, fig.cap="Scatter plot showing the correlation between the number of dengue and flu cases, with on the y-axis the number of dengue cases and on the x-axis the number of flu cases. Each dot represents a year of observations from one country."}
 #perform a pearson correlation analysis 
 dengue_flu_cor <- round(cor.test(flu_gapminder_dengue_normalized$total_cases_dengue, 
                                  flu_gapminder_dengue_normalized$total_cases_flu, 
@@ -418,7 +418,7 @@ There is a significant correlation between the number of dengue and flu cases in
 
 Dengue is endemic in most tropical countries / regions [@gublerGlobalEmergenceResurgence2002a], as shown below:
 
-```{r dengue bar plot}
+```{r denguebarplot, fig.cap="Bar plot showing the number of dengue cases per region, with on the y-axis the yearly average number of dengue cases."}
 #visualize the number of dengue cases per region in a bar plot
 ggplot(dengue_gap_summary,
        aes(x = region, y = mean,
@@ -435,7 +435,7 @@ ggplot(dengue_gap_summary,
 
 This graph was made by looking at the average number of cases per region per year, meaning it uses the total number of cases rather that the normalized ones that were calculated earlier. A more representative plot would use these numbers:
 
-```{r dengue scatter plot}
+```{r denguescatterplot, fig.cap="Interactive scatter plot showing the normalized number of dengue cases per country, with on the y-axis the average number of dengue cases per week per 100,000 population and on the x-axis the year."}
 #create a scatter plot of the dengue data
 dengue_plot <- ggplot(dengue_gapminder_normalized,
        aes(x = year, y = mean_weekly_dengue, group = country,
@@ -443,7 +443,7 @@ dengue_plot <- ggplot(dengue_gapminder_normalized,
   geom_line()+
   geom_point()+
   labs(title = "Weekly dengue cases per country",
-       y = "Average number of dengue cases per week per 100,000 population",
+       y = "Average number of dengue cases per week\nper 100,000 population",
        x = "Year",
        color = "Country")+
   scale_x_continuous(breaks = seq(from = min(dengue_gapminder_normalized$year),
@@ -458,7 +458,7 @@ ggplotly(dengue_plot) #visualize the number of dengue cases per country in an in
 
 The same graphs can be made using the flu data:
 
-```{r flu bar plot}
+```{r flubarplot, fig.cap="Bar plot showing the number of flu cases per region, with on the y-axis the yearly average number of flu cases."}
 #visualize the number of flu cases per region in a bar plot
 ggplot(flu_gap_summary,
        aes(x = region, y = mean,
@@ -502,7 +502,7 @@ ORDER BY RANDOM();
 
 We can see that the number of weekly cases in South Africa is very high compared to other countries, causing it to stand out when looking at the bar graph. This will also be reflected in the average number of weekly cases:
 
-```{r flu scatter plot}
+```{r fluscatterplot, fig.cap="Interactive scatter plot showing the normalized number of flu cases per country, with on the y-axis the average number of flu cases per week per 100,000 population and on the x-axis the year."}
 #create a scatter plot of the flu data
 flu_plot <- ggplot(flu_gapminder_normalized,
        aes(x = year, y = mean_weekly_flu, group = country,
@@ -510,7 +510,7 @@ flu_plot <- ggplot(flu_gapminder_normalized,
   geom_line()+
   geom_point()+
   labs(title = "Weekly flu cases per country",
-       y = "Average number of flu cases per week per 100,000 population",
+       y = "Average number of flu cases per week\nper 100,000 population",
        x = "Year",
        color = "Country")+
   scale_x_continuous(breaks = seq(from = min(flu_gapminder_normalized$year),

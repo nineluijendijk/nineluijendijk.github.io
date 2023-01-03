@@ -262,7 +262,7 @@ dengue_plot <- ggplot(dengue_gapminder_normalized,
   geom_line()+
   geom_point()+
   labs(title = "Weekly dengue cases per country",
-       y = "Average number of dengue cases per week per 100.000 population",
+       y = "Average number of dengue cases per week\nper 100.000 population",
        x = "Year",
        color = "Country")+
   scale_x_continuous(breaks = seq(from = min(dengue_gapminder_normalized$year),
@@ -310,7 +310,7 @@ flu_plot <- ggplot(flu_gapminder_normalized,
   geom_line() +
   geom_point() +
   labs(title = "Weekly flu cases per country",
-       y = "Average number of flu cases per week per 100.000 population",
+       y = "Average number of flu cases per week\nper 100.000 population",
        x = "Year",
        color = "Country")+
   scale_x_continuous(breaks = seq(from = min(flu_gapminder_normalized$year),

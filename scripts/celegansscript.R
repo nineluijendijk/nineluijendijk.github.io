@@ -1,11 +1,8 @@
-
-devtools::install_github("uashogeschoolutrecht/toolboxr")
 library(readxl)
 library(tidyverse)
 library(toolboxr)
 library(patchwork)
 library(cowplot)
-library(devtools)
 library(here)
 
 
@@ -16,15 +13,16 @@ plot_chr <- ggplot(data = celegans_data, aes(x = compConcentration, y = RawData)
   geom_point(aes(color = compName,
                  shape = expType),
              size = 1)+
-  rotate_axis_labels("x", 90)+
   labs(x = "Concentration",
        y = "Number of offspring",
        title = "Number of C. elegans offspring under\na number of circumstances, alphabetical",
        shape = "Type",
        color = "Compound")+
   scale_colour_manual(values = c("red", "darkgoldenrod1", "green", "royalblue3", "violet"))+
+  theme_minimal()+
   theme(legend.key.size = unit(0.75,"line"),
-        legend.text = element_text(size = 8))
+        legend.text = element_text(size = 8),
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
 plot_chr
 
 
@@ -42,6 +40,7 @@ plot_nM <- ggplot(data = celegans_data_nM, aes(x = log10(compConcentration), y =
   coord_cartesian(ylim = c(0, 120))+
   scale_shape_manual(values = 3)+
   scale_colour_manual(values = c("red", "darkgoldenrod1", "royalblue3"))+
+  theme_minimal()+
   theme(legend.position = "none")
 
 #Create a scatter plot for the concentration in pct
@@ -54,6 +53,7 @@ plot_pct <- ggplot(data = celegans_data_pct, aes(x = expType, y = RawData))+
   xlab("Type")+
   coord_cartesian(ylim = c(23.7, 121))+
   scale_colour_manual(values = c("green", "violet"))+
+  theme_minimal()+
   theme(legend.position = "none",
         axis.text.x=element_text(vjust=0.5, hjust=0.5, size = 8.75),
         axis.text.y = element_blank(), 
@@ -106,6 +106,7 @@ plotfraction <- mutated %>% filter(compName == "2,6-diisopropylnaphthalene" | co
   geom_hline(yintercept = 1, color = "violet")+
   geom_hline(yintercept = controlPos$mean, color = "green")+
   geom_hline(yintercept = controlVeh$mean, color = "green", linetype = "longdash")+
+  theme_minimal()+
   guides(color = "none")+
   facet_wrap(~ compName)
 

@@ -14,6 +14,6 @@ The way I manage my data is visible in the tree below:
 dir_tree("/Users/nineluijendijk/Desktop/daur2")
 ```
 
-```{r show the screenshot}
+```{r screenshot, fig.cap="Screenshot of my directory tree"}
 knitr::include_graphics(here("data/screenshot_dirtree.png"))
 ```

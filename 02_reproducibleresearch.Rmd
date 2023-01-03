@@ -1,3 +1,157 @@
 # Reproducible Research {#reproducibleresearch}
 
-work in progress
+----
+
+## Scoring the reproducibility of a research article
+
+### Reproducible research and criteria
+
+```{r reproducibleresearchlibraries, include=FALSE}
+library(tidyverse)
+library(knitr)
+library(psych)
+library(here)
+library(GPArotation)
+```
+
+In this chapter I will be scoring a scientific publication on how reproducible the research is. The criteria for reproducibility can be found in table \@ref(tab:criteria). Keeping research reproducible and openly available enables researchers to work together or in parallel towards the same goal. [@sumnerReproducibilityReportingPractices2020]
+
+<details>
+
+<summary>Generating the table</summary>
+
+```{r generatetable}
+dataframe_criteria <- data.frame(TransparencyCriteria = c("Study Purpose", "Data Availability Statement", "Data Location", "Study Location", "Author Review", "Ethics Statement", "Funding Statement", "Code Availability"),
+           Definition = c("A concise statement in the introduction of the article, often in the last paragraph, that establishes the reason the research was conducted. Also called the studyobjective.", "A statement, in an individual section offset from the main body of text, that explains how or if one can access a study’s data. The title of the section may vary, but it must explicitly mention data; it is therefore distinct from a supplementary materials section.", "Where the article’s data can be accessed, either raw or processed.", "Author has stated in the methods section where the study took place or the data’s country/region of origin.", "The professionalism of the contact information that the author has provided in the manuscript.", "A statement within the manuscript indicating any ethical concerns, including the presence of sensitive data.", "A statement within the manuscript indicating whether or not the authors received funding for their research.", "Authors have shared access to the most updated code that they used in their study, including code used for analysis."),
+           ResponseType = c("Binary", "Binary", "Found Value", "Binary; Found Value", "Found Value", "Binary", "Binary", "Binary"))
+```
+
+</details>
+
+<details>
+
+<summary>Table containing the criteria of reproducibility</summary>
+
+```{r criteria}
+knitr::kable(dataframe_criteria, caption = "Table showing the criteria for reproducibilty from @sumnerReproducibilityReportingPractices2020.")
+```
+
+</details>
+
+### The research article
+
+The research article I will be scoring for reproducibility is @michalakSoundsSicknessCan2020, "Sounds of sickness: can people identify infectious disease using sounds of coughs and sneezes?". The study objective is to determine whether humans can identify infectious diseases by hearing. Multiple sound clips, for example of coughing or sneezing, were presented to participants in random order, half of the sounds being from a people with an infectious illness and half from people with a non-infectious condition. The participants were asked to
+determine the nature of these sounds (infectious or not) and how certain they were. This study was done 3 more times, with slight alterations, for example also asking the participants to score how disgusting a sound was. Using R to calculate statistics, it was found that people can not accurately determine whether a sneeze or cough is infectious, even when they were pretty certain of their judgements. 
+
+### Reproducibility of the research
+
+The reproducibility of this article is scored in table \@ref(tab:scoringarticle) below:
+
+```{r scoringarticle}
+criteria_scored <- dataframe_criteria %>% mutate(Score = c("Present", "Present", "Present, the data can be found at https://osf.io/4c7vr/.", "Present, the data was collected from US-based participants.", "One of four authors' contact information is listed: the address of the university they're from and their professional email address.", "Present", "Present", "Present"))
+
+knitr::kable(criteria_scored, caption = "Table showing how the article scored on reproducibility.")
+```
+
+Getting a perfect score, this research seems to be very reproducible.
+
+## Scoring the reproducibility of the code of the research
+
+### Criteria for the code
+
+Now I will be scoring how easy it is to reproduce one of the figures from the article, using the code provided by the authors. I will also be judging how easy it is to read the code.
+
+### The code
+
+There is code available that was used to prepare the raw data for further analysis, but the raw data itself is not publically available. I assume this is to protect participants' identities. The preparation script comes with comments explaining what every step does and is easy to read. Since the researchers mainly use the package {tidyverse} [@wickhamWelcomeTidyverse2019] their code is especially easy to read as I like to use it as well. Using the processed data, it is very easy to recreate the figures from this study. Below is part of the analysis script downloaded from the study's Open Science Framework (OSF) project (linked in table \@ref(tab:scoringarticle)). I would rate the readabilty of this code a 5/5.
+
+### Install and/or load packages {-}
+
+```{r studylibraries, eval=FALSE}
+library(tidyverse)
+library(knitr)
+library(psych)
+```
+
+### Data {-}
+
+```{r studyreadtsv, eval=FALSE}
+#Read data from preparation script
+qualtrics1 <- read_tsv("data/study1/cleandata/qualtrics1.tsv")
+lqualtrics1 <- read_tsv("data/study1/cleandata/lqualtrics1.tsv")
+```
+
+### Multiple-item Psychological Measures {-}
+
+```{r studyomegaplot, eval=FALSE}
+#Perceived Infectability
+qualtrics1 %>% 
+  select(PVD8, PVD12r, PVD2, PVD14r, PVD10, PVD5r, PVD6) %>% 
+  omega(title = "Perceived Infectability")
+```
+
+```{r studypairpanels, eval=FALSE}
+#Scatterplot Matrix (ignoring stimuli variance)
+lqualtrics1 %>% 
+  select(certainty, clarity, pvd_pinfect, pvd_germ, rchild_uncertain, rchild_ses, recentill) %>% 
+  pairs.panels(scale = FALSE, pch = ".")
+```
+
+This code didn't work immediately, there were 2 things I needed to change first. The first thing was the path to the data, since the file names on OSF didn't perfectly match those in the script. The directory also had to be changed, I used the {here} package @mullerHere so that if I want to refer to the same file from another computer it will still work.
+
+The {GPArotation} package [@coena.bernaardsGradientProjectionAlgorithms2005] also was not loaded in, when it is needed for the `omega()` function. Besides these 2 things, everything worked fine. The code now looks as follows:
+
+### Install and/or load packages {-}
+
+```{r changedlibraries, eval=FALSE}
+library(tidyverse)
+library(knitr)
+library(psych)
+library(here)
+library(GPArotation)
+```
+
+### Data {-}
+
+```{r changedpaths, message=FALSE}
+#Read data from preparation script
+qualtrics1 <- read_tsv(here("data_raw/qualtrics1_share.tsv"))
+lqualtrics1 <- read_tsv(here("data_raw/lqualtrics1_share.tsv"))
+```
+
+### Multiple-item Psychological Measures {-}
+
+```{r omegaplot, results='hide', fig.cap="Plot showing McDonald's omega estimates [@michalakSoundsSicknessCan2020]."}
+#Perceived Infectability
+qualtrics1 %>% 
+  select(PVD8, PVD12r, PVD2, PVD14r, PVD10, PVD5r, PVD6) %>% 
+  omega(title = "Perceived Infectability")
+```
+
+<details>
+
+<summary>Omega estimates results</summary>
+
+```{r omegaresults, fig.show='hide', echo=FALSE}
+qualtrics1 %>% 
+  select(PVD8, PVD12r, PVD2, PVD14r, PVD10, PVD5r, PVD6) %>% 
+  omega(title = "Perceived Infectability")
+```
+
+</details>
+
+```{r scatterplotmatrix, fig.cap="Scatterplot Matrix ignoring stimula variance [@michalakSoundsSicknessCan2020]."}
+#Scatterplot Matrix (ignoring stimuli variance)
+lqualtrics1 %>% 
+  select(certainty, clarity, pvd_pinfect, pvd_germ, rchild_uncertain, rchild_ses, recentill) %>% 
+  pairs.panels(scale = FALSE, pch = ".") %>% title(main = "Scatterplot Matrix (ignoring stimuli variance)
+", line = 1.5)
+```
+
+I decided to also add a title to the scatter plot matrix (figure \@ref(fig:scatterplotmatrix)), since it was missing in the original code.
+
+Overall, it was not hard to generate these two figures using the authors' script. I'd rate the effort it took to recreate the figures a 4.5/5, 5 being very easy. I immediately saw what had to be changed before even running the script and this only took a minute to do. The {GPArotation} package wasn't in their list of libraries to load since it's loaded automatically when running the `omega()` function. This doesn't work when the package is not already installed, and running the code just produces an error.
+
+## Final rating
+
+I think this research article deserves a 9.5/10 for reproducibility. Chapters in the article describing ethics and data accessibility have their own headers so they're easy to find in the table of contents, in the text itself every claim has a source, the data and scripts were one click away from the article itself and really the only thing making it not 10/10 reproducible was the absence of the raw data, which I assume is to protect participants' privacy.

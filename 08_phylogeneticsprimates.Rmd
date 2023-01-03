@@ -19,14 +19,6 @@ I ended up making a list of the species of interest, containing their GenBank [@
 To keep the code tidy the packages {tidyverse} [@wickhamWelcomeTidyverse2019] and {here} [@mullerHere] are used. {BiocManager} [@ramosInstallingBiocManager] was also used to install packages.
 
 ```{r setup primates, include=FALSE}
-#install.packages("ape")
-#install.packages("phangorn")
-#install.packages("tidyverse")
-#install.packages("here")
-#install.packages("rentrez")
-#install.packages("BiocManager")
-#BiocManager::install("ggtree")
-
 library(ape)
 library(phangorn)
 library(tidyverse)
@@ -74,7 +66,7 @@ dna_aligned <- readRDS(here("data/dna_aligned.RDS")) #import the aligned dna
 The different dna sequences have been aligned and now the genetic distances between the sequences can be calculated using the Tamura and Nei 1993 model (TN93) [@tamuraEstimationNumberNucleotide1993]. The distance matrix can be used as input to calculate the phylogenetic tree. The used algorithm is the BIONJ algorithm of Gascuel [@gascuelBIONJImprovedVersion1997]. 
 The generated tree is visualized as a cladogram using the package {ggtree} [@yuGgtreePackageVisualization2017]. It's visualized as a cladogram for now to keep it easy to read while it's being improved.
 
-```{r Calculate the genetic distances between the sequences, message=FALSE}
+```{r Calculate the genetic distances between the sequences, message=FALSE, fig.cap="Unrooted neighbor joining cladogram of mitochondrial genomes of 15 primates and the golden hamster."}
 dna_dist <- dist.dna(dna_aligned, model = "TN93") #calculate genetic distances and store in a vector of the type "dist"
 
 treebionj <- bionj(dna_dist) #create a tree of the class "phylo" using the method neighbor joining
@@ -123,7 +115,7 @@ mlparsedoptim <- optim.pml(mlparsed, optNni=TRUE, model = optmodel) #optimize th
 
 ### Visualizing the maximum likelihood cladogram
 
-```{r Visualize unrooted maximum likelihood tree, message=FALSE}
+```{r Visualize unrooted maximum likelihood tree, message=FALSE, fig.cap="Unrooted maximum likelihood cladogram of mitochondrial genomes of 15 primates and the golden hamster"}
 treeml <- ladderize(mlparsedoptim$tree) #ladderize the tree
 
 ggtree(treeml, branch.length = "none", ladderize = F)+ #visualize the tree as a cladogram
@@ -135,7 +127,7 @@ ggtree(treeml, branch.length = "none", ladderize = F)+ #visualize the tree as a 
 ### Rooting the tree
 The last step is to root the tree and clean up the tip labels (species names). It is important to root the tree, trees that aren't rooted correctly may be misleading [@kineneRootingTreesMethods2016]. There are multiple ways to root a tree, I will be using an "outgroup", a species that is genetically very different from the other species in the tree [@kineneRootingTreesMethods2016]. 
 
-```{r Rooting the tree and visualizing it, message=FALSE}
+```{r Rooting the tree and visualizing it, message=FALSE, fig.cap="Rooted maximum likelihood phylogenetic tree of mitochondrial genomes of 15 primates and the golden hamster"}
 rootedml <- root(treeml, 
                  outgroup = "NC_013276.1 Mesocricetus auratus mitochondrion, complete genome", 
                  resolve.root = TRUE) #rooting the tree

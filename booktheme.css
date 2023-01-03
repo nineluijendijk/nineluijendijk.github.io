@@ -41,6 +41,7 @@ details > summary {
 .titleandname {
 font-size: large;
 font-weight: bold;
+text-align: center;
 }
 
 .book .book-summary ul.summary li a, .book .book-summary ul.summary li span {

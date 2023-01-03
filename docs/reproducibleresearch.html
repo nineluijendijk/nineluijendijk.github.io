@@ -168,7 +168,27 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#languages"><i class="fa fa-check"></i>Languages</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="guerillaframework.html"><a href="guerillaframework.html"><i class="fa fa-check"></i><b>1</b> Guerilla Analytics framework</a></li>
-<li class="chapter" data-level="2" data-path="reproducibleresearch.html"><a href="reproducibleresearch.html"><i class="fa fa-check"></i><b>2</b> Reproducible Research</a></li>
+<li class="chapter" data-level="2" data-path="reproducibleresearch.html"><a href="reproducibleresearch.html"><i class="fa fa-check"></i><b>2</b> Reproducible Research</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="reproducibleresearch.html"><a href="reproducibleresearch.html#scoring-the-reproducibility-of-a-research-article"><i class="fa fa-check"></i><b>2.1</b> Scoring the reproducibility of a research article</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="reproducibleresearch.html"><a href="reproducibleresearch.html#reproducible-research-and-criteria"><i class="fa fa-check"></i><b>2.1.1</b> Reproducible research and criteria</a></li>
+<li class="chapter" data-level="2.1.2" data-path="reproducibleresearch.html"><a href="reproducibleresearch.html#the-research-article"><i class="fa fa-check"></i><b>2.1.2</b> The research article</a></li>
+<li class="chapter" data-level="2.1.3" data-path="reproducibleresearch.html"><a href="reproducibleresearch.html#reproducibility-of-the-research"><i class="fa fa-check"></i><b>2.1.3</b> Reproducibility of the research</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="reproducibleresearch.html"><a href="reproducibleresearch.html#scoring-the-reproducibility-of-the-code-of-the-research"><i class="fa fa-check"></i><b>2.2</b> Scoring the reproducibility of the code of the research</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="reproducibleresearch.html"><a href="reproducibleresearch.html#criteria-for-the-code"><i class="fa fa-check"></i><b>2.2.1</b> Criteria for the code</a></li>
+<li class="chapter" data-level="2.2.2" data-path="reproducibleresearch.html"><a href="reproducibleresearch.html#the-code"><i class="fa fa-check"></i><b>2.2.2</b> The code</a></li>
+<li class="chapter" data-level="" data-path="reproducibleresearch.html"><a href="reproducibleresearch.html#install-andor-load-packages"><i class="fa fa-check"></i>Install and/or load packages</a></li>
+<li class="chapter" data-level="" data-path="reproducibleresearch.html"><a href="reproducibleresearch.html#data"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="reproducibleresearch.html"><a href="reproducibleresearch.html#multiple-item-psychological-measures"><i class="fa fa-check"></i>Multiple-item Psychological Measures</a></li>
+<li class="chapter" data-level="" data-path="reproducibleresearch.html"><a href="reproducibleresearch.html#install-andor-load-packages-1"><i class="fa fa-check"></i>Install and/or load packages</a></li>
+<li class="chapter" data-level="" data-path="reproducibleresearch.html"><a href="reproducibleresearch.html#data-1"><i class="fa fa-check"></i>Data</a></li>
+<li class="chapter" data-level="" data-path="reproducibleresearch.html"><a href="reproducibleresearch.html#multiple-item-psychological-measures-1"><i class="fa fa-check"></i>Multiple-item Psychological Measures</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="reproducibleresearch.html"><a href="reproducibleresearch.html#final-rating"><i class="fa fa-check"></i><b>2.3</b> Final rating</a></li>
+</ul></li>
 <li class="chapter" data-level="3" data-path="datanalysis.html"><a href="datanalysis.html"><i class="fa fa-check"></i><b>3</b> Analyzing and visualizing data</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="datanalysis.html"><a href="datanalysis.html#preparing-the-data"><i class="fa fa-check"></i><b>3.1</b> Preparing the data</a>
@@ -256,8 +276,325 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="reproducibleresearch" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Reproducible Research</h1>
-<p>work in progress</p>
+<hr />
+<div id="scoring-the-reproducibility-of-a-research-article" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Scoring the reproducibility of a research article</h2>
+<div id="reproducible-research-and-criteria" class="section level3" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Reproducible research and criteria</h3>
+<p>In this chapter I will be scoring a scientific publication on how reproducible the research is. The criteria for reproducibility can be found in table <a href="reproducibleresearch.html#tab:criteria">2.1</a>. Keeping research reproducible and openly available enables researchers to work together or in parallel towards the same goal. <span class="citation">(<a href="#ref-sumnerReproducibilityReportingPractices2020" role="doc-biblioref">Sumner et al. 2020</a>)</span></p>
+<details>
+<summary>
+Generating the table
+</summary>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="reproducibleresearch.html#cb3-1" aria-hidden="true" tabindex="-1"></a>dataframe_criteria <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">TransparencyCriteria =</span> <span class="fu">c</span>(<span class="st">&quot;Study Purpose&quot;</span>, <span class="st">&quot;Data Availability Statement&quot;</span>, <span class="st">&quot;Data Location&quot;</span>, <span class="st">&quot;Study Location&quot;</span>, <span class="st">&quot;Author Review&quot;</span>, <span class="st">&quot;Ethics Statement&quot;</span>, <span class="st">&quot;Funding Statement&quot;</span>, <span class="st">&quot;Code Availability&quot;</span>),</span>
+<span id="cb3-2"><a href="reproducibleresearch.html#cb3-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">Definition =</span> <span class="fu">c</span>(<span class="st">&quot;A concise statement in the introduction of the article, often in the last paragraph, that establishes the reason the research was conducted. Also called the studyobjective.&quot;</span>, <span class="st">&quot;A statement, in an individual section offset from the main body of text, that explains how or if one can access a study’s data. The title of the section may vary, but it must explicitly mention data; it is therefore distinct from a supplementary materials section.&quot;</span>, <span class="st">&quot;Where the article’s data can be accessed, either raw or processed.&quot;</span>, <span class="st">&quot;Author has stated in the methods section where the study took place or the data’s country/region of origin.&quot;</span>, <span class="st">&quot;The professionalism of the contact information that the author has provided in the manuscript.&quot;</span>, <span class="st">&quot;A statement within the manuscript indicating any ethical concerns, including the presence of sensitive data.&quot;</span>, <span class="st">&quot;A statement within the manuscript indicating whether or not the authors received funding for their research.&quot;</span>, <span class="st">&quot;Authors have shared access to the most updated code that they used in their study, including code used for analysis.&quot;</span>),</span>
+<span id="cb3-3"><a href="reproducibleresearch.html#cb3-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">ResponseType =</span> <span class="fu">c</span>(<span class="st">&quot;Binary&quot;</span>, <span class="st">&quot;Binary&quot;</span>, <span class="st">&quot;Found Value&quot;</span>, <span class="st">&quot;Binary; Found Value&quot;</span>, <span class="st">&quot;Found Value&quot;</span>, <span class="st">&quot;Binary&quot;</span>, <span class="st">&quot;Binary&quot;</span>, <span class="st">&quot;Binary&quot;</span>))</span></code></pre></div>
+</details>
+<details>
+<summary>
+Table containing the criteria of reproducibility
+</summary>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="reproducibleresearch.html#cb4-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(dataframe_criteria, <span class="at">caption =</span> <span class="st">&quot;Table showing the criteria for reproducibilty from @sumnerReproducibilityReportingPractices2020.&quot;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:criteria">Table 2.1: </span>Table showing the criteria for reproducibilty from <span class="citation">Sumner et al. (<a href="#ref-sumnerReproducibilityReportingPractices2020" role="doc-biblioref">2020</a>)</span>.</caption>
+<colgroup>
+<col width="8%" />
+<col width="84%" />
+<col width="6%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">TransparencyCriteria</th>
+<th align="left">Definition</th>
+<th align="left">ResponseType</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Study Purpose</td>
+<td align="left">A concise statement in the introduction of the article, often in the last paragraph, that establishes the reason the research was conducted. Also called the studyobjective.</td>
+<td align="left">Binary</td>
+</tr>
+<tr class="even">
+<td align="left">Data Availability Statement</td>
+<td align="left">A statement, in an individual section offset from the main body of text, that explains how or if one can access a study’s data. The title of the section may vary, but it must explicitly mention data; it is therefore distinct from a supplementary materials section.</td>
+<td align="left">Binary</td>
+</tr>
+<tr class="odd">
+<td align="left">Data Location</td>
+<td align="left">Where the article’s data can be accessed, either raw or processed.</td>
+<td align="left">Found Value</td>
+</tr>
+<tr class="even">
+<td align="left">Study Location</td>
+<td align="left">Author has stated in the methods section where the study took place or the data’s country/region of origin.</td>
+<td align="left">Binary; Found Value</td>
+</tr>
+<tr class="odd">
+<td align="left">Author Review</td>
+<td align="left">The professionalism of the contact information that the author has provided in the manuscript.</td>
+<td align="left">Found Value</td>
+</tr>
+<tr class="even">
+<td align="left">Ethics Statement</td>
+<td align="left">A statement within the manuscript indicating any ethical concerns, including the presence of sensitive data.</td>
+<td align="left">Binary</td>
+</tr>
+<tr class="odd">
+<td align="left">Funding Statement</td>
+<td align="left">A statement within the manuscript indicating whether or not the authors received funding for their research.</td>
+<td align="left">Binary</td>
+</tr>
+<tr class="even">
+<td align="left">Code Availability</td>
+<td align="left">Authors have shared access to the most updated code that they used in their study, including code used for analysis.</td>
+<td align="left">Binary</td>
+</tr>
+</tbody>
+</table>
+</details>
+</div>
+<div id="the-research-article" class="section level3" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> The research article</h3>
+<p>The research article I will be scoring for reproducibility is <span class="citation">Michalak et al. (<a href="#ref-michalakSoundsSicknessCan2020" role="doc-biblioref">2020</a>)</span>, “Sounds of sickness: can people identify infectious disease using sounds of coughs and sneezes?”. The study objective is to determine whether humans can identify infectious diseases by hearing. Multiple sound clips, for example of coughing or sneezing, were presented to participants in random order, half of the sounds being from a people with an infectious illness and half from people with a non-infectious condition. The participants were asked to
+determine the nature of these sounds (infectious or not) and how certain they were. This study was done 3 more times, with slight alterations, for example also asking the participants to score how disgusting a sound was. Using R to calculate statistics, it was found that people can not accurately determine whether a sneeze or cough is infectious, even when they were pretty certain of their judgements.</p>
+</div>
+<div id="reproducibility-of-the-research" class="section level3" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> Reproducibility of the research</h3>
+<p>The reproducibility of this article is scored in table <a href="reproducibleresearch.html#tab:scoringarticle">2.2</a> below:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="reproducibleresearch.html#cb5-1" aria-hidden="true" tabindex="-1"></a>criteria_scored <span class="ot">&lt;-</span> dataframe_criteria <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Score =</span> <span class="fu">c</span>(<span class="st">&quot;Present&quot;</span>, <span class="st">&quot;Present&quot;</span>, <span class="st">&quot;Present, the data can be found at https://osf.io/4c7vr/.&quot;</span>, <span class="st">&quot;Present, the data was collected from US-based participants.&quot;</span>, <span class="st">&quot;One of four authors&#39; contact information is listed: the address of the university they&#39;re from and their professional email address.&quot;</span>, <span class="st">&quot;Present&quot;</span>, <span class="st">&quot;Present&quot;</span>, <span class="st">&quot;Present&quot;</span>))</span>
+<span id="cb5-2"><a href="reproducibleresearch.html#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="reproducibleresearch.html#cb5-3" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(criteria_scored, <span class="at">caption =</span> <span class="st">&quot;Table showing how the article scored on reproducibility.&quot;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:scoringarticle">Table 2.2: </span>Table showing how the article scored on reproducibility.</caption>
+<colgroup>
+<col width="6%" />
+<col width="59%" />
+<col width="4%" />
+<col width="29%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">TransparencyCriteria</th>
+<th align="left">Definition</th>
+<th align="left">ResponseType</th>
+<th align="left">Score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Study Purpose</td>
+<td align="left">A concise statement in the introduction of the article, often in the last paragraph, that establishes the reason the research was conducted. Also called the studyobjective.</td>
+<td align="left">Binary</td>
+<td align="left">Present</td>
+</tr>
+<tr class="even">
+<td align="left">Data Availability Statement</td>
+<td align="left">A statement, in an individual section offset from the main body of text, that explains how or if one can access a study’s data. The title of the section may vary, but it must explicitly mention data; it is therefore distinct from a supplementary materials section.</td>
+<td align="left">Binary</td>
+<td align="left">Present</td>
+</tr>
+<tr class="odd">
+<td align="left">Data Location</td>
+<td align="left">Where the article’s data can be accessed, either raw or processed.</td>
+<td align="left">Found Value</td>
+<td align="left">Present, the data can be found at <a href="https://osf.io/4c7vr/" class="uri">https://osf.io/4c7vr/</a>.</td>
+</tr>
+<tr class="even">
+<td align="left">Study Location</td>
+<td align="left">Author has stated in the methods section where the study took place or the data’s country/region of origin.</td>
+<td align="left">Binary; Found Value</td>
+<td align="left">Present, the data was collected from US-based participants.</td>
+</tr>
+<tr class="odd">
+<td align="left">Author Review</td>
+<td align="left">The professionalism of the contact information that the author has provided in the manuscript.</td>
+<td align="left">Found Value</td>
+<td align="left">One of four authors’ contact information is listed: the address of the university they’re from and their professional email address.</td>
+</tr>
+<tr class="even">
+<td align="left">Ethics Statement</td>
+<td align="left">A statement within the manuscript indicating any ethical concerns, including the presence of sensitive data.</td>
+<td align="left">Binary</td>
+<td align="left">Present</td>
+</tr>
+<tr class="odd">
+<td align="left">Funding Statement</td>
+<td align="left">A statement within the manuscript indicating whether or not the authors received funding for their research.</td>
+<td align="left">Binary</td>
+<td align="left">Present</td>
+</tr>
+<tr class="even">
+<td align="left">Code Availability</td>
+<td align="left">Authors have shared access to the most updated code that they used in their study, including code used for analysis.</td>
+<td align="left">Binary</td>
+<td align="left">Present</td>
+</tr>
+</tbody>
+</table>
+<p>Getting a perfect score, this research seems to be very reproducible.</p>
+</div>
+</div>
+<div id="scoring-the-reproducibility-of-the-code-of-the-research" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Scoring the reproducibility of the code of the research</h2>
+<div id="criteria-for-the-code" class="section level3" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Criteria for the code</h3>
+<p>Now I will be scoring how easy it is to reproduce one of the figures from the article, using the code provided by the authors. I will also be judging how easy it is to read the code.</p>
+</div>
+<div id="the-code" class="section level3" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> The code</h3>
+<p>There is code available that was used to prepare the raw data for further analysis, but the raw data itself is not publically available. I assume this is to protect participants’ identities. The preparation script comes with comments explaining what every step does and is easy to read. Since the researchers mainly use the package {tidyverse} <span class="citation">(<a href="#ref-wickhamWelcomeTidyverse2019" role="doc-biblioref">Hadley Wickham et al. 2019</a>)</span> their code is especially easy to read as I like to use it as well. Using the processed data, it is very easy to recreate the figures from this study. Below is part of the analysis script downloaded from the study’s Open Science Framework (OSF) project (linked in table <a href="reproducibleresearch.html#tab:scoringarticle">2.2</a>). I would rate the readabilty of this code a 5/5.</p>
+</div>
+<div id="install-andor-load-packages" class="section level3 unnumbered">
+<h3>Install and/or load packages</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="reproducibleresearch.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb6-2"><a href="reproducibleresearch.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb6-3"><a href="reproducibleresearch.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span></code></pre></div>
+</div>
+<div id="data" class="section level3 unnumbered">
+<h3>Data</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="reproducibleresearch.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Read data from preparation script</span></span>
+<span id="cb7-2"><a href="reproducibleresearch.html#cb7-2" aria-hidden="true" tabindex="-1"></a>qualtrics1 <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">&quot;data/study1/cleandata/qualtrics1.tsv&quot;</span>)</span>
+<span id="cb7-3"><a href="reproducibleresearch.html#cb7-3" aria-hidden="true" tabindex="-1"></a>lqualtrics1 <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">&quot;data/study1/cleandata/lqualtrics1.tsv&quot;</span>)</span></code></pre></div>
+</div>
+<div id="multiple-item-psychological-measures" class="section level3 unnumbered">
+<h3>Multiple-item Psychological Measures</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="reproducibleresearch.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Perceived Infectability</span></span>
+<span id="cb8-2"><a href="reproducibleresearch.html#cb8-2" aria-hidden="true" tabindex="-1"></a>qualtrics1 <span class="sc">%&gt;%</span> </span>
+<span id="cb8-3"><a href="reproducibleresearch.html#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(PVD8, PVD12r, PVD2, PVD14r, PVD10, PVD5r, PVD6) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-4"><a href="reproducibleresearch.html#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">omega</span>(<span class="at">title =</span> <span class="st">&quot;Perceived Infectability&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="reproducibleresearch.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Scatterplot Matrix (ignoring stimuli variance)</span></span>
+<span id="cb9-2"><a href="reproducibleresearch.html#cb9-2" aria-hidden="true" tabindex="-1"></a>lqualtrics1 <span class="sc">%&gt;%</span> </span>
+<span id="cb9-3"><a href="reproducibleresearch.html#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(certainty, clarity, pvd_pinfect, pvd_germ, rchild_uncertain, rchild_ses, recentill) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-4"><a href="reproducibleresearch.html#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pairs.panels</span>(<span class="at">scale =</span> <span class="cn">FALSE</span>, <span class="at">pch =</span> <span class="st">&quot;.&quot;</span>)</span></code></pre></div>
+<p>This code didn’t work immediately, there were 2 things I needed to change first. The first thing was the path to the data, since the file names on OSF didn’t perfectly match those in the script. The directory also had to be changed, I used the {here} package <span class="citation">Müller (<a href="#ref-mullerHere" role="doc-biblioref">n.d.</a>)</span> so that if I want to refer to the same file from another computer it will still work.</p>
+<p>The {GPArotation} package <span class="citation">(<a href="#ref-coena.bernaardsGradientProjectionAlgorithms2005" role="doc-biblioref">Coen A. Bernaards and Jennrich 2005</a>)</span> also was not loaded in, when it is needed for the <code>omega()</code> function. Besides these 2 things, everything worked fine. The code now looks as follows:</p>
+</div>
+<div id="install-andor-load-packages-1" class="section level3 unnumbered">
+<h3>Install and/or load packages</h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="reproducibleresearch.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb10-2"><a href="reproducibleresearch.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb10-3"><a href="reproducibleresearch.html#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb10-4"><a href="reproducibleresearch.html#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb10-5"><a href="reproducibleresearch.html#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GPArotation)</span></code></pre></div>
+</div>
+<div id="data-1" class="section level3 unnumbered">
+<h3>Data</h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="reproducibleresearch.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Read data from preparation script</span></span>
+<span id="cb11-2"><a href="reproducibleresearch.html#cb11-2" aria-hidden="true" tabindex="-1"></a>qualtrics1 <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="fu">here</span>(<span class="st">&quot;data_raw/qualtrics1_share.tsv&quot;</span>))</span>
+<span id="cb11-3"><a href="reproducibleresearch.html#cb11-3" aria-hidden="true" tabindex="-1"></a>lqualtrics1 <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="fu">here</span>(<span class="st">&quot;data_raw/lqualtrics1_share.tsv&quot;</span>))</span></code></pre></div>
+</div>
+<div id="multiple-item-psychological-measures-1" class="section level3 unnumbered">
+<h3>Multiple-item Psychological Measures</h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="reproducibleresearch.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Perceived Infectability</span></span>
+<span id="cb12-2"><a href="reproducibleresearch.html#cb12-2" aria-hidden="true" tabindex="-1"></a>qualtrics1 <span class="sc">%&gt;%</span> </span>
+<span id="cb12-3"><a href="reproducibleresearch.html#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(PVD8, PVD12r, PVD2, PVD14r, PVD10, PVD5r, PVD6) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-4"><a href="reproducibleresearch.html#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">omega</span>(<span class="at">title =</span> <span class="st">&quot;Perceived Infectability&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:omegaplot"></span>
+<img src="portfolio_book_files/figure-html/omegaplot-1.png" alt="Plot showing McDonald's omega estimates [@michalakSoundsSicknessCan2020]." width="672" />
+<p class="caption">
+Figure 2.1: Plot showing McDonald’s omega estimates <span class="citation">(<a href="#ref-michalakSoundsSicknessCan2020" role="doc-biblioref">Michalak et al. 2020</a>)</span>.
+</p>
+</div>
+<details>
+<summary>
+Omega estimates results
+</summary>
+<pre><code>## Perceived Infectability 
+## Call: omegah(m = m, nfactors = nfactors, fm = fm, key = key, flip = flip, 
+##     digits = digits, title = title, sl = sl, labels = labels, 
+##     plot = plot, n.obs = n.obs, rotate = rotate, Phi = Phi, option = option, 
+##     covar = covar)
+## Alpha:                 0.91 
+## G.6:                   0.92 
+## Omega Hierarchical:    0.75 
+## Omega H asymptotic:    0.79 
+## Omega Total            0.94 
+## 
+## Schmid Leiman Factor loadings greater than  0.2 
+##           g   F1*   F2*   F3*   h2   u2   p2
+## PVD8   0.68  0.60             0.83 0.17 0.56
+## PVD12r 0.73        0.34       0.65 0.35 0.81
+## PVD2   0.71  0.37  0.20       0.68 0.32 0.73
+## PVD14r 0.77              0.57 0.91 0.09 0.65
+## PVD10  0.62  0.67             0.83 0.17 0.47
+## PVD5r  0.70        0.26       0.59 0.41 0.83
+## PVD6   0.70  0.48             0.73 0.27 0.67
+## 
+## With Sums of squares  of:
+##    g  F1*  F2*  F3* 
+## 3.45 1.18 0.23 0.37 
+## 
+## general/max  2.94   max/min =   5.09
+## mean percent general =  0.67    with sd =  0.13 and cv of  0.19 
+## Explained Common Variance of the general factor =  0.66 
+## 
+## The degrees of freedom are 3  and the fit is  0.01 
+## The number of observations was  157  with Chi Square =  1.68  with prob &lt;  0.64
+## The root mean square of the residuals is  0.01 
+## The df corrected root mean square of the residuals is  0.02
+## RMSEA index =  0  and the 10 % confidence intervals are  0 0.108
+## BIC =  -13.49
+## 
+## Compare this with the adequacy of just a general factor and no group factors
+## The degrees of freedom for just the general factor are 14  and the fit is  1.13 
+## The number of observations was  157  with Chi Square =  171.53  with prob &lt;  3.4e-29
+## The root mean square of the residuals is  0.16 
+## The df corrected root mean square of the residuals is  0.19 
+## 
+## RMSEA index =  0.268  and the 10 % confidence intervals are  0.233 0.305
+## BIC =  100.74 
+## 
+## Measures of factor score adequacy             
+##                                                  g  F1*   F2*  F3*
+## Correlation of scores with factors            0.89 0.81  0.52 0.74
+## Multiple R square of scores with factors      0.79 0.66  0.27 0.54
+## Minimum correlation of factor score estimates 0.57 0.33 -0.45 0.09
+## 
+##  Total, General and Subset omega for each subset
+##                                                  g  F1*  F2*  F3*
+## Omega total for total scores and subscales    0.94 0.92 0.74 0.91
+## Omega general for total scores and subscales  0.75 0.57 0.63 0.59
+## Omega group for total scores and subscales    0.16 0.35 0.11 0.32</code></pre>
+</details>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="reproducibleresearch.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Scatterplot Matrix (ignoring stimuli variance)</span></span>
+<span id="cb14-2"><a href="reproducibleresearch.html#cb14-2" aria-hidden="true" tabindex="-1"></a>lqualtrics1 <span class="sc">%&gt;%</span> </span>
+<span id="cb14-3"><a href="reproducibleresearch.html#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(certainty, clarity, pvd_pinfect, pvd_germ, rchild_uncertain, rchild_ses, recentill) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-4"><a href="reproducibleresearch.html#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pairs.panels</span>(<span class="at">scale =</span> <span class="cn">FALSE</span>, <span class="at">pch =</span> <span class="st">&quot;.&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">title</span>(<span class="at">main =</span> <span class="st">&quot;Scatterplot Matrix (ignoring stimuli variance)</span></span>
+<span id="cb14-5"><a href="reproducibleresearch.html#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span>, <span class="at">line =</span> <span class="fl">1.5</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:scatterplotmatrix"></span>
+<img src="portfolio_book_files/figure-html/scatterplotmatrix-1.png" alt="Scatterplot Matrix ignoring stimula variance [@michalakSoundsSicknessCan2020]." width="672" />
+<p class="caption">
+Figure 2.2: Scatterplot Matrix ignoring stimula variance <span class="citation">(<a href="#ref-michalakSoundsSicknessCan2020" role="doc-biblioref">Michalak et al. 2020</a>)</span>.
+</p>
+</div>
+<p>I decided to also add a title to the scatter plot matrix (figure <a href="reproducibleresearch.html#fig:scatterplotmatrix">2.2</a>), since it was missing in the original code.</p>
+<p>Overall, it was not hard to generate these two figures using the authors’ script. I’d rate the effort it took to recreate the figures a 4.5/5, 5 being very easy. I immediately saw what had to be changed before even running the script and this only took a minute to do. The {GPArotation} package wasn’t in their list of libraries to load since it’s loaded automatically when running the <code>omega()</code> function. This doesn’t work when the package is not already installed, and running the code just produces an error.</p>
+</div>
+</div>
+<div id="final-rating" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Final rating</h2>
+<p>I think this research article deserves a 9.5/10 for reproducibility. Chapters in the article describing ethics and data accessibility have their own headers so they’re easy to find in the table of contents, in the text itself every claim has a source, the data and scripts were one click away from the article itself and really the only thing making it not 10/10 reproducible was the absence of the raw data, which I assume is to protect participants’ privacy.</p>
 
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-coena.bernaardsGradientProjectionAlgorithms2005" class="csl-entry">
+Coen A. Bernaards, and Robert I. Jennrich. 2005. <span>“Gradient Projection Algorithms and Software for Arbitrary Rotation Criteria in Factor Analysis.”</span> <em>Educational and Psychological Measurement</em> 65: 676--696.
+</div>
+<div id="ref-michalakSoundsSicknessCan2020" class="csl-entry">
+Michalak, Nicholas M., Oliver Sng, Iris M. Wang, and Joshua Ackerman. 2020. <span>“Sounds of Sickness: Can People Identify Infectious Disease Using Sounds of Coughs and Sneezes? | Proceedings of the Royal Society B: Biological Sciences.”</span> June 10, 2020. <a href="https://doi.org/10.1098/rspb.2020.0944">https://doi.org/10.1098/rspb.2020.0944</a>.
+</div>
+<div id="ref-mullerHere" class="csl-entry">
+Müller, Kirill. n.d. <span>“Here.”</span> Accessed December 21, 2022. <a href="https://here.r-lib.org/articles/here.html">https://here.r-lib.org/articles/here.html</a>.
+</div>
+<div id="ref-sumnerReproducibilityReportingPractices2020" class="csl-entry">
+Sumner, Josh, Leah Haynes, Sarah Nathan, Cynthia Hudson-Vitale, and Leslie D. McIntosh. 2020. <span>“Reproducibility and Reporting Practices in COVID-19 Preprint Manuscripts.”</span> medRxiv. <a href="https://doi.org/10.1101/2020.03.24.20042796">https://doi.org/10.1101/2020.03.24.20042796</a>.
+</div>
+<div id="ref-wickhamWelcomeTidyverse2019" class="csl-entry">
+Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. <span>“Welcome to the Tidyverse.”</span> <em>Journal of Open Source Software</em> 4 (43): 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>.
+</div>
 </div>
             </section>
 

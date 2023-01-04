@@ -28,8 +28,8 @@ library(here)
 ## Contact {-}
 E-mail: nineluijendijk@gmail.com\
 Phone: +31 6 17210407\
-[LinkedIn:](https://www.linkedin.com/in/nine-luijendijk-75a973257/) \
-[GitHub:](https://github.com/nineluijendijk)
+LinkedIn: [Nine Luijendijk](https://www.linkedin.com/in/nine-luijendijk-75a973257/) \
+GitHub: [nineluijendijk](https://github.com/nineluijendijk)
 
 ## Education {-}
 __Hogeschool Utrecht__\

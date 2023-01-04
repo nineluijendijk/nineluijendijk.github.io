@@ -1,3 +1,172 @@
-# Parameterized report COVID-19 {#parameterizedcovid}
+# Parameterized report on COVID-19 {#parameterized}
 
-work in progress
+----
+
+```{r setupcovid, include=FALSE}
+library(tidyverse)
+library(plotly)
+library(scales)
+library(here)
+```
+
+## Parameterized reports
+
+Up until now, every chapter has been a static report. When using a dataset with, for example, a large number of groups, it would be nice to able to choose what groups exactly you want to visualize with just the click of a button. This is what parameterized reports are for. In this report I will be visualizing COVID-19 data (obtained from [ECDC](https://www.ecdc.europa.eu/en/publications-data/data-daily-new-cases-covid-19-eueea-country)), more specifically the daily numbers of newly reported COVID-19 cases and deaths in EU countries.
+
+## The parameterized COVID-19 report
+
+### The parameters
+
+The parameters I will be using are country, year and month. Using these parameters, I will generate two interactive plots: one for the newly reported number of cases and one for the newly reported number of deaths.
+
+### Rendering the report
+
+The parameters are chosen when rendering the report, and are set as follows:
+
+```{r rendering, eval=FALSE}
+#generate the report with chosen parameters
+rmarkdown::render("06_parameterizedcovid.Rmd", params = list(country = c("Germany", "France", "Netherlands"),
+                                                        year = 2022,
+                                                        month = 1:3))
+```
+
+For the parameterization to work, the YAML header of the markdown file needs to contain some defaults for the parameters, that are used when the parameter is not specified when rendering.
+
+```{r yamlheaderdummy, eval=FALSE}
+---
+params:
+  country: "Austria"
+  year: 2022
+  month: 10
+---
+```
+
+```{r setupcoviddummy, eval=FALSE}
+library(tidyverse)
+library(plotly)
+library(scales)
+library(here)
+```
+
+```{r loaddata}
+data <- read.csv(here("data_raw/data.csv")) #load the data
+```
+
+After the data is loaded, it can be filtered to reflect the given parameters. I will also be determining the axis breaks depending on how many years are plotted, to keep the x-axis readable.
+
+```{r filterdata, eval=FALSE}
+data_filtered <- data %>% filter(countriesAndTerritories %in% params$country,
+                                 year %in% params$year,
+                                 month %in% params$month) #filter for the given parameters
+
+data_filtered <- mutate(data_filtered, "date" = paste(day, month, year, sep="/")) #add date column
+
+data_filtered$date <- as.Date(data_filtered$date, format="%d/%m/%Y") #change the data type to date
+
+if(length(params$year) > 1){ #determine the x-axis breaks
+  datebreaks <- "1 month"
+}else{
+  datebreaks <- "2 weeks"
+}
+```
+
+```{r hiddenfilter, echo=FALSE}
+data_filtered <- data %>% filter(countriesAndTerritories %in% c("Germany", "France", "Netherlands"), year %in% 2022, month %in% 1:3)
+
+data_filtered <- mutate(data_filtered, "date" = paste(day, month, year, sep="/"))
+
+data_filtered$date <- as.Date(data_filtered$date, format="%d/%m/%Y")
+
+datebreaks <- "2 weeks"
+```
+
+Finally, the data can be plotted:
+
+```{r plotcases, fig.cap="Number of newly reported COVID-19 cases over time by country, with on the y-axis the number of COVID-19 cases and on the x-axis the date."}
+plot_cases <- ggplot(data_filtered,
+                     aes(x = date, y = cases, group = countriesAndTerritories,
+                         color = countriesAndTerritories))+
+              geom_line()+
+              geom_point(size = 1)+
+              labs(title = "Number of newly reported COVID-19 cases over time by country",
+                   y = "Number of COVID-19 cases",
+                   x = "Date",
+                   color = "Country")+
+              scale_x_date(date_breaks = datebreaks, date_labels = "%d-%m-%y")+
+              scale_y_continuous(labels = label_comma())+
+              theme_minimal()+
+              theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+
+ggplotly(plot_cases) #generate an interactive plot showing the number of cases
+```
+
+```{r plotdeaths, fig.cap="Number of newly reported COVID-19 deaths over time by country, with on the y-axis the number of COVID-19 deaths and on the x-axis the date."}
+plot_deaths <- ggplot(data_filtered,
+                     aes(x = date, y = deaths, group = countriesAndTerritories,
+                         color = countriesAndTerritories))+geom_line()+
+                geom_point(size = 1)+
+                labs(title = "Number of newly reported COVID-19 deaths over time by country",
+                     y = "Number of COVID-19 deaths",
+                     x = "Date",
+                     color = "Country")+
+                scale_x_date(date_breaks = datebreaks, date_labels = "%d-%m-%y")+
+                scale_y_continuous(labels = label_comma())+
+                theme_minimal()+
+                theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+
+ggplotly(plot_deaths) #generate an interactive plot showing the number of deaths
+```
+
+### Using different parameters
+
+Because the report is parameterized, it's simple to recreate the graph for different countries and time periods:
+
+```{r, eval=FALSE}
+#generate the plots with different parameters
+rmarkdown::render("06_parameterizedcovid.Rmd", params = list(country = c("Estonia", "Latvia", "Lithuania"),
+                                                        year = 2020:2021,
+                                                        month = 1:12))
+```
+
+```{r hiddenfilter2, echo=FALSE}
+data_filtered2 <- data %>% filter(countriesAndTerritories %in% c("Estonia", "Latvia", "Lithuania"), year %in% 2020:2021, month %in% 1:12) #filter for different parameters
+
+data_filtered2 <- mutate(data_filtered2, "date" = paste(day, month, year, sep="/"))
+
+data_filtered2$date <- as.Date(data_filtered2$date, format="%d/%m/%Y")
+```
+
+```{r plotcases2, echo=FALSE, fig.cap="Number of newly reported COVID-19 cases over time by country, with on the y-axis the number of COVID-19 cases and on the x-axis the date, this time using different parameters."}
+plot_cases2 <- ggplot(data_filtered2,
+                     aes(x = date, y = cases, group = countriesAndTerritories,
+                         color = countriesAndTerritories))+
+              geom_line()+
+              geom_point(size = 1)+
+              labs(title = "Number of newly reported COVID-19 cases over time by country",
+                   y = "Number of COVID-19 cases",
+                   x = "Date",
+                   color = "Country")+
+              scale_x_date(date_breaks = "1 month", date_labels = "%d-%m-%y")+
+              scale_y_continuous(labels = label_comma())+
+              theme_minimal()+
+              theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+
+ggplotly(plot_cases2) #generate an interactive plot showing the number of cases
+```
+
+```{r plotdeaths2, echo=FALSE, fig.cap="Number of newly reported COVID-19 deaths over time by country, with on the y-axis the number of COVID-19 deaths and on the x-axis the date, this time using different parameters."}
+plot_deaths2 <- ggplot(data_filtered2,
+                     aes(x = date, y = deaths, group = countriesAndTerritories,
+                         color = countriesAndTerritories))+geom_line()+
+                geom_point(size = 1)+
+                labs(title = "Number of newly reported COVID-19 deaths over time by country",
+                     y = "Number of COVID-19 deaths",
+                     x = "Date",
+                     color = "Country")+
+                scale_x_date(date_breaks = "1 month", date_labels = "%d-%m-%y")+
+                scale_y_continuous(labels = label_comma())+
+                theme_minimal()+
+                theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+
+ggplotly(plot_deaths2) #generate an interactive plot showing the number of deaths
+```

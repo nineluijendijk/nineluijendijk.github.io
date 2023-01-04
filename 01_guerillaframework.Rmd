@@ -2,11 +2,12 @@
 
 ```{r, include=FALSE}
 library(here)
+library(fs)
 ```
 
 ----
 
-To keep my data manageable I use the Guerilla Analytics framework [@ridgeGuerrillaAnalytics1st2014]. This means I make sure every project has its own folder, every folder that needs it has a README and no raw data file is altered. I also make sure to version control my code using [GitHub](https://github.com/)
+To keep my data manageable I use the Guerilla Analytics framework [@ridgeGuerrillaAnalytics1st2014]. This means I make sure every project has its own folder, every folder that needs it has a README and no raw data file is altered. I also make sure to version control my code using [GitHub](https://github.com/).
 
 The way I manage my data is visible in the tree below:
 

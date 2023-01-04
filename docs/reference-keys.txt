@@ -29,6 +29,10 @@ tab:unnamed-chunk-15
 tab:unnamed-chunk-16
 tab:unnamed-chunk-17
 fig:fluscatterplot
+fig:plotcases
+fig:plotdeaths
+fig:plotcases2
+fig:plotdeaths2
 guerillaframework
 reproducibleresearch
 scoring-the-reproducibility-of-a-research-article
@@ -68,7 +72,12 @@ calculating-descriptive-statistics
 visualizing-correlation
 visualizing-the-dengue-data
 visualizing-the-flu-data
-parameterizedcovid
+parameterized
+parameterized-reports
+the-parameterized-covid-19-report
+the-parameters
+rendering-the-report
+using-different-parameters
 rpackage
 primates
 the-plan

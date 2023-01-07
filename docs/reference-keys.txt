@@ -81,13 +81,16 @@ the-parameters
 rendering-the-report
 using-different-parameters
 vignette
+creating-the-package
 installing-and-loading-the-package
 package-contents
 dataset-measlesdata
 function-datasummarizer
 function-illnessplot
+function-fastaimporter.r
 function-gotermanalysis
 function-gotermplot
+additional-files
 primates
 the-plan
 preparatory-research

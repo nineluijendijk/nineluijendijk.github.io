@@ -2,9 +2,17 @@
 
 ----
 
+## Creating the package
+
+I have created a package to help me with data analysis. My package {dsfbnine} was created with the help of the {devtools} [@wickhamDevtoolsToolsMake2022] and {usethis} [@wickhamUsethisAutomatePackage2022] packages. The general frame was made using function from these packages, like `usethis::create_package` and `devtools::document()`.
+
+The functions included in this package are specific to my own workflow, most were written by looking at my own duplicate code. The main use of the functions are to make my code tidier and help me work faster, since I often do things like plotting illness cases for example. The rest of this chapter will be the vignette that comes with the package.
+
+----
+
 ## Installing and loading the package
 
-```{r setuppackage, message=FALSE, results='hide', warning=FALSE}
+```{r setuppackage, message=FALSE}
 devtools::install_github("nineluijendijk/dsfbnine")
 library(dsfbnine)
 ```
@@ -36,6 +44,15 @@ coviddata <- read.csv(here::here("data/datacovid.csv")) #load the data
 illnessPlot(coviddata, countries = c("Netherlands", "Belgium", "France"), years = 2020:2022, parameter = cases)
 ```
 
+### Function fastaImporter.R
+
+The function `fastaImporter()` can be used to import FASTA sequences by entering their GenBank Identifiers. The imported sequences will be stored in an object of class "DNAbin".
+
+```{r fastaImporterexample}
+dna <- fastaImporter(here::here("data/species.txt"))
+dna
+```
+
 ### Function gotermAnalysis()
 
 The function `gotermAnalysis()` was written specifically to help with my analysis of RNA-sequencing data, which is why there are many different parameters to be set: changing just 1 can completely change the results (seen in the code chunk below). The function performs a GO-term enrichment analysis. The output of this function can be used in the next function `gotermPlot()` as well.
@@ -56,4 +73,6 @@ gotermAnalysis_results <- readRDS(here::here("data/gotermAnalysis_results"))
 gotermPlot(gotermAnalysis_results, topamount = 10, plot_title = "Top 10 upregulated GO-terms")
 ```
 
+## Additional files
 
+Additional files can be found in the `/inst/extdata/` directory. It consist of files used to build the vignette, (raw) data for analysis/plotting, example files and an R script that shows how the dataset `measlesdata` was cleaned.

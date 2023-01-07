@@ -246,15 +246,18 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="7" data-path="vignette.html"><a href="vignette.html"><i class="fa fa-check"></i><b>7</b> R package vignette</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="vignette.html"><a href="vignette.html#installing-and-loading-the-package"><i class="fa fa-check"></i><b>7.1</b> Installing and loading the package</a></li>
-<li class="chapter" data-level="7.2" data-path="vignette.html"><a href="vignette.html#package-contents"><i class="fa fa-check"></i><b>7.2</b> Package contents</a>
+<li class="chapter" data-level="7.1" data-path="vignette.html"><a href="vignette.html#creating-the-package"><i class="fa fa-check"></i><b>7.1</b> Creating the package</a></li>
+<li class="chapter" data-level="7.2" data-path="vignette.html"><a href="vignette.html#installing-and-loading-the-package"><i class="fa fa-check"></i><b>7.2</b> Installing and loading the package</a></li>
+<li class="chapter" data-level="7.3" data-path="vignette.html"><a href="vignette.html#package-contents"><i class="fa fa-check"></i><b>7.3</b> Package contents</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="vignette.html"><a href="vignette.html#dataset-measlesdata"><i class="fa fa-check"></i><b>7.2.1</b> Dataset measlesdata</a></li>
-<li class="chapter" data-level="7.2.2" data-path="vignette.html"><a href="vignette.html#function-datasummarizer"><i class="fa fa-check"></i><b>7.2.2</b> Function dataSummarizer()</a></li>
-<li class="chapter" data-level="7.2.3" data-path="vignette.html"><a href="vignette.html#function-illnessplot"><i class="fa fa-check"></i><b>7.2.3</b> Function illnessPlot()</a></li>
-<li class="chapter" data-level="7.2.4" data-path="vignette.html"><a href="vignette.html#function-gotermanalysis"><i class="fa fa-check"></i><b>7.2.4</b> Function gotermAnalysis()</a></li>
-<li class="chapter" data-level="7.2.5" data-path="vignette.html"><a href="vignette.html#function-gotermplot"><i class="fa fa-check"></i><b>7.2.5</b> Function gotermPlot()</a></li>
+<li class="chapter" data-level="7.3.1" data-path="vignette.html"><a href="vignette.html#dataset-measlesdata"><i class="fa fa-check"></i><b>7.3.1</b> Dataset measlesdata</a></li>
+<li class="chapter" data-level="7.3.2" data-path="vignette.html"><a href="vignette.html#function-datasummarizer"><i class="fa fa-check"></i><b>7.3.2</b> Function dataSummarizer()</a></li>
+<li class="chapter" data-level="7.3.3" data-path="vignette.html"><a href="vignette.html#function-illnessplot"><i class="fa fa-check"></i><b>7.3.3</b> Function illnessPlot()</a></li>
+<li class="chapter" data-level="7.3.4" data-path="vignette.html"><a href="vignette.html#function-fastaimporter.r"><i class="fa fa-check"></i><b>7.3.4</b> Function fastaImporter.R</a></li>
+<li class="chapter" data-level="7.3.5" data-path="vignette.html"><a href="vignette.html#function-gotermanalysis"><i class="fa fa-check"></i><b>7.3.5</b> Function gotermAnalysis()</a></li>
+<li class="chapter" data-level="7.3.6" data-path="vignette.html"><a href="vignette.html#function-gotermplot"><i class="fa fa-check"></i><b>7.3.6</b> Function gotermPlot()</a></li>
 </ul></li>
+<li class="chapter" data-level="7.4" data-path="vignette.html"><a href="vignette.html#additional-files"><i class="fa fa-check"></i><b>7.4</b> Additional files</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="primates.html"><a href="primates.html"><i class="fa fa-check"></i><b>8</b> Generating a phylogenetic tree in R</a>
 <ul>
@@ -297,21 +300,27 @@ div.csl-indent {
 <div id="vignette" class="section level1" number="7">
 <h1><span class="header-section-number">7</span> R package vignette</h1>
 <hr />
-<div id="installing-and-loading-the-package" class="section level2" number="7.1">
-<h2><span class="header-section-number">7.1</span> Installing and loading the package</h2>
+<div id="creating-the-package" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> Creating the package</h2>
+<p>I have created a package to help me with data analysis. My package {dsfbnine} was created with the help of the {devtools} <span class="citation">(<a href="#ref-wickhamDevtoolsToolsMake2022" role="doc-biblioref">Hadley Wickham et al. 2022</a>)</span> and {usethis} <span class="citation">(<a href="#ref-wickhamUsethisAutomatePackage2022" role="doc-biblioref">Hadley Wickham, Bryan, and Barrett 2022</a>)</span> packages. The general frame was made using function from these packages, like <code>usethis::create_package</code> and <code>devtools::document()</code>.</p>
+<p>The functions included in this package are specific to my own workflow, most were written by looking at my own duplicate code. The main use of the functions are to make my code tidier and help me work faster, since I often do things like plotting illness cases for example. The rest of this chapter will be the vignette that comes with the package.</p>
+<hr />
+</div>
+<div id="installing-and-loading-the-package" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> Installing and loading the package</h2>
 <div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="vignette.html#cb77-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;nineluijendijk/dsfbnine&quot;</span>)</span>
 <span id="cb77-2"><a href="vignette.html#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dsfbnine)</span></code></pre></div>
 </div>
-<div id="package-contents" class="section level2" number="7.2">
-<h2><span class="header-section-number">7.2</span> Package contents</h2>
-<div id="dataset-measlesdata" class="section level3" number="7.2.1">
-<h3><span class="header-section-number">7.2.1</span> Dataset measlesdata</h3>
+<div id="package-contents" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> Package contents</h2>
+<div id="dataset-measlesdata" class="section level3" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> Dataset measlesdata</h3>
 <p>The <a href="https://github.com/nineluijendijk/dsfbnine">{dsfbnine} package</a> contains some functions to help me with my data analysis and one cleaned dataset <code>measlesdata</code>. It contains data on measles cases and population numbers in EU countries from 2018 and 2019. The dataset loads as a dataframe with 744 rows and 8 variables. It is available via lazy-loading, meaning columns can be accessed as follows:</p>
 <div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="vignette.html#cb78-1" aria-hidden="true" tabindex="-1"></a>measlesdata<span class="sc">$</span>cases <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">20</span>)</span></code></pre></div>
 <pre><code>##  [1]  7  5 15 17 12  6  1  3  6  0  4  1  1  6  9 11 24 22  3 11</code></pre>
 </div>
-<div id="function-datasummarizer" class="section level3" number="7.2.2">
-<h3><span class="header-section-number">7.2.2</span> Function dataSummarizer()</h3>
+<div id="function-datasummarizer" class="section level3" number="7.3.2">
+<h3><span class="header-section-number">7.3.2</span> Function dataSummarizer()</h3>
 <p>The function <code>dataSummarizer()</code> calculates the sum, mean, median and standard deviation of data, grouped by a given argument:</p>
 <div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="vignette.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dataSummarizer</span>(measlesdata, <span class="at">groupBy =</span> <span class="fu">c</span>(<span class="st">&quot;CountryName&quot;</span>, <span class="st">&quot;year&quot;</span>)) <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 10 × 6
@@ -329,8 +338,8 @@ div.csl-indent {
 ##  9 Poland      2019   1423  119.   82.5             121. 
 ## 10 Bulgaria    2019   1235  103.   46.5             110.</code></pre>
 </div>
-<div id="function-illnessplot" class="section level3" number="7.2.3">
-<h3><span class="header-section-number">7.2.3</span> Function illnessPlot()</h3>
+<div id="function-illnessplot" class="section level3" number="7.3.3">
+<h3><span class="header-section-number">7.3.3</span> Function illnessPlot()</h3>
 <p>The function <code>illnessPlot()</code> generates a graph showing illness numbers, specifically COVID-19 numbers from an <a href="https://www.ecdc.europa.eu/en/covid-19/data">ECDC</a> dataset, used in <a href="https://nineluijendijk.github.io/parameterized.html">Chapter 6</a> of my portfolio. The same code was used to generate 4 different plots, to fix this issue <code>illnessPlot()</code> was created.</p>
 <div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="vignette.html#cb82-1" aria-hidden="true" tabindex="-1"></a>coviddata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data/datacovid.csv&quot;</span>)) <span class="co">#load the data</span></span>
 <span id="cb82-2"><a href="vignette.html#cb82-2" aria-hidden="true" tabindex="-1"></a><span class="fu">illnessPlot</span>(coviddata, <span class="at">countries =</span> <span class="fu">c</span>(<span class="st">&quot;Netherlands&quot;</span>, <span class="st">&quot;Belgium&quot;</span>, <span class="st">&quot;France&quot;</span>), <span class="at">years =</span> <span class="dv">2020</span><span class="sc">:</span><span class="dv">2022</span>, <span class="at">parameter =</span> cases)</span></code></pre></div>
@@ -341,27 +350,65 @@ Figure 7.1: Example illness plot.
 </p>
 </div>
 </div>
-<div id="function-gotermanalysis" class="section level3" number="7.2.4">
-<h3><span class="header-section-number">7.2.4</span> Function gotermAnalysis()</h3>
-<p>The function <code>gotermAnalysis()</code> was written specifically to help with my analysis of RNA-sequencing data, which is why there are many different parameters to be set: changing just 1 can completely change the results (seen in the code chunk below). The function performs a GO-term enrichment analysis. The output of this function can be used in the next function <code>gotermPlot()</code> as well.</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="vignette.html#cb83-1" aria-hidden="true" tabindex="-1"></a>DESeqresults <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data/dge_results&quot;</span>)) <span class="co">#load the data object of class &quot;DESeqResults&quot;</span></span>
-<span id="cb83-2"><a href="vignette.html#cb83-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb83-3"><a href="vignette.html#cb83-3" aria-hidden="true" tabindex="-1"></a>gotermAnalysis_results <span class="ot">&lt;-</span> <span class="fu">gotermAnalysis</span>(DESeqresults)</span></code></pre></div>
+<div id="function-fastaimporter.r" class="section level3" number="7.3.4">
+<h3><span class="header-section-number">7.3.4</span> Function fastaImporter.R</h3>
+<p>The function <code>fastaImporter()</code> can be used to import FASTA sequences by entering their GenBank Identifiers. The imported sequences will be stored in an object of class “DNAbin”.</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="vignette.html#cb83-1" aria-hidden="true" tabindex="-1"></a>dna <span class="ot">&lt;-</span> <span class="fu">fastaImporter</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data/species.txt&quot;</span>))</span>
+<span id="cb83-2"><a href="vignette.html#cb83-2" aria-hidden="true" tabindex="-1"></a>dna</span></code></pre></div>
+<pre><code>## 16 DNA sequences in binary format stored in a list.
+## 
+## Mean sequence length: 16523.81 
+##    Shortest sequence: 16264 
+##     Longest sequence: 17062 
+## 
+## Labels:
+## KF914213.1 Gorilla beringei graueri mitochondrion, complete ...
+## NC_011120.1 Gorilla gorilla gorilla mitochondrion, complete ...
+## GU170821.1 Homo sapiens isolate NS07 mitochondrion, complete...
+## HM015213.1 Pan paniscus isolate PP25 mitochondrion, complete...
+## NC_001643.1 Pan troglodytes mitochondrion, complete genome
+## NC_002083.1 Pongo abelii mitochondrion, complete genome
+## ...
+## 
+## Base composition:
+##     a     c     g     t 
+## 0.314 0.299 0.131 0.256 
+## (Total: 264.38 kb)</code></pre>
 </div>
-<div id="function-gotermplot" class="section level3" number="7.2.5">
-<h3><span class="header-section-number">7.2.5</span> Function gotermPlot()</h3>
+<div id="function-gotermanalysis" class="section level3" number="7.3.5">
+<h3><span class="header-section-number">7.3.5</span> Function gotermAnalysis()</h3>
+<p>The function <code>gotermAnalysis()</code> was written specifically to help with my analysis of RNA-sequencing data, which is why there are many different parameters to be set: changing just 1 can completely change the results (seen in the code chunk below). The function performs a GO-term enrichment analysis. The output of this function can be used in the next function <code>gotermPlot()</code> as well.</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="vignette.html#cb85-1" aria-hidden="true" tabindex="-1"></a>DESeqresults <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data/dge_results&quot;</span>)) <span class="co">#load the data object of class &quot;DESeqResults&quot;</span></span>
+<span id="cb85-2"><a href="vignette.html#cb85-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-3"><a href="vignette.html#cb85-3" aria-hidden="true" tabindex="-1"></a>gotermAnalysis_results <span class="ot">&lt;-</span> <span class="fu">gotermAnalysis</span>(DESeqresults)</span></code></pre></div>
+</div>
+<div id="function-gotermplot" class="section level3" number="7.3.6">
+<h3><span class="header-section-number">7.3.6</span> Function gotermPlot()</h3>
 <p>The function <code>gotermPlot()</code> is an extension to the previous <code>gotermAnalysis()</code> function, generating a figure containing the most abundant GO-terms. To save computing time, the <code>gotermAnalysis()</code> function will not be ran. This means its output has to be imported for the <code>gotermPlot()</code> function:</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="vignette.html#cb84-1" aria-hidden="true" tabindex="-1"></a>gotermAnalysis_results <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data/gotermAnalysis_results&quot;</span>))</span>
-<span id="cb84-2"><a href="vignette.html#cb84-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-3"><a href="vignette.html#cb84-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gotermPlot</span>(gotermAnalysis_results, <span class="at">topamount =</span> <span class="dv">10</span>, <span class="at">plot_title =</span> <span class="st">&quot;Top 10 upregulated GO-terms&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="vignette.html#cb86-1" aria-hidden="true" tabindex="-1"></a>gotermAnalysis_results <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data/gotermAnalysis_results&quot;</span>))</span>
+<span id="cb86-2"><a href="vignette.html#cb86-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-3"><a href="vignette.html#cb86-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gotermPlot</span>(gotermAnalysis_results, <span class="at">topamount =</span> <span class="dv">10</span>, <span class="at">plot_title =</span> <span class="st">&quot;Top 10 upregulated GO-terms&quot;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:gotermPlotexample"></span>
 <img src="portfolio_book_files/figure-html/gotermPlotexample-1.png" alt="Example GO-term plot." width="691.2" />
 <p class="caption">
 Figure 7.2: Example GO-term plot.
 </p>
 </div>
+</div>
+</div>
+<div id="additional-files" class="section level2" number="7.4">
+<h2><span class="header-section-number">7.4</span> Additional files</h2>
+<p>Additional files can be found in the <code>/inst/extdata/</code> directory. It consist of files used to build the vignette, (raw) data for analysis/plotting, example files and an R script that shows how the dataset <code>measlesdata</code> was cleaned.</p>
 
 </div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-wickhamUsethisAutomatePackage2022" class="csl-entry">
+Wickham, Hadley, Jennifer Bryan, and Malcom Barrett. 2022. <span>“Usethis: Automate Package and Project Setup.”</span> <a href="https://usethis.r-lib.org, https://github.com/r-lib/usethis">https://usethis.r-lib.org, https://github.com/r-lib/usethis</a>.
+</div>
+<div id="ref-wickhamDevtoolsToolsMake2022" class="csl-entry">
+Wickham, Hadley, Jim Hester, Winston Chang, and Jennifer Bryan. 2022. <span>“Devtools: Tools to Make Developing R Packages Easier.”</span> <a href="https://devtools.r-lib.org/, https://github.com/r-lib/devtools">https://devtools.r-lib.org/, https://github.com/r-lib/devtools</a>.
 </div>
 </div>
             </section>

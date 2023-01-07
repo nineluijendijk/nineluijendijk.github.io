@@ -4,7 +4,7 @@
 
 ## Installing and loading the package
 
-```{r setuppackage, message=FALSE}
+```{r setuppackage, message=FALSE, results='hide', warning=FALSE}
 devtools::install_github("nineluijendijk/dsfbnine")
 library(dsfbnine)
 ```

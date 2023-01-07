@@ -18,7 +18,7 @@ library(plotly)
 
 ### Introduction
 
-In this report I will be analyzing 2 datasets obtained from Google Dengue Trends (<http://www.google.org/denguetrends>) and Google Flu Trends (<http://www.google.org/flutrends>). The datasets contain the number of dengue and flu cases per week of the year, from 2002 through 2015.
+In this report I will be analyzing 2 datasets obtained from [Google Dengue Trends](http://www.google.org/denguetrends) and [Google Flu Trends](http://www.google.org/flutrends). The datasets contain the number of dengue and flu cases per week of the year, from 2002 through 2015.
 
 ### Importing the data and making it tidy
 

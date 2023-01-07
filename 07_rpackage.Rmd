@@ -1,3 +1,59 @@
-# Personal R package {#rpackage}
+# R package vignette {#vignette}
 
-work in progress
+----
+
+## Installing and loading the package
+
+```{r setuppackage, message=FALSE}
+devtools::install_github("nineluijendijk/dsfbnine")
+library(dsfbnine)
+```
+
+## Package contents
+
+### Dataset measlesdata
+
+The [{dsfbnine} package](https://github.com/nineluijendijk/dsfbnine) contains some functions to help me with my data analysis and one cleaned dataset `measlesdata`. It contains data on measles cases and population numbers in EU countries from 2018 and 2019. The dataset loads as a dataframe with 744 rows and 8 variables. It is available via lazy-loading, meaning columns can be accessed as follows:
+
+```{r measlesexample}
+measlesdata$cases %>% head(n = 20)
+```
+
+### Function dataSummarizer()
+
+The function `dataSummarizer()` calculates the sum, mean, median and standard deviation of data, grouped by a given argument:
+
+```{r dataSummarizerexample}
+dataSummarizer(measlesdata, groupBy = c("CountryName", "year")) %>% head(n = 10)
+```
+
+### Function illnessPlot()
+
+The function `illnessPlot()` generates a graph showing illness numbers, specifically COVID-19 numbers from an [ECDC](https://www.ecdc.europa.eu/en/covid-19/data) dataset, used in [Chapter 6](https://nineluijendijk.github.io/parameterized.html) of my portfolio. The same code was used to generate 4 different plots, to fix this issue `illnessPlot()` was created.
+
+```{r illnessPlotexample, fig.height = 5, fig.width = 7.2, fig.cap="Example illness plot."}
+coviddata <- read.csv(here::here("data/datacovid.csv")) #load the data
+illnessPlot(coviddata, countries = c("Netherlands", "Belgium", "France"), years = 2020:2022, parameter = cases)
+```
+
+### Function gotermAnalysis()
+
+The function `gotermAnalysis()` was written specifically to help with my analysis of RNA-sequencing data, which is why there are many different parameters to be set: changing just 1 can completely change the results (seen in the code chunk below). The function performs a GO-term enrichment analysis. The output of this function can be used in the next function `gotermPlot()` as well.
+
+```{r gotermAnalysisexample, eval=FALSE}
+DESeqresults <- readRDS(here::here("data/dge_results")) #load the data object of class "DESeqResults"
+
+gotermAnalysis_results <- gotermAnalysis(DESeqresults)
+```
+
+### Function gotermPlot()
+
+The function `gotermPlot()` is an extension to the previous `gotermAnalysis()` function, generating a figure containing the most abundant GO-terms. To save computing time, the `gotermAnalysis()` function will not be ran. This means its output has to be imported for the `gotermPlot()` function:
+
+```{r gotermPlotexample, fig.height = 5, fig.width = 7.2, fig.cap="Example GO-term plot."}
+gotermAnalysis_results <- readRDS(here::here("data/gotermAnalysis_results"))
+
+gotermPlot(gotermAnalysis_results, topamount = 10, plot_title = "Top 10 upregulated GO-terms")
+```
+
+

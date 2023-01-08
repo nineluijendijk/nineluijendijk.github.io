@@ -1,2 +1,2 @@
-# portfolio
-Data Sciences for Biology 2 portfolio
+# Nine Luijendijk portfolio
+Data Sciences for Biology 2 portfolio by Nine Luijendijk

@@ -18,7 +18,7 @@ library(plotly)
 
 ### Introduction
 
-In this report I will be analyzing 2 datasets obtained from [Google Dengue Trends](http://www.google.org/denguetrends) and [Google Flu Trends](http://www.google.org/flutrends). The datasets contain the number of dengue and flu cases per week of the year, from 2002 through 2015.
+In this report I will be analyzing 2 datasets obtained from [Google Dengue Trends](http://www.google.org/denguetrends) and [Google Flu Trends](http://www.google.org/flutrends). Sadly, the metadata is incomplete and I am not sure what the numbers mean, it's not documented. I will be assuming that the datasets contain the number of dengue and flu cases per week of the year, from 2002 through 2015. This shows just how important complete metadata is.
 
 ### Importing the data and making it tidy
 

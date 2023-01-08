@@ -1,2 +1,2 @@
-# Nine Luijendijk portfolio-gitpages
+# Nine Luijendijk portfolio github-pages
 Data Sciences for Biology 2 portfolio by Nine Luijendijk

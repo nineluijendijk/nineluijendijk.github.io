@@ -4,7 +4,7 @@
 
 ## Creating the package
 
-I have created a package to help me with data analysis. My package {dsfbnine} was created with the help of the {devtools} [@wickhamDevtoolsToolsMake2022] and {usethis} [@wickhamUsethisAutomatePackage2022] packages. The general frame was made using function from these packages, like `usethis::create_package` and `devtools::document()`.
+I have created a package to help me with data analysis. My package {dsfbnine} was created with the help of the {devtools} [@wickhamDevtoolsToolsMake2022] and {usethis} [@wickhamUsethisAutomatePackage2022] packages. The general frame was made using function from these packages, like `usethis::create_package` and `devtools::document`.
 
 The functions included in this package are specific to my own workflow, most were written by looking at my own duplicate code. The main use of the functions are to make my code tidier and help me work faster, since I often do things like plotting illness cases for example. The rest of this chapter will be the vignette that comes with the package.
 

@@ -358,17 +358,17 @@ The generated tree is visualized as a cladogram using the package {ggtree} <span
 <span id="cb90-6"><a href="primates.html#cb90-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_tree</span>()<span class="sc">+</span></span>
 <span id="cb90-7"><a href="primates.html#cb90-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="at">size =</span> <span class="dv">6</span>, <span class="at">as_ylab =</span> T)<span class="sc">+</span></span>
 <span id="cb90-8"><a href="primates.html#cb90-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Unrooted neighbor joining cladogram of</span><span class="sc">\n</span><span class="st">mitochondrial genomes of 15 primates and the golden hamster&quot;</span>)</span></code></pre></div>
-<div class="figure">
-<img src="portfolio_book_files/figure-html/Calculate%20the%20genetic%20distances%20between%20the%20sequences-1.png" alt="Unrooted neighbor joining cladogram of mitochondrial genomes of 15 primates and the golden hamster." width="672" />
+<div class="figure"><span style="display:block;" id="fig:calculatethegeneticdistancesbetweenthesequences"></span>
+<img src="portfolio_book_files/figure-html/calculatethegeneticdistancesbetweenthesequences-1.png" alt="Unrooted neighbor joining cladogram of mitochondrial genomes of 15 primates and the golden hamster." width="672" />
 <p class="caption">
-(#fig:Calculate the genetic distances between the sequences)Unrooted neighbor joining cladogram of mitochondrial genomes of 15 primates and the golden hamster.
+Figure 8.1: Unrooted neighbor joining cladogram of mitochondrial genomes of 15 primates and the golden hamster.
 </p>
 </div>
 </div>
 </div>
 <div id="different-types-of-phylogenetic-models" class="section level2" number="8.5">
 <h2><span class="header-section-number">8.5</span> Different types of phylogenetic models</h2>
-<p>This first tree was generated using an improved neighbor joining model, which is just one of the four most commonly used <span class="citation">(<a href="#ref-yoshidaEfficienciesNJpMaximum2016" role="doc-biblioref">Yoshida and Nei 2016</a>)</span>. Neighbor joining only looks at the distance between the sequences, but not at smaller details in the sequences <span class="citation">(<a href="#ref-yoshidaEfficienciesNJpMaximum2016" role="doc-biblioref">Yoshida and Nei 2016</a>)</span>. A different method is maximum likelihood, where the likelihood of the different possible states of the tree is calculated, and the tree with the highest likelihood is generated <span class="citation">(<a href="#ref-dharMaximumLikelihoodPhylogenetic2016" role="doc-biblioref">Dhar and Minin 2016</a>)</span>. Two other popular methods are Bayesian inference and maximum parsimony <span class="citation">(<a href="#ref-dharMaximumLikelihoodPhylogenetic2016" role="doc-biblioref">Dhar and Minin 2016</a>)</span>; <span class="citation">(<a href="#ref-yoshidaEfficienciesNJpMaximum2016" role="doc-biblioref">Yoshida and Nei 2016</a>)</span>. Since maximum likelihood is the preferred method in publications <span class="citation">(<a href="#ref-dharMaximumLikelihoodPhylogenetic2016" role="doc-biblioref">Dhar and Minin 2016</a>)</span>, that is the method I will be using.</p>
+<p>This first tree <a href="primates.html#fig:calculatethegeneticdistancesbetweenthesequences">8.1</a> was generated using an improved neighbor joining model, which is just one of the four most commonly used <span class="citation">(<a href="#ref-yoshidaEfficienciesNJpMaximum2016" role="doc-biblioref">Yoshida and Nei 2016</a>)</span>. Neighbor joining only looks at the distance between the sequences, but not at smaller details in the sequences <span class="citation">(<a href="#ref-yoshidaEfficienciesNJpMaximum2016" role="doc-biblioref">Yoshida and Nei 2016</a>)</span>. A different method is maximum likelihood, where the likelihood of the different possible states of the tree is calculated, and the tree with the highest likelihood is generated <span class="citation">(<a href="#ref-dharMaximumLikelihoodPhylogenetic2016" role="doc-biblioref">Dhar and Minin 2016</a>)</span>. Two other popular methods are Bayesian inference and maximum parsimony <span class="citation">(<a href="#ref-dharMaximumLikelihoodPhylogenetic2016" role="doc-biblioref">Dhar and Minin 2016</a>)</span>; <span class="citation">(<a href="#ref-yoshidaEfficienciesNJpMaximum2016" role="doc-biblioref">Yoshida and Nei 2016</a>)</span>. Since maximum likelihood is the preferred method in publications <span class="citation">(<a href="#ref-dharMaximumLikelihoodPhylogenetic2016" role="doc-biblioref">Dhar and Minin 2016</a>)</span>, that is the method I will be using.</p>
 <div id="finding-the-best-model" class="section level3" number="8.5.1">
 <h3><span class="header-section-number">8.5.1</span> Finding the best model</h3>
 <p>The input for the {phangorn} <code>modelTest</code> function is an object of the class phyDat, so first the DNAbin object has to be converted:</p>
@@ -395,10 +395,10 @@ The generated tree is visualized as a cladogram using the package {ggtree} <span
 <span id="cb96-4"><a href="primates.html#cb96-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_tree</span>()<span class="sc">+</span></span>
 <span id="cb96-5"><a href="primates.html#cb96-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="at">size =</span> <span class="dv">6</span>, <span class="at">as_ylab =</span> T)<span class="sc">+</span></span>
 <span id="cb96-6"><a href="primates.html#cb96-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Unrooted maximum likelihood cladogram of</span><span class="sc">\n</span><span class="st">mitochondrial genomes of 15 primates and the golden hamster&quot;</span>)</span></code></pre></div>
-<div class="figure">
-<img src="portfolio_book_files/figure-html/Visualize%20unrooted%20maximum%20likelihood%20tree-1.png" alt="Unrooted maximum likelihood cladogram of mitochondrial genomes of 15 primates and the golden hamster" width="672" />
+<div class="figure"><span style="display:block;" id="fig:Visualizeunrootedmaximumlikelihoodtree"></span>
+<img src="portfolio_book_files/figure-html/Visualizeunrootedmaximumlikelihoodtree-1.png" alt="Unrooted maximum likelihood cladogram of mitochondrial genomes of 15 primates and the golden hamster" width="672" />
 <p class="caption">
-(#fig:Visualize unrooted maximum likelihood tree)Unrooted maximum likelihood cladogram of mitochondrial genomes of 15 primates and the golden hamster
+Figure 8.2: Unrooted maximum likelihood cladogram of mitochondrial genomes of 15 primates and the golden hamster
 </p>
 </div>
 </div>
@@ -417,13 +417,13 @@ The generated tree is visualized as a cladogram using the package {ggtree} <span
 <span id="cb97-10"><a href="primates.html#cb97-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tiplab</span>(<span class="at">size =</span> <span class="fl">2.5</span>, <span class="at">as_ylab =</span> F)<span class="sc">+</span></span>
 <span id="cb97-11"><a href="primates.html#cb97-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="fl">0.35</span>)<span class="sc">+</span></span>
 <span id="cb97-12"><a href="primates.html#cb97-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Rooted maximum likelihood phylogenetic tree of</span><span class="sc">\n</span><span class="st">mitochondrial genomes of 15 primates and the golden hamster&quot;</span>)</span></code></pre></div>
-<div class="figure">
-<img src="portfolio_book_files/figure-html/Rooting%20the%20tree%20and%20visualizing%20it-1.png" alt="Rooted maximum likelihood phylogenetic tree of mitochondrial genomes of 15 primates and the golden hamster" width="672" />
+<div class="figure"><span style="display:block;" id="fig:rootingthetreeandvisualizingit"></span>
+<img src="portfolio_book_files/figure-html/rootingthetreeandvisualizingit-1.png" alt="Rooted maximum likelihood phylogenetic tree of mitochondrial genomes of 15 primates and the golden hamster" width="672" />
 <p class="caption">
-(#fig:Rooting the tree and visualizing it)Rooted maximum likelihood phylogenetic tree of mitochondrial genomes of 15 primates and the golden hamster
+Figure 8.3: Rooted maximum likelihood phylogenetic tree of mitochondrial genomes of 15 primates and the golden hamster
 </p>
 </div>
-<p>The final tree is visualized as a phylogenetic tree instead of a cladogram, with different branch lengths describing the ancestry of the primates. The cladogram only showed how the different species are related <span class="citation">(<a href="#ref-pearsonWhenOutgroupsFail2013" role="doc-biblioref">Pearson et al. 2013</a>)</span>.</p>
+<p>The final tree <a href="primates.html#fig:rootingthetreeandvisualizingit">8.3</a> is visualized as a phylogenetic tree instead of a cladogram, with different branch lengths describing the ancestry of the primates. The cladogram only showed how the different species are related <span class="citation">(<a href="#ref-pearsonWhenOutgroupsFail2013" role="doc-biblioref">Pearson et al. 2013</a>)</span>.</p>
 <p>Normally, more thought would go into selecting the best possible outgroup <span class="citation">(<a href="#ref-rota-stabelliMultiCriterionApproach2008" role="doc-biblioref">Rota-Stabelli and Telford 2008</a>)</span>. Since my goal was to learn how to generate a phylogenetic tree in R (within a reasonable timeframe) I chose an animal that I like and know is more genetically different from the primates than the primates between each other.</p>
 
 </div>

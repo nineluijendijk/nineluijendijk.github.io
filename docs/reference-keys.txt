@@ -35,6 +35,9 @@ fig:plotcases2
 fig:plotdeaths2
 fig:illnessPlotexample
 fig:gotermPlotexample
+fig:calculatethegeneticdistancesbetweenthesequences
+fig:Visualizeunrootedmaximumlikelihoodtree
+fig:rootingthetreeandvisualizingit
 guerillaframework
 reproducibleresearch
 scoring-the-reproducibility-of-a-research-article

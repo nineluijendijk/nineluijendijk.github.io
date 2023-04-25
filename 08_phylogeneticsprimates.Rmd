@@ -3,7 +3,7 @@
 ----
 
 ## The plan
-In 2 years' time I want to be doing my master's in Biology at Universiteit Leiden. I would like to specialize in Evolutionary Biology. Next semester I will be attending classes at Radboud Universiteit that are part of their minor Biology - Adaptive Organisms to get a head start on learning about evolutionary biology, both because it's something I enjoy and to make the transition from life sciences to the master's program easier
+In 2 years' time I want to be doing my master's in Biology at Universiteit Leiden. I would like to specialize in Evolutionary Biology. This semester I am attending classes at Radboud University that are part of their minor/pre-master Biology - Adaptive Organisms to get a head start on learning about evolutionary biology, both because it's something I enjoy and to make the transition from Life Sciences to the master's program easier
 
 I would like to learn more about the differences between multiple primates and generate a phylogenetic tree. Prior to me starting on the actual code for this phylogenetic tree, I had to look into the different types of trees and how to generate them.
 

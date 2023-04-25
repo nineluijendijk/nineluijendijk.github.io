@@ -35,6 +35,9 @@ _Bachelor of Science - BS, Life Sciences, Sep. 2020 - Aug. 2024_\
 Specialized in Data Sciences for Biology\
 GPA of 4.0
 
+__Radboud University__\
+_Minor in Adaptive Organisms, Jan. 2023 - Jul. 2023_\
+
 ## Experience {-}
 __Zeeman textielSupers - Leusden__\
 _Sales Associate, Nov. 2021 - Present_\
@@ -52,7 +55,8 @@ Bash command language\
 SQL\
 Excel\
 CSS stylesheet language\
-(Cell) culture
+(Cell) culture\
+RNA-Seq analysis
 
 ## Languages {-}
 Dutch - native speaker\
